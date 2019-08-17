@@ -284,23 +284,92 @@ class SurveyController extends Controller {
 
     public function show($id) {
         $survey = Survey::findOrFail($id);
-        $completedSurveys = Survey::findOrFail($id)->completedSurveys()->paginate(10);
         $questions = Survey::findOrFail($id)->questions()->paginate(10);
-        //$answers = Survey::findOrFail($id)->completedSurveys()->answers()->paginate(100);
+        
+        $completedSurveys = Survey::findOrFail($id)->completedSurveys()->paginate(100);
+        
+        $surveys_total_count = DB::table('surveys')->join('group_survey', 'surveys.id', '=', 'group_survey.survey_id')
+                        ->join('groups', 'group_survey.group_id', '=', 'groups.id')
+                        ->join('group_user', 'groups.id', '=', 'group_user.group_id')
+                        ->join('users', 'group_user.user_id', '=', 'users.id')                                                         
+                        ->where('surveys.id', '=', $id)
+                        ->count();        
+        $completedSurveys_count = Survey::findOrFail($id)->completedSurveys()->count();
+        $not_completedSurveys_count = $surveys_total_count - $completedSurveys_count;
+        
+         
 
-        $i=0;
-        foreach ($questions as $question) {          
-            $count_answers = DB::table('question_survey')
+        foreach ($questions as $question) {
+            $question->count_answers = DB::table('question_survey')
                     ->join('questions', 'question_survey.question_id', '=', 'questions.id')
                     ->join('answers', 'questions.id', 'answers.question_id')
-                    ->where([['question_survey.survey_id', '=', $survey->id],['questions.id','=',$question->id]])
-                    ->select(DB::raw('count(*) as total'))
+                    ->where([['question_survey.survey_id', '=', $survey->id], ['questions.id', '=', $question->id]])
                     ->groupBy('answers.value')
-                    ->pluck('total')->all();
-            $i++;
+                    ->select(DB::raw('COUNT(*) as total'))
+                    ->pluck('total');
         }
+        
+        $scores_users = array();
+        $i = 0;
+        foreach ($completedSurveys as $completedSurvey) {
+            $questions_users = DB::table('question_survey')
+                            ->join('questions', 'question_survey.question_id', 'questions.id')
+                            ->join('answers', 'questions.id', 'answers.question_id')
+                            ->where('answers.completed_survey_id', '=', $completedSurvey->id)
+                            ->distinct('questions.id')
+                            ->select('questions.*', 'answers.value as value', 'answers.id as answer_id')
+                            ->orderBy('questions.id', 'asc')->get();
+            $score = 0;
+            foreach ($questions_users as $question_user) {
+                $score += abs($question_user->value - $question_user->correct_answer);
+            }
+            $t = 0;
+            for($j = 0; $j<$i;$j++) {
+                if ($scores_users[$j]['score'] == $score) {
+                    $scores_users[$j]['count']++;
+                    $t = 1;
+                }
+            }
+            if ($t == 0) {
+                $scores_users[$i] = array();
+                $scores_users[$i]['score'] = $score;
+                $scores_users[$i]['count'] = 1;
+                $i++;
+            }
+        }
+        sort($scores_users);
+        $minimum_score = 10000000000000;
+        $maximum_score = 0;
+        $average_score = 0;
+        foreach($scores_users as $scores_user)
+        {
+            if($scores_user['score'] > $maximum_score){
+                $maximum_score = $scores_user['score'];
+            }
+            if($scores_user['score'] < $minimum_score){
+                $minimum_score = $scores_user['score'];
+            }
+            $average_score += $scores_user['score'];
+        }
+        $average_score /= count($scores_users);
+       // $average_score = array_sum($scores_users)/count($scores_users);
+
+        /* $completedSurveys = DB::table('completed_surveys')
+          ->join('survey', 'completed_surveys.survey_id', 'survey.id')
+          ->join('users', 'completed_surveys.user_id', 'user.id')
+          ->join('question_survey', 'survey.id', 'question_survey.survey_id')
+          ->join('questions', 'question_survey.question_id', '=', 'questions.id')
+          ->join('answers','questions.id','answers.question_id')
+          ->where('question_survey.survey_id', '=', $survey->id)
+          ->select('user.name as name_user', 'user.surname as surname_user','questions.correct_answers','answers.value as value');
 
 
+          foreach ($completedSurveys as $completedSurvey) {
+          foreach ($completedSurvey->questions as $question) {
+          $completedSurvey->score += abs($question->value - $question->correct_answer);
+          }
+          }
+         */
         /* $completedSurvey = DB::table('completed_surveys')
           ->join('surveys', 'completed_surveys.survey_id', '=', 'surveys.id')
           ->where('completed_surveys.id', '=', $id)
@@ -332,7 +401,12 @@ class SurveyController extends Controller {
         return view('admin.surveys.show')->with(['completedSurveys' => $completedSurveys,
                     'survey' => $survey,
                     'questions' => $questions,
-                    'count_answers' => $count_answers
+                    'scores_users' => $scores_users,
+                    'completedSurveys_count' => $completedSurveys_count,
+                    'not_completedSurveys_count' => $not_completedSurveys_count,
+                    'minimum_score' => $minimum_score,
+                    'maximum_score' => $maximum_score,
+                    'average_score' => $average_score
         ]);
     }
 
