@@ -18,7 +18,7 @@ class ImpersonateController extends Controller {
 
     public function destroy() {
         session()->forget('impersonate');
-        return redirect('/home');
+        return redirect('admin/index');
     }
 
 }
