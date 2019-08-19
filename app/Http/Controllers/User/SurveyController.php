@@ -89,8 +89,8 @@ class SurveyController extends Controller {
                         ->where('answers.completed_survey_id', '=', $completedSurvey->completed_id)
                         ->distinct('questions.id')
                         ->select('questions.*','answers.value as value','answers.id as answer_id')
-                        ->orderBy('questions.id', 'asc')->get();
-        
+                        ->orderBy('questions.id', 'asc')->get();       
+       
         $correctAnswers = 0;
         foreach ($questions as $question)
         {

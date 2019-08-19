@@ -13,15 +13,9 @@ Answer Survey
                     <ul class="nav nav-tabs px-4" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="statistics-tab" data-toggle="tab" href="#statistics" role="tab" aria-controls="statistics" aria-selected="false">Statistics</a>
-                        </li> 
+                        </li>                       
                         <li class="nav-item">
                             <a class="nav-link" id="global-tab" data-toggle="tab" href="#global" role="tab" aria-controls="global" aria-selected="false">Global</a>
-                        </li>  
-                        <li class="nav-item">
-                            <a class="nav-link" id="admin-global-tab" data-toggle="tab" href="#admin-global" role="tab" aria-controls="admin-global" aria-selected="false">Admin Global</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -81,19 +75,7 @@ Answer Survey
                                 </div>
                             </div>                                   
                             @endforeach                                   
-                        </div>  
-                        <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
-                            @foreach($questions as $question)
-                            <div class="col-lg-12 grid-margin stretch-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">{{ $question->name }}</h4>
-                                        <canvas id="barChart{{ $loop->iteration }}"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>    
+                        </div>                              
                         <div class="tab-pane fade" id="global" role="tabpanel" aria-labelledby="global-tab">
                             <div class="row">
                                 <div class="col-lg-6 grid-margin stretch-card">
@@ -113,31 +95,7 @@ Answer Survey
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="admin-global" role="tabpanel" aria-labelledby="admin-global-tab">
-                            <div class="row">
-                                <div class="col-lg-6 grid-margin stretch-card">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Number of completed surveys</h4>
-                                            <canvas id="completedSurveys"></canvas>
-                                        </div>                                        
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 grid-margin stretch-card">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Average score</h4>
-                                            <p>50</p>
-                                            <h4 class="card-title">Maximum score</h4>
-                                            <p>50</p>
-                                            <h4 class="card-title">Minimun score</h4>
-                                            <p>50</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </div>                        
                     </div> 
                 </div>                
             </div>
@@ -307,64 +265,7 @@ Answer Survey
 
 
 
-    var doughnutPieData1 = {
-    datasets: [{
-    data: [30, 40],
-            backgroundColor: [
-                    'rgba(0,128,0, 0.5)',
-                    'rgba(255,0,0, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                    'rgba(255, 159, 64, 0.5)'
-            ],
-            borderColor: [
-                    'rgba(0,128,0,1)',
-                    'rgba(255,0,0, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-            ],
-    }],
-            // These labels appear in the legend and in the tooltips when hovering different arcs
-            labels: [
-                    'Completed',
-                    'Not completed',
-            ]
-    };
-            var doughnutPieOptions1 = {
-            responsive: true,
-                    animation: {
-                    animateScale: true,
-                            animateRotate: true
-                    },
-                    tooltips: {
-                    callbacks: {
-                    label: function(tooltipItem, data) {
-                    //get the concerned dataset
-                    var dataset = data.datasets[tooltipItem.datasetIndex];
-                            //calculate the total of this data set
-                            var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
-                            return previousValue + currentValue;
-                            });
-                            //get the current items value
-                            var currentValue = dataset.data[tooltipItem.index];
-                            //calculate the precentage based on the total and current item, also this does a rough rounding to give a whole number
-                            var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
-                            return "#" + currentValue + "   " + percentage + "%";
-                    }
-                    }
-                    }
-            };
-            if ($("#completedSurveys").length) {
-    var completedSurveysCanvas = $("#completedSurveys").get(0).getContext("2d");
-            var completedSurveys = new Chart(completedSurveysCanvas, {
-            type: 'doughnut',
-                    data: doughnutPieData1,
-                    options: doughnutPieOptions1
-            });
-    }
+   
     });
 
 </script>

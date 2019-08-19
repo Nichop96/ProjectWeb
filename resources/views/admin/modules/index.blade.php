@@ -25,6 +25,9 @@ Modules
         <div class="col-lg-3 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body" >
+                    @if(isset($module->image))
+                        <img src="/images/modules/{{ $module['image'] }}" height="75px" alt="Responsive image" />
+                    @endif
                     <h4 class="card-title">{{ $module->name }}</h4> 
                     <h3 class="card-title">{{ $module->description }}</h3>  
                     

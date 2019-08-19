@@ -62,7 +62,11 @@ Survey edit
                             </div>
 
                         </div>
-
+                         <div class="form-group">
+                            <label for="file">Avatar of the survey</label>
+                            <input type="file" class="form-control-file" name='file' form='aux_form' accept="image/png, .jpeg, .jpg, image/gif"/>
+                            
+                        </div> 
                         <br>
                         @foreach($questions as $question)
                         <br>                      
@@ -231,13 +235,21 @@ Survey edit
                         </tbody>
 
                     </table>
-                    
-                    <button class="btn btn-primary" onclick="submit()">
-                        submit survey
-                    </button>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary" onclick="submit()" value="Submit survey">
+                                submit survey
+                            </button>
+                        </div>
+                        <div class="col">
+                            <a href="{{ route('admin.index') }}">
+                                        <input type='button' class='btn btn-primary' value='Cancel'>
+                            </a>
+                        </div>
+                    </div>
                 </div> <!-- div di creazione modulo -->
                 <div name="aux">
-                    <form id="aux_form" class="pt-3" action="{{ route('admin.surveys.update', ['id'=>$survey->id]) }}" method="POST">
+                    <form id="aux_form" class="pt-3" action="{{ route('admin.surveys.update', ['id'=>$survey->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf 
                         {{ method_field('PUT') }} 
 

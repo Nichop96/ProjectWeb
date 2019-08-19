@@ -19,7 +19,7 @@ class CreateSurveysTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->boolean('fillable')->default(true);
-            $table->binary('image')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

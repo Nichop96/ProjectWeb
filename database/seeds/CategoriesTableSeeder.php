@@ -18,6 +18,22 @@ class CategoriesTableSeeder extends Seeder {
        Category::create([
                     'name' => 'Coffee',                    
         ]);
+       
+       Category::create([
+                    'name' => 'Cheese',                    
+        ]);
+       
+       Category::create([
+                    'name' => 'Perfume',                    
+        ]);
+       
+       Category::create([
+                    'name' => 'Tissue',                    
+        ]);
+       
+       Category::create([
+                    'name' => 'Music',                    
+        ]);
     }
 
 }

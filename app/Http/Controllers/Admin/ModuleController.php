@@ -57,8 +57,28 @@ class ModuleController extends Controller {
         $tmp = $request['category'];
         unset($request['category']);
         $request['category_id'] = $tmp;
-        Module::create($request->all());
-
+        
+        
+        unset($request['file']);
+        
+        // parte modificata profondamente
+        $module = new Module();
+        $module->name = $request['name'];
+        $module->description = $request['description'];
+        $module->category_id = $request['category_id'];
+        // gestisco l'immagine
+        if($file = $request->file('file')){
+                $name = $file->getClientOriginalName();
+                if($file->move('images\modules', $name)){
+                    $module->image = $name;
+                    
+                }
+        }
+        $module->save();
+        //Module::create($request->all());
+        
+        // fine parte modificata profondamente
+        
         $modulo_inserito = Module::where('name', $request['name'])->orderBy('id', 'DESC')->first();
         // ora gestisco le domande
        if ($question[0] === '') {
@@ -170,6 +190,14 @@ class ModuleController extends Controller {
         $module->name = $request['name'];
         $module->description = $request['description'];
         $module->category_id = $request['category_id'];
+        
+        if($file = $request->file('file')){
+                $name = $file->getClientOriginalName();
+                if($file->move('images\modules', $name)){
+                    $module->image = $name;
+                    
+                }
+        }
         $module->save();
 
         // ora lavoro sulle domande del modulo

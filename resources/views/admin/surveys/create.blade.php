@@ -5,8 +5,11 @@ Survey creation
 @endsection
 
 @section('content')
-
-@if(isset($module) && isset($questions))
+<!-- da rimuovere il controllo su $questions?
+        && isset($questions))
+(io l'ho tolto, controllare che non ci siano errori)
+-->
+@if(isset($module) && isset($questions)))
  <div class="content-wrapper">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-9 grid-margin stretch-card">
@@ -64,7 +67,13 @@ Survey creation
                             </div>
 
                         </div>
-
+                            
+                         <div class="form-group">
+                            <label for="file">Avatar of the survey</label>
+                            <input type="file" class="form-control-file" name='file' form='aux_form' accept="image/png, .jpeg, .jpg, image/gif" />
+                            
+                        </div>  
+                        
                         <br>
                         @foreach($questions as $question)
                         <br>                      
@@ -223,12 +232,21 @@ Survey creation
 
                     </table>
                     {{ $groups->links() }}
-                    <button class="btn btn-primary" onclick="submit()">
-                        submit module
-                    </button>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary" onclick="submit()">
+                                submit survey
+                            </button>
+                        </div>
+                        <div class="col">
+                            <a href="{{ route('admin.index') }}">
+                                        <input type='button' class='btn btn-primary' value='Cancel'>
+                            </a>
+                        </div>
+                    </div>
                 </div> <!-- div di creazione modulo -->
                 <div name="aux">
-                    <form id="aux_form" class="pt-3" action="{{ route('admin.surveys.store') }}" method="POST">
+                    <form id="aux_form" class="pt-3" action="{{ route('admin.surveys.store') }}" method="POST"  enctype="multipart/form-data">
                         @csrf 
 
                         <input type='hidden' class='aux_questions' name='aux_questions' id='aux_questions' />
@@ -305,11 +323,16 @@ Survey creation
                                 @endif
 
                             </div>
-
-
-
-
                         </div>
+                        <!-- modifiche da qua -->
+                        
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Avatar of the survey</label>
+                            <input type="file" class="form-control-file" name='file' form='aux_form' accept="image/png, .jpeg, .jpg, image/gif"/>
+                            
+                        </div>                      
+                        
+                        <!-- a qua -->
                         <br>
                         <div id="questions">
                             <!-- Repeater Html Start -->
@@ -414,12 +437,21 @@ Survey creation
 
                     </table>
                     {{ $groups->links() }}
-                    <button class="btn btn-primary" onclick="submit()">
-                        submit module
-                    </button>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary" onclick="submit()">
+                                submit survey
+                            </button>
+                        </div>
+                        <div class="col">
+                            <a href="{{ route('admin.index') }}">
+                                        <input type='button' class='btn btn-primary' value='Cancel'>
+                            </a>
+                        </div>
+                    </div>
                 </div> <!-- div di creazione modulo -->
                 <div name="aux">
-                    <form id="aux_form" class="pt-3" action="{{ route('admin.surveys.store') }}" method="POST">
+                    <form id="aux_form" name='aux_form' class="pt-3" action="{{ route('admin.surveys.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf 
                         <input type='hidden' class='aux_questions' name='aux_questions' id='aux_questions' />
                         <input type='hidden' class='aux_left' name='aux_left' id='aux_left' />

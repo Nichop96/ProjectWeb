@@ -59,7 +59,15 @@ Module creation
                             </div>
 
                         </div>
-
+                        <!-- modifiche da qua -->
+                        
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Example file input</label>
+                            <input type="file" class="form-control-file" id="aux_fileChooser" name='file' form='aux_form' accept="image/png, .jpeg, .jpg, image/gif"/>
+                            
+                        </div>                      
+                        
+                        <!-- a qua -->
                         <br>
                         @foreach($questions as $question)
                         <br>                      
@@ -194,12 +202,21 @@ Module creation
                         <br>
 
                     </form>
-                    <button class="btn btn-primary" onclick="submit()">
-                        submit module
-                    </button>
+                   <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary" onclick="submit()">
+                                submit Module
+                            </button>
+                        </div>
+                        <div class="col">
+                            <a href="{{ route('admin.index') }}">
+                                        <input type='button' class='btn btn-primary' value='Cancel'>
+                            </a>
+                        </div>
+                    </div>
                 </div> <!-- div di creazione modulo -->
                 <div name="aux">
-                    <form id="aux_form" class="pt-3" action="{{ route('admin.modules.update', ['module' => $module->id]) }}" method="POST">
+                    <form id="aux_form" class="pt-3" action="{{ route('admin.modules.update', ['module' => $module->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf 
                         {{ method_field('PUT') }}
                         <input type='hidden' class='aux_questions' name='aux_questions' id='aux_questions' />

@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 // da togliere(?
 Route::post('/admin/users/search', 'Admin\UserController@merda');
 Route::post('/admin/groups/search', 'Admin\GroupController@merda');
@@ -35,6 +39,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth','auth.admin'])->n
         return view('admin.index');
         })->name('index');
     Route::get('/impersonate/user/{id}','ImpersonateController@index')->name('impersonate');
+    Route::get('/surveys/{id}/view', 'SurveyController@view')->name('surveys.view');
 });
 
 Route::get('/admin/impersonate/destroy','Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');

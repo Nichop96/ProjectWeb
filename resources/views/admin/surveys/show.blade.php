@@ -127,7 +127,30 @@ Show Survey
                             </div>
                         </div>
                         <div class="tab-pane fade" id="individual" role="tabpanel" aria-labelledby="individual-tab">
-                            
+                            <table class="table">
+                                <thead class='thead-light'>
+                                    <tr>
+                                        <th scope="col">Name</th>  
+                                        <th scope="col">Surname</th>
+                                        <th scope="col">Actions</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($users as $user)
+                                    <tr>
+                                        <th>{{ $user->name }}</th>
+                                        <th>{{ $user->surname }}</th>
+                                        <th> 
+                                            <a href="{{route('admin.surveys.view',$user->completed_id) }}" class="float-left">
+                                                <button type="button" class="btn btn-primary btn-sm">View Survey</button>
+                                            </a>
+                                        </th>
+                                    </tr>    
+                                    @endforeach
+
+                                </tbody>
+
+                            </table>
                         </div>
                     </div> 
                 </div>                
