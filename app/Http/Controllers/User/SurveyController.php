@@ -10,6 +10,7 @@ use ORC\Survey;
 use ORC\Group;
 use ORC\Category;
 use ORC\Answer;
+use ORC\User;
 use ORC\CompletedSurvey;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,7 @@ class SurveyController extends Controller {
                         ->select('surveys.*', 'completed_surveys.id as completed_id')
                         ->orderBy('completed_surveys.created_at','desc')
                         ->get();
+        
         $ids = array();
         foreach($completedSurveys as $s)
         {
@@ -34,6 +36,7 @@ class SurveyController extends Controller {
                         ->join('users', 'group_user.user_id', '=', 'users.id')
                         ->where('users.id', '=', Auth::id())
                         ->whereNotIn('surveys.id',$ids)
+                        ->distinct('surveys.id')
                         ->select('surveys.*')
                         ->orderBy('surveys.created_at','desc')
                         ->get();

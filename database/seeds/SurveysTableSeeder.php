@@ -15,6 +15,9 @@ class SurveysTableSeeder extends Seeder
     {
         $wineCategory = Category::where('name','Wine')->pluck('id')->first();
         $coffeeCategory = Category::where('name','Coffee')->pluck('id')->first();
+        $perfumeCategory = Category::where('name','Perfume')->pluck('id')->first();
+        $tissueCategory = Category::where('name','Tissue')->pluck('id')->first();
+        $musicCategory = Category::where('name','Music')->pluck('id')->first();
         
         Survey::create([
             'name' => 'Red wine',
@@ -50,5 +53,42 @@ class SurveysTableSeeder extends Seeder
             'image' => null,
             'category_id' => $coffeeCategory,
         ]);
+          
+          Survey::create([
+            'name' => 'Chanel n. 5',
+            'description' => null,
+            'image' => null,
+            'category_id' => $perfumeCategory,
+        ]);
+          
+           Survey::create([
+            'name' => 'One Million',
+            'description' => null,
+            'image' => null,
+            'category_id' => $perfumeCategory,
+        ]);
+           
+            Survey::create([
+            'name' => 'Eau de toilette',
+            'description' => null,
+            'image' => null,
+            'category_id' => $perfumeCategory,
+        ]);
+           
+           Survey::create([
+            'name' => 'Silk',
+            'description' => null,
+            'image' => null,
+            'category_id' => $tissueCategory,
+        ]);
+           
+           
+           Survey::create([
+            'name' => 'Glass',
+            'description' => null,
+            'image' => null,
+            'category_id' => $tissueCategory,
+        ]);
+           
     }
 }

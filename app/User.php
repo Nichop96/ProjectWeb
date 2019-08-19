@@ -63,4 +63,6 @@ class User extends Authenticatable
     public function completedSurveys(){
         return $this->hasMany('ORC\CompletedSurvey');
     }
+    
+    
 }

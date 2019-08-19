@@ -49,9 +49,7 @@ Route::namespace('User')->prefix('user')->middleware(['auth','auth.user'])->name
     Route::get('/surveys/{id}/create', 'SurveyController@create');
     Route::get('/surveys/{id}/show', 'SurveyController@show');
     Route::resource('/groups', 'GroupController');
-    Route::get('/index', function () {
-        return view('user.index');
-        })->name('index');
+    Route::get('/index', 'HomeController@index')->name('index');
 });
 
 
