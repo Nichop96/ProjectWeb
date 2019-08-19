@@ -13,12 +13,12 @@ class ImpersonateController extends Controller {
         if ($user) {
             session()->put('impersonate', $user->id);
         }
-        return redirect('/home');
+        return redirect('/user/index');
     }
 
     public function destroy() {
         session()->forget('impersonate');
-        return redirect('/home');
+        return redirect('admin/index');
     }
 
 }

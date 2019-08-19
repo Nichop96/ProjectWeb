@@ -82,7 +82,11 @@ Group edit
                         <div class='row'>
                             <div class='col'><input type='submit' onclick='validazione()' class='btn btn-primary btn-lg btn-block ' value='Invia modifiche'></div>
                             <div class='col'><input type='reset' onclick='resetta()' class='btn btn-primary btn-lg btn-block ' value='Resetta campi'></div>
-                            <div class='col'><input type='button' class='btn btn-primary btn-lg btn-block ' value='Cancel'></div>
+                            <div class='col'>
+                                    <a href="{{route('admin.groups.index')}}">
+                                        <input type='button' onclick="" class='btn btn-primary btn-lg btn-block ' value='Cancel'>
+                                    </a>
+                                </div>
                         </div>
 
                     </form>

@@ -70,7 +70,7 @@ Survey edit
                         <br>
                         @foreach($questions as $question)
                         <br>                      
-                        <div class="card" id="{{$question->id}}">
+                        <div class="card">
                             <!-- Repeater Content -->
                             <h5 class="card-title"> Insert question </h5>
                             <div class="item-content card-body block">
@@ -242,7 +242,7 @@ Survey edit
                             </button>
                         </div>
                         <div class="col">
-                            <a href="{{ route('admin.index') }}">
+                            <a href="{{ route('admin.surveys.index') }}">
                                         <input type='button' class='btn btn-primary' value='Cancel'>
                             </a>
                         </div>
@@ -275,7 +275,6 @@ Survey edit
 
 <script type="text/javascript" src="{{ URL::asset('js/repeater.js') }}"></script>
 
-
 <script>
     /* Create Repeater */
     $("#repeater").createRepeater({
@@ -285,14 +284,12 @@ Survey edit
 
 <script>
     $("#repeater-form").on('submit', function (event) {
-    event.preventDefault();
+        event.preventDefault();
     })
 </script>
 
 <script>
-    
-    function resetAllErrors(){
-        
+    function resetAllErrors(){        
             $('.is-invalid').each(function(i, obj){
                 $(this).removeClass('is-invalid');
             });
@@ -301,13 +298,13 @@ Survey edit
 
 <script>
     function LabelValidate(label) {
-    // modo poco efficiente ma veloce da capire e fare
+        // modo poco efficiente ma veloce da capire e fare
 
-    if (parseInt(label)) {
-    return false;
-    }
+        if (parseInt(label)) {
+            return false;
+        }
 
-    return true;
+        return true;
     }
 </script>
 

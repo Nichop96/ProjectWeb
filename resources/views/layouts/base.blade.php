@@ -39,6 +39,14 @@
 
                     </ul>
                     <ul class="navbar-nav navbar-nav-right">
+                        @impersonate                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.impersonate.destroy')}}">
+                                <button  class="btn btn-danger">Stop impersonate </button>
+                            </a>
+                            
+                        </li>                        
+                        @endimpersonate
                         <li class="nav-item nav-profile dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                                 @yield('profile-photo')
@@ -55,8 +63,10 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>                                
-                            </div>
+                            </div>                         
                         </li>
+                        
+                        
                     </ul>
                     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                         <span class="mdi mdi-menu"></span>

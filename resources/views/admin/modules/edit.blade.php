@@ -209,7 +209,7 @@ Module creation
                             </button>
                         </div>
                         <div class="col">
-                            <a href="{{ route('admin.index') }}">
+                            <a href="{{ route('admin.modules.index') }}">
                                         <input type='button' class='btn btn-primary' value='Cancel'>
                             </a>
                         </div>
