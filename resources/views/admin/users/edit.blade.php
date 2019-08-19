@@ -1,0 +1,131 @@
+@extends('layouts.admin')
+
+@section('title')
+User edit
+@endsection
+
+@section('content')
+<div class="content-wrapper">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-9 grid-margin stretch-card">
+            <div class="card">
+                <div id="card-body" class="card-body">
+                    <h4 class="card-title">Manage user {{$user->name}} </h4>
+                    <form id="formModule" class="pt-3" action="{{ route('admin.users.update', ['user' => $user->id])}}" method="POST">
+                        @csrf
+                        {{ method_field('PUT') }}
+
+                        <div id="form">
+                            <div class="form-group">
+                                <label for='name'>First name</label>
+                                <input id="name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name', $user->name ?: '' ) }}" name="name" placeholder="{{$user->name}}">
+                                @if ($errors->has('name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                                @endif
+
+                            </div>
+                            <div class='form-group'>
+                                <label for='surname'>Surname</label>
+                                <input id="surname" type="text" class="form-control form-control-lg {{ $errors->has('surname') ? ' is-invalid' : '' }}" value="{{ old('surname', $user->surname ?: '' ) }}" name="surname" placeholder="{{$user->surname}}">
+                                @if ($errors->has('surname'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('surname') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class='form-group'>
+                                <label for='surname'>Username</label>
+                                <input id="username" type="text" class="form-control form-control-lg {{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username', $user->username ?: '' ) }}" name="username" placeholder="{{$user->username}}">
+                                @if ($errors->has('username'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('username') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class='form-group'>
+                                <label for='email'>email</label>
+                                <input id="email" type="text" class="form-control form-control-lg {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email', $user->email ?: '' ) }}" name="email" placeholder="{{$user->email}}">
+                                @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for='date'>Birth date</label>
+                                        <input type='date' class="form-control form-control-lg datepicker {{ $errors->has('birth_date') ? ' is-invalid' : '' }}" id="date_birth" name="birth_date" value="{{ old('birth_date', $user->birth_date) }}" >
+
+                                        <script>
+                                            function settadata() {
+                                                var dateControl = document.querySelector('input[type="date"]');
+                                                var data = '{{$user->birth_date}}';
+                                                var res = data.split("-");
+                                                var anno = res[0];
+                                                var mese = res[1];
+                                                var giorno = res[2].split(" ");
+                                                var finale = anno + '-' + mese + '-' + giorno[0];
+
+                                                dateControl.value = finale;
+                                            }
+
+                                            settadata();
+
+                                            function settaDopo() {
+                                                setTimeout(function () {
+                                                    settadata();
+                                                }, 0);
+                                            }
+                                        </script>
+
+                                        @if ($errors->has('birth_date'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('birth_date') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <div class="row">
+                                            <legend class="col-form-label col-sm-2 pt-0">Roles</legend>
+                                            <div class="col-sm-10">
+                                                <div class="form-check">
+                                                    @foreach($roles as $role)
+                                                    <input type="checkbox" name="roles[]" value="{{ $role->id }}" {{ $user->hasAnyRole($role->name)? 'checked':'' }}>
+                                                    <label>{{ $role->name }}</label>
+                                                    <br>
+                                                    @endforeach
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='row'>
+                                <div class='col'><input type='submit'   class='btn btn-primary btn-lg btn-block ' value='Invia modifiche'></div>
+                                <div class='col'><input type='reset' onclick ='settaDopo()' class='btn btn-primary btn-lg btn-block ' value='Resetta campi'></div>
+                                <div class='col'>
+                                    <a href="{{route('admin.users.index')}}">
+                                        <input type='button' onclick="" class='btn btn-primary btn-lg btn-block ' value='Cancel'>
+                                    </a>
+                                </div>
+                            </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
