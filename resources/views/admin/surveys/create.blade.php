@@ -77,7 +77,7 @@ Survey creation
                         <br>
                         @foreach($questions as $question)
                         <br>                      
-                        <div class="card" id="{{$question->id}}">
+                        <div class="card" id="question_{{$question->id}}">
                             <!-- Repeater Content -->
                             <h5 class="card-title"> Insert question </h5>
                             <div class="item-content card-body block">
@@ -119,7 +119,7 @@ Survey creation
                             </div>
                             <!-- Repeater Remove Btn -->
                             <div class="pull-right">
-                                <button class="btn btn-danger remove-btn" onclick="rimuovi('{{$question->id}}')">
+                                <button class="btn btn-danger remove-btn" onclick="rimuovi('question_{{$question->id}}')">
                                     Remove
                                 </button>
                             </div>
@@ -444,7 +444,7 @@ Survey creation
                             </button>
                         </div>
                         <div class="col">
-                            <a href="{{ route('admin.index') }}">
+                            <a href="{{ route('admin.surveys.index') }}">
                                         <input type='button' class='btn btn-primary' value='Cancel'>
                             </a>
                         </div>
@@ -480,11 +480,13 @@ Survey creation
 <script>
     /* Create Repeater */
     $("#repeater").createRepeater({
-    showFirstItemToDefault: false,
-    });</script>    
+        showFirstItemToDefault: false,
+        isFirstItemUndeletable: false
+    });
+</script>    
 <script>
     $("#repeater-form").on('submit', function (event) {
-    event.preventDefault();
+        event.preventDefault();
     })
 </script>
 <script>
