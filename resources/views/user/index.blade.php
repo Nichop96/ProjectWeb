@@ -143,21 +143,21 @@
      var doughnutPieData = {
             datasets: [{
             data: [@foreach ($surveys_category as $survey_category) {{$survey_category->count}} , @endforeach],
-                    backgroundColor: [
-                            'rgba(0,128,0, 0.5)',
-                            'rgba(255,0,0, 0.5)',
+                    backgroundColor: [                           
                             'rgba(255, 206, 86, 0.5)',
                             'rgba(75, 192, 192, 0.5)',
                             'rgba(153, 102, 255, 0.5)',
-                            'rgba(255, 159, 64, 0.5)'
+                            'rgba(255, 159, 64, 0.5)',
+                             'rgba(0,128,0, 0.5)',
+                            'rgba(255,0,0, 0.5)',
                     ],
-                    borderColor: [
-                            'rgba(0,128,0,1)',
-                            'rgba(255,0,0, 1)',
+                    borderColor: [                            
                             'rgba(255, 206, 86, 1)',
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(0,128,0,1)',
+                            'rgba(255,0,0, 1)',
                     ],
             }],
                     // These labels appear in the legend and in the tooltips when hovering different arcs

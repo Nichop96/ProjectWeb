@@ -34,12 +34,10 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth','auth.admin'])->n
     Route::resource('/questions','QuestionController');
     Route::resource('/groups', 'GroupController');
     Route::resource('/surveys', 'SurveyController');
-    Route::get('/surveys/{id}/create', 'SurveyController@create');
-    Route::get('/index', function () {
-        return view('admin.index');
-        })->name('index');
+    Route::get('/surveys/{id}/create', 'SurveyController@create');    
     Route::get('/impersonate/user/{id}','ImpersonateController@index')->name('impersonate');
     Route::get('/surveys/{id}/view', 'SurveyController@view')->name('surveys.view');
+    Route::get('/index', 'HomeController@index')->name('index');
 });
 
 Route::get('/admin/impersonate/destroy','Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
