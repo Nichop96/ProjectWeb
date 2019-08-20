@@ -105,10 +105,20 @@ class SurveyController extends Controller {
         // gestisco l'immagine
         if($file = $request->file('file')){
                 $name = $file->getClientOriginalName();
-                if($file->move('images\surveys', $name)){
+                if($file->move('images/surveys', $name)){
                     $survey->image = $name;
                     
                 }
+        }else{
+            if($request['aux_module_id']){
+                $tmp = Module::find($request['aux_module_id']);
+                if(strlen($tmp->image)){
+                    if(copy("images/modules/".$tmp->image, "images/surveys/".$tmp->image)){
+                        $survey->image = $tmp->image;
+                    
+                    }
+                }
+            }
         }
         $survey->save();
         

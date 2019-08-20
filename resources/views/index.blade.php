@@ -84,12 +84,14 @@
         <!-- Header part end-->
 
         <!-- banner part start-->
-        <section class="banner_part">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-xl-6">
-                        <div class="banner_text">
-                            <div class="banner_text_iner">
+        <section class="banner_part col-lg-12 col-xl-12">
+            <div class="container-fluid">
+                <div class="row">
+                     <div class="col-lg-6">
+                            <img class="img-fluid" src="{{asset('public-part/img/banner11.png')}}" alt="Responsive image">
+                        </div> 
+                    <div class="col-lg-6 col-xl-6 col-sm-6 padding_top">
+                        
                                 <h1>Sensorial analysis</h1>
                                 <p>A funnel is a complete experience in which your 
                                     senses get stimulated and you have to give a valutation how 
@@ -123,11 +125,13 @@
                                         <h5>Professional review</h5>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            
+                        
                     </div>
+                    
                 </div>
             </div>
+            
         </section>
         <!-- banner part start-->
 

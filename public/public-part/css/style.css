@@ -2487,7 +2487,7 @@ ul {
   }
 }
 
-/* line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss */
+/* line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss 
 .banner_part:after {
   position: absolute;
   top: 180px;
@@ -2499,6 +2499,10 @@ ul {
   right: 9%;
 }
 
+*/
+
+
+
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss */
   .banner_part:after {
@@ -2507,8 +2511,8 @@ ul {
   }
 }
 
-@media (max-width: 991px) {
-  /* line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss */
+/*@media (max-width: 991px) {
+   line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss 
   .banner_part:after {
     position: absolute;
     top: 110px;
@@ -2523,10 +2527,10 @@ ul {
     margin: 0 auto;
     background-repeat: no-repeat;
   }
-}
-
+}*/
+/*
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-  /* line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss */
+   line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss 
   .banner_part:after {
     position: absolute;
     top: 110px;
@@ -2541,10 +2545,10 @@ ul {
     margin: 0 auto;
     background-repeat: no-repeat;
   }
-}
+}*/
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  /* line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss */
+/*@media only screen and (min-width: 768px) and (max-width: 991px) {
+   line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss 
   .banner_part:after {
     position: absolute;
     top: 110px;
@@ -2559,10 +2563,10 @@ ul {
     margin: 0 auto;
     background-repeat: no-repeat;
   }
-}
+}*/
 
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
-  /* line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss */
+/*@media only screen and (min-width: 992px) and (max-width: 1200px) {
+   line 129, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss 
   .banner_part:after {
     position: absolute;
     max-width: 100%;
@@ -2575,7 +2579,7 @@ ul {
     top: auto;
     background-repeat: no-repeat;
   }
-}
+}*/
 
 /* line 202, ../../01 cl html template/New folder/May 2019/179 Medisen Medical/179 Medisen Medical -Template/sass/_banner.scss */
 .banner_part .banner_item {

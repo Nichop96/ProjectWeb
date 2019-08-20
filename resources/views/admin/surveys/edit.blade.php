@@ -70,7 +70,7 @@ Survey edit
                         <br>
                         @foreach($questions as $question)
                         <br>                      
-                        <div class="card">
+                        <div class="card" id="question_{{$question->id}}">
                             <!-- Repeater Content -->
                             <h5 class="card-title"> Insert question </h5>
                             <div class="item-content card-body block">
@@ -112,7 +112,7 @@ Survey edit
                             </div>
                             <!-- Repeater Remove Btn -->
                             <div class="pull-right">
-                                <button class="btn btn-danger remove-btn" onclick="rimuovi('{{$question->id}}')">
+                                <button class="btn btn-danger remove-btn" onclick="rimuovi('question_{{$question->id}}')">
                                     Remove
                                 </button>
                             </div>
@@ -241,6 +241,7 @@ Survey edit
                                 submit survey
                             </button>
                         </div>
+                        
                         <div class="col">
                             <a href="{{ route('admin.surveys.index') }}">
                                         <input type='button' class='btn btn-primary' value='Cancel'>
