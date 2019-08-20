@@ -260,6 +260,7 @@ Survey creation
                         <input type='hidden' class='aux_description' name='description' id='description' />
                         <input type='hidden' class='aux_category' name='category' id='category' />
                         <input type='hidden' name='aux_groups' id='aux_groups'/>
+                        <input type="hidden" name="aux_module_id" id="aux_module_id" value="{{$module->id}}"/>
                     </form>        
                 </div>
             </div>                                           
