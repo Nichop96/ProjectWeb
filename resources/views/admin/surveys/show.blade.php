@@ -87,12 +87,40 @@ Show Survey
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">{{ $question->name }}</h4>
+                                        <h4 class="card-title">{{ $question->name }} 
+                                            <a data-toggle="modal" data-target="#ModalCenter">
+                                                <i class="mdi mdi-comment-question-outline"></i>
+                                            </a>
+                                        </h4>
                                         <canvas id="barChart{{ $loop->iteration }}"></canvas>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
+                            
+                            <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLongTitle">Help</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            This graph shows the total of users' answers of each possible value of the question. On the x axes, there are the possible values of these question.
+                                            On the y axes, there is the number of people that has answered a certain vaue. The green column
+                                            represents the correct answer of this question.
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                                      
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            
                         </div>   
                         <div class="tab-pane fade" id="admin-global" role="tabpanel" aria-labelledby="admin-global-tab">
                             <div class="row">
@@ -119,11 +147,36 @@ Show Survey
                                 <div class="col-lg-12 grid-margin stretch-card">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="card-title">Chart of Users' scores</h4>
+                                            <h4 class="card-title">Chart of Users' scores 
+                                                <a data-toggle="modal" data-target="#Modal">
+                                                    <i class="mdi mdi-comment-question-outline"></i>
+                                                </a>
+                                            </h4>
                                             <canvas id="barChartAnswers"></canvas>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">Help</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        This graph shows the number of users' that have a certain score. On the x axes, there are the scores.
+                                        On the y axes, there is the number of people that has a certain score. 
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                                      
+                                </div>
+                              </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="individual" role="tabpanel" aria-labelledby="individual-tab">

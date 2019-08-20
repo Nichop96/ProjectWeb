@@ -37,7 +37,7 @@ Groups
                                 <th scope="col">Name</th>  
                                 <th scope="col">Description</th> 
                                 <th scope="col">Number of users</th>
-                                <!--<th scope="col">Actions</th> -->
+                                <th scope="col">Actions</th>   
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +46,7 @@ Groups
                                 <th>{{ $group->name }}</th>
                                 <th>{{ $group->description }}</th>
                                 <th>{{ $group->count }} </th>
-                                <!--<th>                                  
+                                <th>                                  
                                     <form action="{{route('user.groups.destroy', $group->id)}}" method="POST" class="float-left">
                                         @csrf
                                         {{method_field('DELETE')}}
@@ -55,7 +55,7 @@ Groups
                                         </button>           
                                     </form>
 
-                                </th>-->
+                                </th>
                             </tr>    
                             @endforeach
 

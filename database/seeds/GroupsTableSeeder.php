@@ -31,5 +31,20 @@ class GroupsTableSeeder extends Seeder
             'name' => 'Spumante tasters',
             'description' => 'Spumante',            
         ]);
+        
+        Group::create([
+            'name' => 'Perfume smellers',
+            'description' => 'Perfume',            
+        ]);
+        
+        Group::create([
+            'name' => 'Coffee tasters',
+            'description' => 'Coffe is black',            
+        ]);
+        
+        Group::create([
+            'name' => 'Tissue tasters',
+            'description' => 'Silk is the best tissue',            
+        ]);
     }
 }
