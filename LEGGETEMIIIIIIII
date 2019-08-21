@@ -1,0 +1,24 @@
+Buongiorno,
+Teoricamente ho finito di gestire la parte relativa a:
+-gruppi
+-utenti
+-moduli
+
+mancano da gestire i sondaggi veri e propri.
+
+le mie soluzioni per le parti che ho fatto non sono molto eleganti programmaticamente ma funzionano e se avete sbatta di usare
+qualche tecnica più figa ben venga ma io non ci perderei tempo.
+
+CREDO sia meglio che io finisca di programmare la gestione dei sondaggi per mantenere piu coerenza nella gestione delle cose perchè conosco
+meglio i magheggi che ho fatto per far funzionare le cose negli altri casi. Poi rimarrà da fare tutta la parte relativa all'utente e poco ma sicuro
+rimane l'abbellimento grafico che io ho curato proprio in modo minimo.
+
+
+Quando scaricherete questo progetto dovrete fare le migrations perchè ho inserito nuove tabelle(vi consigli di ricreare il database da zero)
+NB: ho scoperto che l'errore che dava sempre a me e rocco è dovuto al fatto che creiamo l'utente administrator sul database perciò controllate
+il file env prima di accedere al database perchè ora si utilizza l'utente root di default. Dovrete ovviamente fare un update dentro la cartella
+del progetto come sempre e per il resto credo basta. Potrebbero capitare errori qua e là che mi son dimenticato di dirvi ma in tal caso
+credo sarete capaci di sistemarli perchè saranno stupidate.
+
+Detto questo credo di aver finito di aggiornarvi. Ovviamente se beccate errori durante le prove ecc fatemi sapere tutto che provvediamo a sistemarli
+senza problemi spero.
