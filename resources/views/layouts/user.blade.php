@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('profile-settings')
-<a class="dropdown-item">
+<a class="dropdown-item" href="{{ route('user.user.edit', ['user' => Auth::id()]) }}">
     <i class="mdi mdi-settings text-primary"></i>
     Settings
 </a>
