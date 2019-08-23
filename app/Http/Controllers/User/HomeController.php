@@ -26,10 +26,12 @@ class HomeController extends Controller {
                         ->join('groups', 'group_survey.group_id', '=', 'groups.id')
                         ->join('group_user', 'groups.id', '=', 'group_user.group_id')
                         ->join('users', 'group_user.user_id', '=', 'users.id')
-                        ->where('users.id', '=', Auth::id())
-                        ->whereNotIn('surveys.id', $ids)
+                        ->where([['users.id', '=', Auth::id()],['surveys.fillable','=','1']])
+                        ->whereNotIn('surveys.id',$ids)
+                        ->distinct('surveys.id')
                         ->select('surveys.*')
-                        ->orderBy('surveys.created_at', 'desc')->count();
+                        ->orderBy('surveys.created_at','desc')
+                        ->count('surveys.id');
 
         //$surveys_count = count($surveys);
 

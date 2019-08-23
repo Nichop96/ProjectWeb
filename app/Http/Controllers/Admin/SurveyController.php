@@ -185,6 +185,8 @@ class SurveyController extends Controller {
         // rimuovo le relazioni con i gruppi
 
         $survey->groups()->detach();
+        $survey->answers()->detach();
+        $survey->completedSurveys()->detach();
 
         Survey::destroy($id);
 
@@ -294,6 +296,7 @@ class SurveyController extends Controller {
 
         $survey_inserito = Survey::find($id);
         $old_questions = $survey_inserito->questions;
+        
         $survey_inserito->questions()->detach();
         foreach ($old_questions as $quest) {
             $count_s = $quest->surveys()->count();
@@ -352,9 +355,10 @@ class SurveyController extends Controller {
         $surveys_total_count = DB::table('surveys')->join('group_survey', 'surveys.id', '=', 'group_survey.survey_id')
                         ->join('groups', 'group_survey.group_id', '=', 'groups.id')
                         ->join('group_user', 'groups.id', '=', 'group_user.group_id')
-                        ->join('users', 'group_user.user_id', '=', 'users.id')                                                         
+                        ->join('users', 'group_user.user_id', '=', 'users.id') 
+                        ->distinct('users.id')
                         ->where('surveys.id', '=', $id)
-                        ->count();        
+                        ->count('users.id');        
         $completedSurveys_count = Survey::findOrFail($id)->completedSurveys()->count();
         $not_completedSurveys_count = $surveys_total_count - $completedSurveys_count;
         
@@ -467,6 +471,38 @@ class SurveyController extends Controller {
                     'score' => $score,
                     'user' => $user
         ]);
+    }
+    
+    public function surveys() {
+        echo json_encode(DB::table('surveys')
+                        ->join('categories', 'surveys.category_id', 'categories.id')
+                        ->select('surveys.*', 'categories.name as category')
+                        ->get());
+    }
+
+    public function questions(Request $request) {
+        $id = $request->input('survey');
+        echo json_encode(DB::table('question_survey')
+                        ->join('questions', 'question_survey.question_id', 'questions.id')
+                        ->select('questions.*')
+                        ->where('question_survey.survey_id', '=', $id)
+                        ->get());
+    }
+    
+    public function importQuestions(Request $request) {
+        $questions = DB::table('questions')->get();               
+                        
+        $ids = $request->input('questions');        
+        $importQuestions = array();
+        foreach($questions as $question) {
+            foreach($ids as $id) {
+                if($id == $question->id) {
+                    array_push($importQuestions, $question);
+                }
+            }
+        }
+        
+        echo json_encode($importQuestions);
     }
 
 }

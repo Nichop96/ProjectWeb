@@ -34,7 +34,7 @@ class SurveyController extends Controller {
                         ->join('groups', 'group_survey.group_id', '=', 'groups.id')
                         ->join('group_user', 'groups.id', '=', 'group_user.group_id')
                         ->join('users', 'group_user.user_id', '=', 'users.id')
-                        ->where('users.id', '=', Auth::id())
+                        ->where([['users.id', '=', Auth::id()],['surveys.fillable','=','1']])
                         ->whereNotIn('surveys.id',$ids)
                         ->distinct('surveys.id')
                         ->select('surveys.*')

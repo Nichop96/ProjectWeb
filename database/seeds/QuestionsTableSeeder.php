@@ -134,6 +134,22 @@ class QuestionsTableSeeder extends Seeder
             'label_right' => 'High',
             'max_rate' => $maxrate, 
             'correct_answer' => rand(1,$maxrate),
-        ]);       
+        ]);   
+        
+        Question::create([
+            'name' => 'Prettyness',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]); 
+        
+        Question::create([
+            'name' => 'Yellowness',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
     }
 }

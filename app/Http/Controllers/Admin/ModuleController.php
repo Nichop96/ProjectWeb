@@ -7,6 +7,7 @@ use ORC\Http\Controllers\Controller;
 use ORC\Module;
 use ORC\Category;
 use ORC\Question;
+use Illuminate\Support\Facades\DB;
 
 class ModuleController extends Controller {
 
@@ -42,7 +43,7 @@ class ModuleController extends Controller {
 
         $max_rate = $request->aux_maxmark;
         $max_rate = explode(",", $max_rate);
-        
+
         $correct_ans = $request->aux_correctans;
         $correct_ans = explode(",", $correct_ans);
 
@@ -57,31 +58,29 @@ class ModuleController extends Controller {
         $tmp = $request['category'];
         unset($request['category']);
         $request['category_id'] = $tmp;
-        
-        
+
+
         unset($request['file']);
-        
+
         // parte modificata profondamente
         $module = new Module();
         $module->name = $request['name'];
         $module->description = $request['description'];
         $module->category_id = $request['category_id'];
         // gestisco l'immagine
-        if($file = $request->file('file')){
-                $name = $file->getClientOriginalName();
-                if($file->move('images\modules', $name)){
-                    $module->image = $name;
-                    
-                }
+        if ($file = $request->file('file')) {
+            $name = $file->getClientOriginalName();
+            if ($file->move('images\modules', $name)) {
+                $module->image = $name;
+            }
         }
         $module->save();
         //Module::create($request->all());
-        
         // fine parte modificata profondamente
-        
+
         $modulo_inserito = Module::where('name', $request['name'])->orderBy('id', 'DESC')->first();
         // ora gestisco le domande
-       if ($question[0] === '') {
+        if ($question[0] === '') {
             $dim = 0;
         } else {
             $dim = count($question);
@@ -118,11 +117,11 @@ class ModuleController extends Controller {
         $module = Module::find($id);
         $questions = $module->questions;
         $module->questions()->detach();
-        
-        foreach($questions as $question){
+
+        foreach ($questions as $question) {
             Question::destroy($question['id']);
         }
-        
+
         Module::destroy($id);
         // un pò brutto da vedere ma è l'unica soluzione che mi viene in mente ora
         //$groups = Group::all();
@@ -170,7 +169,7 @@ class ModuleController extends Controller {
 
         $max_rate = $request->aux_maxmark;
         $max_rate = explode(",", $max_rate);
-        
+
         $correct_ans = $request->aux_correctans;
         $correct_ans = explode(",", $correct_ans);
 
@@ -190,13 +189,12 @@ class ModuleController extends Controller {
         $module->name = $request['name'];
         $module->description = $request['description'];
         $module->category_id = $request['category_id'];
-        
-        if($file = $request->file('file')){
-                $name = $file->getClientOriginalName();
-                if($file->move('images\modules', $name)){
-                    $module->image = $name;
-                    
-                }
+
+        if ($file = $request->file('file')) {
+            $name = $file->getClientOriginalName();
+            if ($file->move('images\modules', $name)) {
+                $module->image = $name;
+            }
         }
         $module->save();
 
@@ -204,7 +202,7 @@ class ModuleController extends Controller {
         // la via più facile è rimuoverli tutti e reinserire quelli selezionati nel form
         $_questions = $module->questions;
         $module->questions()->detach(); // rimuovo i collegamenti molti a molti e cancello le domande
-        foreach($_questions as $_question){
+        foreach ($_questions as $_question) {
             Question::destroy($_question['id']);
         }
         // ora gestisco le domande
@@ -236,6 +234,38 @@ class ModuleController extends Controller {
         $modules = Module::all();
 
         return view('admin.modules.index')->with('modules', $modules);
+    }
+
+    public function modules() {
+        echo json_encode(DB::table('modules')
+                        ->join('categories', 'modules.category_id', 'categories.id')
+                        ->select('modules.*', 'categories.name as category')
+                        ->get());
+    }
+
+    public function questions(Request $request) {
+        $id = $request->input('module');
+        echo json_encode(DB::table('module_question')
+                        ->join('questions', 'module_question.question_id', 'questions.id')
+                        ->select('questions.*')
+                        ->where('module_question.module_id', '=', $id)
+                        ->get());
+    }
+    
+    public function importQuestions(Request $request) {
+        $questions = DB::table('questions')->get();               
+                        
+        $ids = $request->input('questions');        
+        $importQuestions = array();
+        foreach($questions as $question) {
+            foreach($ids as $id) {
+                if($id == $question->id) {
+                    array_push($importQuestions, $question);
+                }
+            }
+        }
+        
+        echo json_encode($importQuestions);
     }
 
 }
