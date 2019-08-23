@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-User edit
+Edit user
 @endsection
 
 @section('content')
@@ -10,14 +10,16 @@ User edit
         <div class="col-md-9 grid-margin stretch-card">
             <div class="card">
                 <div id="card-body" class="card-body">
-                    <h4 class="card-title">Manage user {{$user->name}} </h4>
+                    <h2 class="text-primary">Manage user: {{$user->name}} </h2>
                     <form id="formModule" class="pt-3" action="{{ route('admin.users.update', ['user' => $user->id])}}" method="POST">
                         @csrf
                         {{ method_field('PUT') }}
 
                         <div id="form">
                             <div class="form-group">
-                                <label for='name'>First name</label>
+                                <br>
+                                <h5 for='name'>First name</h5>
+                                <br>
                                 <input id="name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name', $user->name ?: '' ) }}" name="name" placeholder="{{$user->name}}">
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
@@ -27,7 +29,8 @@ User edit
 
                             </div>
                             <div class='form-group'>
-                                <label for='surname'>Surname</label>
+                                <h5 for='surname'>Surname</h5>
+                                <br>
                                 <input id="surname" type="text" class="form-control form-control-lg {{ $errors->has('surname') ? ' is-invalid' : '' }}" value="{{ old('surname', $user->surname ?: '' ) }}" name="surname" placeholder="{{$user->surname}}">
                                 @if ($errors->has('surname'))
                                 <span class="invalid-feedback" role="alert">
@@ -37,7 +40,8 @@ User edit
                             </div>
 
                             <div class='form-group'>
-                                <label for='surname'>Username</label>
+                                <h5 for='username'>Username</h5>
+                                <br>
                                 <input id="username" type="text" class="form-control form-control-lg {{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username', $user->username ?: '' ) }}" name="username" placeholder="{{$user->username}}">
                                 @if ($errors->has('username'))
                                 <span class="invalid-feedback" role="alert">
@@ -47,7 +51,8 @@ User edit
                             </div>
 
                             <div class='form-group'>
-                                <label for='email'>email</label>
+                                <h5 for='email'>E-mail</h5>
+                                <br>
                                 <input id="email" type="text" class="form-control form-control-lg {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email', $user->email ?: '' ) }}" name="email" placeholder="{{$user->email}}">
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
@@ -56,10 +61,10 @@ User edit
                                 @endif
                             </div>
 
-                            <div class="form-row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for='date'>Birth date</label>
+                                        <h5 for='date'>Birth date</h5>
+                                        <br>
                                         <input type='date' class="form-control form-control-lg datepicker {{ $errors->has('birth_date') ? ' is-invalid' : '' }}" id="date_birth" name="birth_date" value="{{ old('birth_date', $user->birth_date) }}" >
 
                                         <script>
@@ -94,7 +99,8 @@ User edit
                                 <div class="col">
                                     <div class="form-check">
                                         <div class="row">
-                                            <legend class="col-form-label col-sm-2 pt-0">Roles</legend>
+                                            <h5 for='roles'>Roles</h5>
+                                            <legend class="col-form-label col-sm-2 pt-0"></legend>
                                             <div class="col-sm-10">
                                                 <div class="form-check">
                                                     @foreach($roles as $role)
@@ -109,14 +115,14 @@ User edit
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
 
                             <div class='row'>
-                                <div class='col'><input type='submit'   class='btn btn-primary btn-lg btn-block ' value='Invia modifiche'></div>
-                                <div class='col'><input type='reset' onclick ='settaDopo()' class='btn btn-primary btn-lg btn-block ' value='Resetta campi'></div>
-                                <div class='col'>
+                                <div class="col"><input type='submit'   class='btn btn-outline-primary btn-lg btn-block ' value='Submit'></div>
+                                <div class="col"><input type='reset' onclick ='settaDopo()' class='btn btn-outline-warning btn-lg btn-block ' value='Reset'></div>
+                                <div class="col">
                                     <a href="{{route('admin.users.index')}}">
-                                        <input type='button' onclick="" class='btn btn-primary btn-lg btn-block ' value='Cancel'>
+                                        <input type='button' onclick="" class='btn btn-outline-danger btn-lg btn-block ' value='Cancel'>
                                     </a>
                                 </div>
                             </div>

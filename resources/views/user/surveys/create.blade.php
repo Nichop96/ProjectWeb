@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-Answer Survey
+Survey
 @endsection
 
 @section('content')
@@ -10,15 +10,21 @@ Answer Survey
         <div class="col-md-9 grid-margin stretch-card">
             <div class="card">
                 <div id="card-body" class="card-body">
-                    <h4 class="card-title">{{ $survey->name }}</h4>                      
-                    <h4 class="card-title">{{ $survey->description }}</h4>                      
+                    <br>
+                    <h2 class="text-primary">{{ $survey->name }}</h2> 
+                    <br>
+                    <h4>{{ $survey->description }}</h4>           
+                    <br>   
                     <form class="pt-3" action="{{ route('user.surveys.store') }}" method="POST">
                         @csrf                        
                         @foreach($questions as $question)                  
                         <input type="hidden" name='question_id{{ $loop->iteration }}' value='{{$question->id}}'>
                         <input type="hidden" name='id' value='{{$survey->id}}'>
                         <div class="card border-primary mb-3">
-                            <div class="card-header">{{ $question->name }}</div>
+                            <div class="card-header">
+                                <br>
+                                <h5>{{ $question->name }}</h5>
+                            </div>
                             <div class="card-body">                                                 
                                 <div class="row"> 
                                     <div class="col-1 form-check"></div>
@@ -53,7 +59,7 @@ Answer Survey
                             </div>
                         </div>                                   
                         @endforeach
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-outline-primary" type="submit">
                             Submit
                         </button>
                     </form> 

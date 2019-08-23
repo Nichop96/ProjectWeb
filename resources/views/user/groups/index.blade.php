@@ -11,7 +11,7 @@ Groups
         <br>
         <h3 class="mb-md-0">Manage your groups: </h3>
         <br>
-            <div class="card">
+            <div class="card border-primary mb-3">
                     <div class="float-left">
                         <!--<form action="{{url('user/groups/search')}}" method="POST" >
                             @csrf

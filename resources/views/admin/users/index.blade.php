@@ -5,24 +5,26 @@ Users
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <br>
-                    <h1 class="text-primary">Users</h1>
-                    <br>
-                    <div class="float-left">
+<div class="content-wrapper">
+    <div class="mr-md-3 mr-xl-5 ">
+        <div>
+            <h1 class="text-primary">Users</h1>
+            <br>
+            <h3 class="mb-md-0">Manage users: </h3>
+            <br>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="float-left">
 
-                        <form action="{{url('admin/users/search')}}" method="POST">
-                            @csrf
-                            <input type="text" id="search_key" name="search_key">
-                            <button type="submit" class="btn btn-primary btn-sm" >Search</button>
-                        </form>
+                    <form action="{{url('admin/users/search')}}" method="POST">
+                        @csrf
+                        <input type="text" id="search_key" name="search_key">
+                        <button type="submit" class="btn btn-primary btn-sm" >Search</button>
+                    </form>
 
-                    </div>
                 </div>
+            </div>
                                        
                 @isset ($message)
                     @if($message == 'ok_delete')
@@ -52,50 +54,50 @@ Users
                         </script>
                     @endisset
                     
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="text-primary">Name</th>
-                                <th scope="col" class="text-primary">Email</th>  
-                                <th scope="col" class="text-primary">Role</th> 
-                                <th scope="col" class="text-primary">Actions</th>  
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="card-body">
+                        <table class="table-responsive">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-primary">Name</th>
+                                    <th scope="col" class="text-primary">Email</th>  
+                                    <th scope="col" class="text-primary">Role</th> 
+                                    <th scope="col" class="text-primary">Actions</th>  
+                                </tr>
+                            </thead>
+                            <tbody>
                         @foreach($users as $user)
-                            <tr>
-                                <th>{{ $user->name }}</th>
-                                <th>{{ $user->email }}</th>
-                                <th>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</th>
-                                <th>
-                                    <a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
-                                        <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
-                                    </a>
-                                    <a href="{{ route('admin.impersonate', $user->id) }}" class="float-left">
-                                        <button type="button" class="btn btn-outline-success btn-sm">
-                                            Impersonate
-                                        </button>
-                                    </a>
-                                    <form action="{{route('admin.users.destroy', $user->id)}}" method="POST" class="float-left">
-                                        @csrf
-                                        {{method_field('DELETE')}}
-                                        <button type="submit" class="btn btn-outline-danger btn-sm">
-                                           Delete
-                                        </button>           
-                                    </form>
-                                </th>
-                            </tr>    
+                        <tr>
+                            <th>{{ $user->name }}</th>
+                            <th>{{ $user->email }}</th>
+                            <th>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</th>
+                            <th>
+                                <a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
+                                    <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
+                                </a>
+                                <a href="{{ route('admin.impersonate', $user->id) }}" class="float-left">
+                                    <button type="button" class="btn btn-outline-success btn-sm">
+                                        Impersonate
+                                    </button>
+                                </a>
+                                <form action="{{route('admin.users.destroy', $user->id)}}" method="POST" class="float-left">
+                                    @csrf
+                                    {{method_field('DELETE')}}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        Delete
+                                    </button>           
+                                </form>
+                            </th>
+                        </tr>    
                         @endforeach
                         </tbody>
                     </table>
                    @if(!isset($search))
                     {{ $users->links() }}
                    @endif
-                </div>
-            </div>
+                    </div>
         </div>
     </div>
 </div>
+
 
 @endsection

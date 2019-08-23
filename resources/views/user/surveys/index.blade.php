@@ -17,7 +17,7 @@ Surveys
     <div class="row">
         @foreach($surveys  as $survey)
         <div class="col-lg-3 grid-margin stretch-card">
-            <div class="card">
+            <div class="card border-primary mb-3">
                 <div class="card-body" >
                     <h4>Title: {{ $survey->name }}</h4> 
                     <h6>Descr: {{ $survey->description }}</h6> 
@@ -40,7 +40,7 @@ Surveys
         </div>
         @foreach($completedSurveys  as $completedSurvey)
         <div class="col-lg-3 grid-margin stretch-card">
-            <div class="card">
+            <div class="card border-primary mb-3">
                 <div class="card-body" >
                     <h4>Title: {{ $completedSurvey->name }}</h4> 
                     <h6>Descr: {{ $completedSurvey->description }}</h6>  

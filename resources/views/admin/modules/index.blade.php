@@ -16,8 +16,8 @@ Modules
     <br>
     <div class="row">
 
-        <div class="col-lg-3 grid-margin stretch-card">
-            <div class="card">
+        <div class="col-lg-3 col-md-3 col-sm-1 grid-margin stretch-card">
+            <div class="card border-primary mb-3">
                 <a href="{{ route('admin.modules.create') }}">
                     <div class="card-body">
                         <h4 class="text-black">New module</h4>  
@@ -31,8 +31,8 @@ Modules
         </div>
 
         @foreach($modules  as $module)
-        <div class="col-lg-3 grid-margin stretch-card">
-            <div class="card">
+        <div class="col-lg-3 col-md-3 col-sm-1 grid-margin stretch-card">
+            <div class="card border-primary mb-3">
                 <div class="card-body" >
                     @if(isset($module->image))
                     <img src="/images/modules/{{ $module['image'] }}" height="75px" alt="Responsive image" />

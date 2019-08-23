@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Module creation
+Edit module
 @endsection
 
 @section('content')
@@ -10,11 +10,12 @@ Module creation
         <div class="col-md-9 grid-margin stretch-card">
             <div class="card">
                 <div id="card-body" class="card-body">
-                    <h4 class="card-title">Creation of a module</h4>    
+                    <h2 class="text-primary">Edit module</h2>    
+                    <br>
                     <form id="repeater-form" name="bbb">
 
                         <div  class="form-group">
-                            <label for="aux_name" > Name </label>
+                            <h5 for="aux_name" > Name </h5>
                             <input id="aux_name" type="text" class="form-control form-control-lg {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('aux_name', $module->name ? : '' ) }}" name="aux_name" placeholder="{{$module->name}} ">
 
                             @if ($errors->has('name'))                            
@@ -25,7 +26,7 @@ Module creation
                             <br>
                         </div>
                         <div class="form-group">
-                            <label for="aux_description" > Description </label>
+                            <h5 for="aux_description" > Description </h5>
                             <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description', $module->description ? : '' ) }}"  name="aux_description" placeholder="{{$module->description}}">
                             @if ($errors->has('description'))
 
@@ -38,10 +39,10 @@ Module creation
 
                         </div>  
                         <div class="form-group">
-                            Chose the category
+                            <h5>Chose a category</h5>
                             <div class="row">
                                 @foreach($categories  as $category)
-                                <div class="col-3 form-check">
+                                <div class="col-lg-3 col-md-3 col-sm-1 form-check">
                                     <label class="form-check-label">
                                         <input  type="radio" class="form-check-input sel_category" id="{{ $category->id }}" name="category" {{ $category->id === $module->category_id ? "checked" : '' }} value="{{ $category->id }}">
                                         {{ $category->name }}
@@ -62,7 +63,8 @@ Module creation
                         <!-- modifiche da qua -->
                         
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Example file input</label>
+                            <h5 for="exampleFormControlFile1">Picture of the product </h5>
+                            <br>
                             <input type="file" class="form-control-file" id="aux_fileChooser" name='file' form='aux_form' accept="image/png, .jpeg, .jpg, image/gif"/>
                             
                         </div>                      
@@ -71,40 +73,40 @@ Module creation
                         <br>
                         @foreach($questions as $question)
                         <br>                      
-                            <div class="card" id="{{$question->id}}">
+                            <div class="card border-primary mb-3" id="{{$question->id}}">
                                 <!-- Repeater Content -->
-                                <h5 class="card-title"> Insert question </h5>
                                 <div class="item-content card-body block">
 
                                     <div class="form-group">
-                                        <label  class="col-lg-2 control-label">Question</label>
-                                        <div class="col-lg-10">
+                                        <h5  class="col-lg-5  control-label">Question</h5>
+                                        <div class="col-lg-12 col-md-9 col-sm-5">
                                             <input type="text" class="form-control question form-control-lg" value="{{$question->name}}">
 
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="row">
                                         <div class="col">
-                                            <label for="leftlabel" class="col-lg-2 control-label">Left label</label>
+                                            <h5 for="leftlabel" class="col-lg-6 control-label">Left label</h5>
                                             <input type="text" class="form-control leftlabel" value="{{$question->label_left}}" >
                                         </div>
                                         <div class="col">
-                                            <label for="rightlabel"  class="col-lg-2 control-label">right label</label>
+                                            <h5 for="rightlabel"  class="col-lg-6 control-label">Right label</h5>
                                             <input type="text" class="form-control rightlabel" value="{{$question->label_right}}" >
                                         </div>
-                                    </div>                            
+                                    </div>           
+                                    <br>
                                     <div class='row'>
                                         <div class='col'>
                                        
                                             <div class="form-group">
-                                                <label class="control-label ">Max mark value</label>
+                                                <h5 class="control-label ">Max value</h5>
                                                 <input type="text" class="form-control maxmark" value="{{$question->max_rate}}" >
                                             </div>
                                         </div>
                                         <div class='col'>
                                             <div class='form-group'>
-                                                <label class="control-label ">Correct answer</label>
+                                                <h5 class="control-label ">Correct answer</h5>
                                                 <input type="text" class="form-control correctans" value="{{$question->correct_answer}}" >
                                             </div>
                                         </div>
@@ -114,7 +116,7 @@ Module creation
                                 <!-- Repeater Remove Btn -->
                                 <div class="pull-right">
                                     <button class="btn btn-danger remove-btn" onclick="rimuovi('{{$question->id}}')">
-                                        Remove
+                                        Remove question
                                     </button>
                                 </div>
                                 <div class="clearfix"></div>
@@ -138,34 +140,34 @@ Module creation
                                 <br>
                                 <!-- Repeater Items -->
                                 <div class="items" >
-                                    <div class="card">
+                                    <br>
+                                    <div class="card border-primary mb-3">
                                         <!-- Repeater Content -->
-                                        <h5 class="card-title"> Insert question </h5>
                                         <div class="item-content card-body block">
 
                                             <div class="form-group">
-                                                <label  class="col-lg-2 control-label">Question</label>
-                                                <div class="col-lg-10">
-                                                    <input type="text" class="form-control question form-control-lg" >
+                                                <h5  class="col-lg-5 control-label">Question</h5>
+                                                <div class="col-lg-12 col-md-9 col-sm-5">
+                                                    <input type="text" class="form-control question form-control-lg" placeholder="New question">
 
                                                 </div>
                                             </div>
-
+                                            <br>
                                             <div class="row">
                                                 <div class="col">
-                                                    <label for="leftlabel" class="col-lg-2 control-label">Left label</label>
-                                                    <input type="text" class="form-control leftlabel"  >
+                                                    <h5 for="leftlabel" class="col-lg-6 control-label">Left label</h5>
+                                                    <input type="text" class="form-control leftlabel" placeholder="Low" >
                                                 </div>
                                                 <div class="col">
-                                                    <label for="rightlabel"  class="col-lg-2 control-label">right label</label>
-                                                    <input type="text" class="form-control rightlabel"  >
+                                                    <h5 for="rightlabel"  class="col-lg-6 control-label">Right label</h5>
+                                                    <input type="text" class="form-control rightlabel" placeholder="High" >
                                                 </div>
                                             </div>                            
-
+                                            <br>
                                             <div class='row'>
                                                 <div class='col'>
                                                     <div class="form-group">
-                                                        <label for="maxmark" class="control-label ">Max mark value</label>
+                                                        <h5 for="maxmark" class="control-label ">Max value</h5>
 
                                                         <input type="text" class="form-control maxmark" id="maxmark"  value="5" placeholder="5">
 
@@ -173,7 +175,7 @@ Module creation
                                                 </div>
                                                 <div class='col'>
                                                     <div class="form-group">
-                                                        <label for="correctans" class="control-label ">Correct answer</label>
+                                                        <h5 for="correctans" class="control-label ">Correct answer</h5>
 
                                                         <input type="text" class="form-control correctans" id="correctans"  value="5" placeholder="5">
                                                     </div>
@@ -204,13 +206,13 @@ Module creation
                     </form>
                    <div class="row">
                         <div class="col">
-                            <button class="btn btn-primary" onclick="submit()">
-                                submit Module
+                            <button class="btn btn-outline-primary" onclick="submit()">
+                                Save module
                             </button>
                         </div>
                         <div class="col">
                             <a href="{{ route('admin.modules.index') }}">
-                                        <input type='button' class='btn btn-primary' value='Cancel'>
+                                        <input type='button' class='btn btn-outline-danger' value='Cancel'>
                             </a>
                         </div>
                     </div>

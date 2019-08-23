@@ -5,15 +5,16 @@ Groups
 
 @section('content')
 <div class="content-wrapper">
-    <div class="row">
         <div class="mr-md-3 mr-xl-5 ">
-        <div>
-            <h1 class="text-primary">Groups</h1>
-            <br>
-        </div>
-        <div class="card align-content-center">
-            <div class="card-header">
-                <div class="float-left">
+            <div>
+                <h1 class="text-primary">Groups</h1>
+                <br>
+                <h3 class="mb-md-0">Manage groups: </h3>
+                <br>
+            </div>
+            <div class="card align-content-center">
+                <div class="card-header">
+                    <div class="float-left">
                     <form action="{{url('admin/groups/search')}}" method="POST" >
                         @csrf
                         <input type="text" id="search_key" name="search_key">
@@ -51,7 +52,7 @@ Groups
                             $( "#message" ).delay(4000 ).slideUp( 400 );
                         </script>
                     @endisset
-                    <table class="table">
+                    <table class="table-responsive">
                         <thead class='thead-light'>
                             <tr>
                                 <th scope="col" class="text-primary">Name</th>  
@@ -93,8 +94,5 @@ Groups
             </div>
 
         </div>
-
-    </div>
-
 </div>
 @endsection

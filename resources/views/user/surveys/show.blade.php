@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-Answer Survey
+Survey review
 @endsection
 
 @section('content')
@@ -20,13 +20,19 @@ Answer Survey
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                            <h4 class="card-title">{{ $completedSurvey->name }}</h4>                      
-                            <h4 class="card-title">{{ $completedSurvey->description }}</h4>                              
-
+                            <br>
+                            <h2 class="text-primary">{{ $completedSurvey->name }}</h2>     
+                            <br>
+                            <h5>{{ $completedSurvey->description }}</h5>               
+                            <br>
+                            
                             @foreach($questions as $question)                  
                             <input type="hidden" name='id{{ $loop->iteration }}' value='{{$question->answer_id}}'>
                             <div class="card border-primary mb-3">
-                                <div class="card-header">{{ $question->name }}</div>
+                                <div class="card-header">
+                                    <br>
+                                    <h5>{{ $question->name }}</h5>
+                                </div>
                                 <div class="card-body">                                                 
                                     <div class="row"> 
                                         <div class="col-1 form-check"></div>
@@ -77,11 +83,16 @@ Answer Survey
                             @endforeach                                   
                         </div>                              
                         <div class="tab-pane fade" id="global" role="tabpanel" aria-labelledby="global-tab">
+                            <br>
+                            <h2 class="text-primary">{{ $completedSurvey->name }}</h2>     
+                            <br>
+                            <h5>{{ $completedSurvey->description }}</h5>               
+                            <br>
                             <div class="row">
                                 <div class="col-lg-6 grid-margin stretch-card">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="card-title">Correct answers</h4>
+                                            <h5>Correct answers:</h5>
                                             <canvas id="correctAnswers"></canvas>
                                         </div>
                                     </div>
@@ -89,7 +100,7 @@ Answer Survey
                                 <div class="col-lg-6 grid-margin stretch-card">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="card-title">Total score</h4>
+                                            <h5>Total score:</h5>
                                             <p>{{$score}}</p>
                                         </div>
                                     </div>

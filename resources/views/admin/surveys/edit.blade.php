@@ -10,14 +10,15 @@ Survey edit
         <div class="col-md-9 grid-margin stretch-card">
             <div class="card">
                 <div id="card-body" class="card-body">
-                    <h4 class="card-title">Edit of a survey</h4>    
+                    <h2 class="text-primary">Edit survey</h2>  
+                    <br>
                     <form id="repeater-form" name="bbb">
                         <div class='form-group'>
-                            <label for='aux_fillable'> Fillable </label>
+                            <h5 for='aux_fillable'> Fillable </h5>
                             <input type='checkbox' name='aux_fillable' id='aux_fillable' {{ $survey->fillable ? "checked" : '' }}>
                         </div> 
                         <div  class="form-group">
-                            <label for="aux_name" > Name </label>
+                            <h5 for="aux_name" > Name </h5>
                             <input id="aux_name" type="text" class="form-control form-control-lg {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ (old('aux_name', $survey->name ? : '' )) }}" name="aux_name" placeholder="{{$survey->name}} ">
 
                             @if ($errors->has('name'))                            
@@ -28,7 +29,7 @@ Survey edit
                             <br>
                         </div>
                         <div class="form-group">
-                            <label for="aux_description" > Description </label>
+                            <h5 for="aux_description" > Description </h5>
                             <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description', $survey->description ? : '' ) }}"  name="aux_description" placeholder="{{$survey->description}}">
                             @if ($errors->has('description'))
 
@@ -41,10 +42,10 @@ Survey edit
 
                         </div>  
                         <div class="form-group">
-                            Chose the category
+                            <h5>Chose a category</h5>
                             <div class="row">
                                 @foreach($categories  as $category)
-                                <div class="col-3 form-check">
+                                <div class="col-lg-3 col-md-3 col-sm-1 form-check">
                                     <label class="form-check-label">
                                         <input  type="radio" class="form-check-input sel_category"  name="category" {{ $category->id === $survey->category_id ? "checked" : '' }} value="{{ $category->id }}">
                                         {{ $category->name }}
@@ -63,48 +64,48 @@ Survey edit
 
                         </div>
                          <div class="form-group">
-                            <label for="file">Avatar of the survey</label>
+                            <h5 for="file">Picture of the survey</h5>
+                            <br>
                             <input type="file" class="form-control-file" name='file' form='aux_form' accept="image/png, .jpeg, .jpg, image/gif"/>
                             
                         </div> 
                         <br>
-                        @foreach($questions as $question)
-                        <br>                      
-                        <div class="card" id="question_{{$question->id}}">
+                        @foreach($questions as $question)                     
+                        <div class="card border-primary mb-3" id="question_{{$question->id}}">
+                            <br>
                             <!-- Repeater Content -->
-                            <h5 class="card-title"> Insert question </h5>
                             <div class="item-content card-body block">
 
                                 <div class="form-group">
-                                    <label  class="col-lg-2 control-label">Question</label>
+                                    <h5  class="col-lg-2 control-label">Question</h5>
                                     <div class="col-lg-10">
                                         <input type="text" class="form-control question form-control-lg" value="{{$question->name}}">
 
                                     </div>
                                 </div>
-
+                                <br>
                                 <div class="row">
                                     <div class="col">
-                                        <label for="leftlabel" class="col-lg-2 control-label">Left label</label>
+                                        <h5 for="leftlabel" class="col-lg-6 control-label">Left label</h5>
                                         <input type="text" class="form-control leftlabel" value="{{$question->label_left}}" >
                                     </div>
                                     <div class="col">
-                                        <label for="rightlabel"  class="col-lg-2 control-label">right label</label>
+                                        <h5 for="rightlabel"  class="col-lg-6 control-label">Right label</h5>
                                         <input type="text" class="form-control rightlabel" value="{{$question->label_right}}" >
                                     </div>
                                 </div>                            
-
+                                <br>
                                 <div class='row'>
                                         <div class='col'>
                                        
                                             <div class="form-group">
-                                                <label class="control-label ">Max mark value</label>
+                                                <h5 class="control-label ">Max value</h5>
                                                 <input type="text" class="form-control maxmark" value="{{$question->max_rate}}" >
                                             </div>
                                         </div>
                                         <div class='col'>
                                             <div class='form-group'>
-                                                <label class="control-label ">Correct answer</label>
+                                                <h5 class="control-label ">Correct answer</h5>
                                                 <input type="text" class="form-control correctans" value="{{$question->correct_answer}}" >
                                             </div>
                                         </div>
@@ -133,40 +134,39 @@ Survey edit
                                         Add question
                                     </button>
                                 </div>
-
                                 <br>
                                 <!-- Repeater Items -->
                                 <div class="items" >
+                                    <br>
                                     <div class="card">
                                         <!-- Repeater Content -->
-                                        <h5 class="card-title"> Insert question </h5>
                                         <div class="item-content card-body block">
 
                                              <div class="form-group">
-                                                <label for="question" class="col-lg-2 control-label">Question</label>
+                                                <h5 for="question" class="col-lg-2 control-label">Question</h5>
                                                 <div class="col-lg-10">
                                                     <input type="text" class="form-control question"   placeholder="question" >
                                                 </div>
                                             </div>
-
+                                            <br>
                                             <div class="row">
                                                 <div class="col">
-                                                    <label for="leftlabel" class="col-lg-2 control-label">Left label</label>
+                                                    <h5 for="leftlabel" class="col-lg-6 control-label">Left label</h5>
                                                     <input type="text" id="leftlabel" name="leftlabel" class="form-control leftlabel" placeholder="Low">
                                                     <span class="invalid-feedback leftlabel-alert" hidden role="alert">
                                                         <strong>Invalid filed!</strong>
                                                     </span>
                                                 </div>
                                                 <div class="col">
-                                                    <label for="rightlabel"  class="col-lg-2 control-label">right label</label>
+                                                    <h5 for="rightlabel"  class="col-lg-6 control-label">Right label</h5>
                                                     <input type="text" id="rightlabel" name="rightlabel" class="form-control rightlabel" placeholder="High">
                                                 </div>
                                             </div>                            
-
+                                            <br>
                                             <div class='row'>
                                                 <div class='col'>
                                                     <div class="form-group">
-                                                        <label for="maxmark" class="control-label ">Max mark value</label>
+                                                        <h5 for="maxmark" class="control-label ">Max value</h5>
 
                                                         <input type="text" class="form-control maxmark" value="5" placeholder="5">
 
@@ -174,7 +174,7 @@ Survey edit
                                                 </div>
                                                 <div class='col'>
                                                     <div class="form-group">
-                                                        <label for="correctans" class="control-label ">Correct answer</label>
+                                                        <h5 for="correctans" class="control-label ">Correct answer</h5>
 
                                                         <input type="text" class="form-control correctans"  value="5" placeholder="5">
                                                     </div>
@@ -184,7 +184,7 @@ Survey edit
                                         <!-- Repeater Remove Btn -->
                                         <div class="pull-right repeater-remove-btn">
                                             <button class="btn btn-danger remove-btn">
-                                                Remove
+                                                Remove question
                                             </button>
                                         </div>
                                         <div class="clearfix"></div>
@@ -203,12 +203,12 @@ Survey edit
                         <br>
 
                     </form>
-                    <table class="table" id='table'>
+                    <table class="table-responsive" id='table'>
                         <thead class='thead-light'>
                             <tr>
-                                <th scope="col">Name</th>  
-                                <th scope="col">Description</th> 
-                                <th scope="col">Number of users</th>
+                                <th scope="col" class="text-primary">Name</th>  
+                                <th scope="col" class="text-primary">Description</th> 
+                                <th scope="col" class="text-primary">Number of users</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -235,16 +235,18 @@ Survey edit
                         </tbody>
 
                     </table>
+                    <br>
+                    <br>
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-primary" onclick="submit()" value="Submit survey">
-                                submit survey
+                            <button class="btn btn-outline-primary" onclick="submit()" value="Submit survey">
+                                Submit
                             </button>
                         </div>
                         
                         <div class="col">
                             <a href="{{ route('admin.surveys.index') }}">
-                                        <input type='button' class='btn btn-primary' value='Cancel'>
+                                        <input type='button' class='btn btn-outline-danger' value='Cancel'>
                             </a>
                         </div>
                     </div>

@@ -10,7 +10,7 @@
     </div>
     <div class="row align-items-center justify-content-center">
         <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
+            <div class="card border-primary mb-3">
                 <div class="tab-content py-0 px-0">
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                         <div class="d-flex flex-wrap justify-content-xl-between">                            
@@ -51,7 +51,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6 grid-margin stretch-card">
-            <div class="card">
+            <div class="card border-primary mb-3">
                 <div class="card-body">
                     <h4>Total correct answers:</h4>
                     <canvas id="correctAnswers"></canvas>
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="col-lg-6 grid-margin stretch-card">
-            <div class="card">
+            <div class="card border-primary mb-3">
                 <div class="card-body">
                     <h4>Completed survey for each category:</h4>
                     <canvas id="surveys_category"></canvas>
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
+            <div class="card border-primary mb-3">
               <div class="card-body">
                 <h4>Percentage of correct answers in the completed surveys:</h4>
                 <canvas id="areaChart"></canvas>

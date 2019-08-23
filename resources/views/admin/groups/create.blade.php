@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Group insert
+Create group
 @endsection
 
 @section('content')
@@ -10,13 +10,14 @@ Group insert
         <div class="col-md-9 grid-margin stretch-card">
             <div class="card">
                 <div id="card-body" class="card-body">
-                    <h4 class="card-title">Creation of a group</h4>                    
+                    <h2 class="text-primary">Create group</h2>                    
                     <form id="formModule" class="pt-3" action="{{ route('admin.groups.store') }}" method="POST">
                         @csrf 
                         <input type='hidden' name='ids' id='ids' />
                         <div id="form">
                             <div class="form-group">
-                                <label for='name'>Group name</label>
+                                <h5 for='name'>Group name</h5>
+                                <br>
                                 <input id="name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="name" placeholder="Group name">
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
@@ -26,7 +27,8 @@ Group insert
                                 <br>
                             </div>
                             <div class='form-group'>
-                                <label for='description'>Group description</label>
+                                <h5 for='description'>Group description</h5>
+                                <br>
                                 <input id="description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('description') }}" name="description" placeholder="Group's description">
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" role="alert">

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Module creation
+Create module
 @endsection
 
 @section('content')
@@ -10,11 +10,14 @@ Module creation
         <div class="col-md-9 grid-margin stretch-card">
             <div class="card">
                 <div id="card-body" class="card-body">
-                    <h4 class="card-title">Creation of a module</h4>    
+                    <br>
+                    <h2 class="text-primary">Create module</h2> 
+                    <br>
+                    
                     <form id="repeater-form" name="bbb">
 
                         <div  class="form-group">
-                            <label for="aux_name" > Name </label>
+                            <h5 for="aux_name" > Name </h5>
                             <input id="aux_name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('aux_name') }}" name="aux_name" placeholder="Module name">
 
                             @if ($errors->has('name'))                            
@@ -25,7 +28,7 @@ Module creation
                             <br>
                         </div>
                         <div class="form-group">
-                            <label for="aux_description" > Description </label>
+                            <h5 for="aux_description" > Description </h5>
                             <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description') }}" name="aux_description" placeholder="Module's description">
                             @if ($errors->has('description'))
 
@@ -38,14 +41,16 @@ Module creation
 
                         </div>  
                         <div class="form-group">
-                            Chose the category
+                            <h5> Choose a category </h5>
                             <div class="row">
                                 @foreach($categories  as $category)
-                                <div class="col-3 form-check">
+                                <div class="col-lg-3 col-md-3 col-sm-1 form-check">
+                                    <div>
                                     <label class="form-check-label">
                                         <input  type="radio" class="form-check-input sel_category" name="category" id="aux_category{{ $category->id }}" value="{{ $category->id }}">
                                         {{ $category->name }}
                                     </label>
+                                    </div>
 
                                 </div>
                                 @endforeach
@@ -63,7 +68,8 @@ Module creation
                         <!-- modifiche da qua -->
                         
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Example file input</label>
+                            <h5 for="exampleFormControlFile1">Picture of the product</h5>
+                            <br>
                             <input type="file" class="form-control-file" id="aux_fileChooser" name='file' form='aux_form' accept="image/png, .jpeg, .jpg, image/gif"/>
                             
                         </div>                      
@@ -87,35 +93,37 @@ Module creation
                                 <div class="clearfix"></div>
                                 <!-- Repeater Items -->
                                 <div class="items" data-group="test">
-                                    <div class="card">
+                                    <br>
+                                    <div class="card border-primary mb-3">
                                         <!-- Repeater Content -->
-                                        <h5 class="card-title"> Insert question </h5>
-                                        <div class="item-content card-body block">
+                                        <!--<h5 class="align-items-center"> Insert question </h5>-->
+                                        <div class="item-content card-body block align-self-lg-auto">
 
                                             <div class="form-group">
-                                                <label for="question" class="col-lg-2 control-label">Question</label>
-                                                <div class="col-lg-10">
-                                                    <input type="text" class="form-control question"   placeholder="question" >
+                                                <h5 for="question" class="col-lg-5 control-label">Question</h5>
+                                                <div class="col-lg-12 col-md-9 col-sm-5">
+                                                    <input type="text" class="form-control question"   placeholder="Question" >
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col">
-                                                    <label for="leftlabel" class="col-lg-2 control-label">Left label</label>
+                                                    <h5 for="leftlabel" class="col-lg-6 control-label">Left label</h5>
                                                     <input type="text" id="leftlabel" name="leftlabel" class="form-control leftlabel" placeholder="Low">
                                                     <span class="invalid-feedback leftlabel-alert" hidden role="alert">
-                                                        <strong>Invalid filed!</strong>
+                                                        <strong>Invalid filled!</strong>
                                                     </span>
                                                 </div>
                                                 <div class="col">
-                                                    <label for="rightlabel"  class="col-lg-2 control-label">right label</label>
+                                                    <h5 for="rightlabel"  class="col-lg-6 control-label">Right label</h5>
                                                     <input type="text" id="rightlabel" name="rightlabel" class="form-control rightlabel" placeholder="High">
+                                                    <br>
                                                 </div>
                                             </div>                            
                                             <div class='row'>
                                                 <div class='col'>
                                                 <div class="form-group">
-                                                    <label for="maxmark" class="control-label ">Max mark value</label>
+                                                    <h5 for="maxmark" class="control-label ">Max value</h5>
 
                                                     <input type="text" class="form-control maxmark" id="maxmark"  value="5" placeholder="5">
 
@@ -123,7 +131,7 @@ Module creation
                                                 </div>
                                                 <div class='col'>
                                                 <div class="form-group">
-                                                <label for="correctans" class="control-label ">Correct answer</label>
+                                                <h5 for="correctans" class="control-label ">Correct answer</h5>
 
                                                 <input type="text" class="form-control correctans" id="correctans"  value="5" placeholder="5">
                                                 </div>
@@ -133,7 +141,7 @@ Module creation
                                         <!-- Repeater Remove Btn -->
                                         <div class="pull-right repeater-remove-btn">
                                             <button class="btn btn-danger remove-btn">
-                                                Remove
+                                                Remove question
                                             </button>
                                         </div>
                                         <div class="clearfix"></div>
@@ -151,13 +159,13 @@ Module creation
                     </form>
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-primary" onclick="submit()">
-                                submit Module
+                            <button class="btn btn-outline-primary" onclick="submit()">
+                                Save module 
                             </button>
                         </div>
                         <div class="col">
                             <a href="{{ route('admin.modules.index') }}">
-                                        <input type='button' class='btn btn-primary' value='Cancel'>
+                                        <input type='button' class='btn btn-outline-danger' value='Cancel'>
                             </a>
                         </div>
                     </div>
