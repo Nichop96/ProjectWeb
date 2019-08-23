@@ -46,31 +46,33 @@ Edit group
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <table class="table-responsive" id='table' name='table'>
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" class="text-primary">Name</th>
-                                                        <th scope="col" class="text-primary">Email</th>  
-                                                        <th scope="col" class="text-primary">Role</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($userlist as $user)
+                                            <div class="table-responsive">
+                                                <table class="table" id='table' name="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" class="text-primary">Name</th>
+                                                            <th scope="col" class="text-primary">Email</th>  
+                                                            <th scope="col" class="text-primary">Role</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($userlist as $user)
                                                         <tr onclick="selezionato({{$user->id}})" id='{{$user->id}}'>
-                                                            <th>{{ $user->name }}</th>
-                                                            <th>{{ $user->email }}</th>
-                                                            <th>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</th>
+                                                            <td>{{ $user->name }}</td>
+                                                            <td>{{ $user->email }}</td>
+                                                            <td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</td>
                                                         </tr>
                                                         @foreach($selectedUsers as $selected)
-                                                            @if($user->id == $selected->id  )
-                                                                <script>
-                                                                    selezionato({{$user-> id}});
-                                                                </script>
-                                                            @endif
-                                                        @endforeach
+                                                        @if($user->id == $selected->id  )
+                                                    <script>
+                                                        selezionato({{$user-> id}});
+                                                    </script>
+                                                    @endif
                                                     @endforeach
-                                                </tbody>
-                                            </table>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             @if(!isset($search))
                                                 {{ $userlist->links() }}
                                             @endif
@@ -96,7 +98,9 @@ Edit group
         </div>
     </div>
 </div>
-@endsection
+<script src="{{asset('vendors/datatables.net/jquery.dataTables.js')}}"></script>
+<script src="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('js/dashboard.js')}}"></script>
 <script>
     function selezionato(id){
         var element = document.getElementById(id).classList.toggle("bg-success");
@@ -123,3 +127,5 @@ Edit group
     users.value = tmp;
     }
 </script>
+@endsection
+

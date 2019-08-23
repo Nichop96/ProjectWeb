@@ -90,7 +90,7 @@ Survey review
                             <br>
                             <div class="row">
                                 <div class="col-lg-6 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card border-primary">
                                         <div class="card-body">
                                             <h5>Correct answers:</h5>
                                             <canvas id="correctAnswers"></canvas>
@@ -98,7 +98,7 @@ Survey review
                                     </div>
                                 </div>
                                 <div class="col-lg-6 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card border-primary">
                                         <div class="card-body">
                                             <h5>Total score:</h5>
                                             <p>{{$score}}</p>

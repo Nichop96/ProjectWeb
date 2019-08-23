@@ -11,7 +11,7 @@ Surveys
     <div class="mr-md-3 mr-xl-5">
         <h1 class=" text-primary">Surveys</h1>
         <br>
-        <h3 class="mb-md-0">New surveys: </h3>
+        <h4 class="mb-md-0">New surveys: </h4>
         <br>
     </div>
     <div class="row">
@@ -46,7 +46,7 @@ Surveys
                     <h6>Descr: {{ $completedSurvey->description }}</h6>  
 
                     <a href="{{ url('user/surveys/' .$completedSurvey->completed_id . '/show') }}" class="float-left">
-                        <button type="button" class="btn btn-outline-primary btn-sm">Show</button>
+                        <button type="button" class="btn btn-outline-success btn-sm">Show</button>
                     </a> 
                 </div>
             </div>

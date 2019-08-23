@@ -138,7 +138,7 @@ Survey edit
                                 <!-- Repeater Items -->
                                 <div class="items" >
                                     <br>
-                                    <div class="card">
+                                    <div class="card border-primary mb-3">
                                         <!-- Repeater Content -->
                                         <div class="item-content card-body block">
 
@@ -203,38 +203,40 @@ Survey edit
                         <br>
 
                     </form>
-                    <table class="table-responsive" id='table'>
-                        <thead class='thead-light'>
-                            <tr>
-                                <th scope="col" class="text-primary">Name</th>  
-                                <th scope="col" class="text-primary">Description</th> 
-                                <th scope="col" class="text-primary">Number of users</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($groups as $group)
-                                <tr onclick="selezionato({{$group->id }})" id='{{$group->id }}'>
-                                    <th>{{ $group->name }}</th>
-                                    <th>{{ $group->description }}</th>
-                                    <th>{{ $group->count }} </th>
+                    <div class="table-responsive">
+                        <table class="table" id='table'>
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-primary">Name</th>  
+                                    <th scope="col" class="text-primary">Description</th> 
+                                    <th scope="col" class="text-primary">Number of users</th>
                                 </tr>
-                                
+                            </thead>
+                            <tbody>
+                                @foreach($groups as $group)
+                                <tr onclick="selezionato({{$group->id }})" id='{{$group->id }}'>
+                                    <td>{{ $group->name }}</td>
+                                    <td>{{ $group->description }}</td>
+                                    <td>{{ $group->count }} </td>
+                                </tr>
+
                                 @foreach($selectedGroups as $selected)
-                               
-                                    @if($group->id == $selected->id  )
-                                    
-                                        <script>
+
+                                @if($group->id == $selected->id  )
+
+                            <script>
                                             
-                                           selezionato({{$group->id}});
-                                        </script>
-                                    @endif
-                                @endforeach
-                                 
+                               selezionato({{$group->id}});
+                            </script>
+                            @endif
                             @endforeach
 
-                        </tbody>
+                            @endforeach
 
-                    </table>
+                            </tbody>
+
+                        </table>
+                    </div>
                     <br>
                     <br>
                     <div class="row">
@@ -275,7 +277,9 @@ Survey edit
     </div>
 </div>
 
-
+<script src="{{asset('vendors/datatables.net/jquery.dataTables.js')}}"></script>
+<script src="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('js/dashboard.js')}}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/repeater.js') }}"></script>
 
 <script>

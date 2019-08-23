@@ -41,31 +41,34 @@ Create group
 
                             <div class="row justify-content">
                                 <div class="col-md-12">
-                                    <div class="card">
+                                    <div class="card border-primary">
                                         <div class="card-header">
-                                            <h4>Chose the users to populate the group:</h4>
+                                            <br>
+                                            <h5>Chose the users to populate the group:</h5>
                                         </div>
 
                                         <div class="card-body">
-                                            <table class="table" id='table' name='table'>
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">Email</th>  
-                                                        <th scope="col">Role</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($userlist as $user)
-                                                    <tr onclick="selezionato({{$user->id}})" id='{{$user->id}}'>
-                                                        <th>{{ $user->name }}</th>
-                                                        <th>{{ $user->email }}</th>
-                                                        <th>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</th>
+                                            <div class="table-responsive">
+                                                <table class="table" id='table' name='table'>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-primary">Name</th>
+                                                            <th class="text-primary">Email</th>  
+                                                            <th class="text-primary">Role</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($userlist as $user)
+                                                        <tr onclick="selezionato({{$user->id}})" id='{{$user->id}}'>
+                                                            <td>{{ $user->name }}</td>
+                                                            <td>{{ $user->email }}</td>
+                                                            <td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</td>
 
-                                                    </tr>    
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
+                                                        </tr>    
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             {{ $userlist->links() }}
 
                                         </div>
@@ -73,12 +76,14 @@ Create group
                                 </div>
                             </div>
                         </div>
+                        <br>
+                        <br>
                         <div class='row'>
-                            <div class='col'><input type='submit' onclick='validazione()' class='btn btn-primary btn-lg btn-block '></div>
-                            <div class='col'><input type='reset' onclick='resetta()' class='btn btn-primary btn-lg btn-block '></div>
+                            <div class='col'><input type='submit' onclick='validazione()' class='btn btn-outline-primary btn-lg btn-block ' value="Submit"></div>
+                            <div class='col'><input type='reset' onclick='resetta()' class='btn btn-outline-warning btn-lg btn-block ' value="Reset"></div>
                             <div class='col'>
                                     <a href="{{route('admin.groups.index')}}">
-                                        <input type='button' onclick="" class='btn btn-primary btn-lg btn-block ' value='Cancel'>
+                                        <input type='button' onclick="" class='btn btn-outline-danger btn-lg btn-block ' value='Cancel'>
                                     </a>
                                 </div>
                         </div>
@@ -89,7 +94,10 @@ Create group
         </div>
     </div>
 </div>
-@endsection
+<script src="{{asset('vendors/datatables.net/jquery.dataTables.js')}}"></script>
+<script src="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('js/dashboard.js')}}"></script>
+
 
 <script>
     function selezionato(id){
@@ -117,3 +125,4 @@ Create group
         users.value = tmp;
     }
 </script>
+@endsection

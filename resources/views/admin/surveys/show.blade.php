@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Show Survey
+Survey show
 @endsection
 
 @section('content')
@@ -26,8 +26,11 @@ Show Survey
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                            <h4 class="card-title">{{ $survey->name }}</h4>                      
-                            <h4 class="card-title">{{ $survey->description }}</h4>                              
+                            <br>
+                            <h2 class="text-primary">{{ $survey->name }}</h2>     
+                            <br>
+                            <h5>{{ $survey->description }}</h5>                 
+                            <br>
 
                             @foreach($questions as $question)                  
                             <input type="hidden" name='id{{ $loop->iteration }}' value='{{$question->answer_id}}'>
@@ -83,75 +86,86 @@ Show Survey
                             @endforeach                                   
                         </div>  
                         <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
+                            <br>
+                            <h2 class="text-primary">{{ $survey->name }}</h2>     
+                            <br>
+                            <h5>{{ $survey->description }}</h5>                 
+                            <br>
                             @foreach($questions as $question)
                             <div class="col-lg-12 grid-margin stretch-card">
-                                <div class="card">
+                                <div class="card border-primary mb-3">
                                     <div class="card-body">
-                                        <h4 class="card-title">{{ $question->name }} 
+                                        <h5>{{ $question->name }} 
                                             <a data-toggle="modal" data-target="#ModalCenter">
                                                 <i class="mdi mdi-comment-question-outline"></i>
                                             </a>
-                                        </h4>
+                                        </h5>
                                         <canvas id="barChart{{ $loop->iteration }}"></canvas>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
-                            
+
                             <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              
                                 <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLongTitle">Help</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title text-primary" id="exampleModalLongTitle">Help</h3>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>
+                                                This graph shows the total of users' answers of each possible value of the question. On the x axes, there are the possible values of these question.
+                                                On the y axes, there is the number of people that has answered a certain vaue. The green column
+                                                represents the correct answer of this question.
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>                                      
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        <p>
-                                            This graph shows the total of users' answers of each possible value of the question. On the x axes, there are the possible values of these question.
-                                            On the y axes, there is the number of people that has answered a certain vaue. The green column
-                                            represents the correct answer of this question.
-                                        </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                                      
-                                    </div>
-                                  </div>
                                 </div>
                             </div>
-                            
+
                         </div>   
                         <div class="tab-pane fade" id="admin-global" role="tabpanel" aria-labelledby="admin-global-tab">
+                            <br>
+                            <h2 class="text-primary">{{ $survey->name }}</h2>     
+                            <br>
+                            <h5>{{ $survey->description }}</h5>                 
+                            <br>
                             <div class="row">
                                 <div class="col-lg-6 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card border-primary mb-3">
                                         <div class="card-body">
-                                            <h4 class="card-title">Number of completed surveys</h4>
+                                            <h5>Completed surveys</h5>
                                             <canvas id="surveys"></canvas>
                                         </div>                                        
                                     </div>
                                 </div>
                                 <div class="col-lg-6 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card border-primary mb-3">
                                         <div class="card-body">
-                                            <h4 class="card-title">Average score</h4>
+                                            <h5>Average score</h5>
                                             <p>{{$average_score}}</p>
-                                            <h4 class="card-title">Maximum score</h4>
+                                            <h5>Maximum score</h5>
                                             <p>{{$maximum_score}}</p>
-                                            <h4 class="card-title">Minimun score</h4>
+                                            <h5>Minimun score</h5>
                                             <p>{{$minimum_score}}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card border-primary mb-3">
                                         <div class="card-body">
-                                            <h4 class="card-title">Chart of Users' scores 
+                                            <h5>Users scores 
                                                 <a data-toggle="modal" data-target="#Modal">
                                                     <i class="mdi mdi-comment-question-outline"></i>
                                                 </a>
-                                            </h4>
+                                            </h5>
                                             <canvas id="barChartAnswers"></canvas>
                                         </div>
                                     </div>
@@ -160,50 +174,57 @@ Show Survey
                         </div>
                         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLongTitle">Help</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title text-primary" id="exampleModalLongTitle">Help</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            This graph shows the number of users' that have a certain score. On the x axes, there are the scores.
+                                            On the y axes, there is the number of people that has a certain score. 
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>                                      
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    <p>
-                                        This graph shows the number of users' that have a certain score. On the x axes, there are the scores.
-                                        On the y axes, there is the number of people that has a certain score. 
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                                      
-                                </div>
-                              </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="individual" role="tabpanel" aria-labelledby="individual-tab">
-                            <table class="table">
-                                <thead class='thead-light'>
-                                    <tr>
-                                        <th scope="col">Name</th>  
-                                        <th scope="col">Surname</th>
-                                        <th scope="col">Actions</th>                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($users as $user)
-                                    <tr>
-                                        <th>{{ $user->name }}</th>
-                                        <th>{{ $user->surname }}</th>
-                                        <th> 
-                                            <a href="{{route('admin.surveys.view',$user->completed_id) }}" class="float-left">
-                                                <button type="button" class="btn btn-primary btn-sm">View Survey</button>
-                                            </a>
-                                        </th>
-                                    </tr>    
-                                    @endforeach
+                             <br>
+                            <h2 class="text-primary">{{ $survey->name }}</h2>     
+                            <br>
+                            <h5>{{ $survey->description }}</h5>                 
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table" id='table'>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-primary">Name</th>  
+                                            <th class="text-primary">Surname</th>
+                                            <th class="text-primary">Actions</th>                                        
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($users as $user)
+                                        <tr>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->surname }}</td>
+                                            <td> 
+                                                <a href="{{route('admin.surveys.view',$user->completed_id) }}" class="float-left">
+                                                    <button type="button" class="btn btn-outline-primary btn-sm">View Survey</button>
+                                                </a>
+                                            </td>
+                                        </tr>    
+                                        @endforeach
 
-                                </tbody>
+                                    </tbody>
 
-                            </table>
+                                </table>
+                            </div>
                         </div>
                     </div> 
                 </div>                
@@ -211,6 +232,9 @@ Show Survey
         </div>
     </div>
 </div>
+<script src="{{asset('vendors/datatables.net/jquery.dataTables.js')}}"></script>
+<script src="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('js/dashboard.js')}}"></script>
 <script>
 
     $(function () {

@@ -242,6 +242,18 @@
       },
       searching: false, paging: false, info: false
     });
+    
+     $('#table').DataTable({
+      "aLengthMenu": [
+        [5, 10, 15, -1],
+        [5, 10, 15, "All"]
+      ],
+      "iDisplayLength": 10,
+      "language": {
+        search: ""
+      },
+      searching: false, paging: false, info: false
+    });
 
   });
 })(jQuery);

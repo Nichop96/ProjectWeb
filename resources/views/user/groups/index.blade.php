@@ -32,8 +32,9 @@ Groups
                             $( "#message" ).delay(4000 ).slideUp( 400 );
                         </script>
                     @endisset
-                    <table class="table">
-                        <thead class='thead-light'>
+                    <div class="table-responsive">
+                        <table class="table" id='table'>
+                        <thead>
                             <tr>
                                 <th scope="col" class="text-primary">Name</th>  
                                 <th scope="col" class="text-primary">Description</th> 
@@ -44,10 +45,10 @@ Groups
                         <tbody>
                             @foreach($groups as $group)
                             <tr>
-                                <th>{{ $group->name }}</th>
-                                <th>{{ $group->description }}</th>
-                                <th>{{ $group->count }} </th>
-                                <th>                                  
+                                <td>{{ $group->name }}</td>
+                                <td>{{ $group->description }}</td>
+                                <td>{{ $group->count }} </td>
+                                <td>                                  
                                     <form action="{{route('user.groups.destroy', $group->id)}}" method="POST" class="float-left">
                                         @csrf
                                         {{method_field('DELETE')}}
@@ -56,13 +57,14 @@ Groups
                                         </button>           
                                     </form>
 
-                                </th>
+                                </td>
                             </tr>    
                             @endforeach
 
                         </tbody>
 
                     </table>
+                    </div>
                     @if(!isset($search))
                     {{ $groups->links() }}
                     @endif
@@ -73,4 +75,7 @@ Groups
     </div>
 
 </div>
+<script src="{{asset('vendors/datatables.net/jquery.dataTables.js')}}"></script>
+<script src="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('js/dashboard.js')}}"></script>
 @endsection

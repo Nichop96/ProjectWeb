@@ -8,16 +8,20 @@ User edit
 <div class="content-wrapper">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-9 grid-margin stretch-card">
-            <div class="card">
+            <div class="card border-primary">
                 <div id="card-body" class="card-body">
-                    <h4 class="card-title">Update settings</h4>
+                    <br>
+                    <h2 class="text-primary">Update settings</h2>
+                    <br>
                     <form id="formModule" class="pt-3" action="{{ route('user.user.update', ['user' => $user->id])}}" method="POST">
                         @csrf
                         {{ method_field('PUT') }}
 
                         <div id="form">
                             <div class="form-group">
-                                <label for='name'>First name</label>
+                               <br>
+                                <h4 for='name'>First name</h4>
+                                 <br>
                                 <input id="name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name', $user->name ?: '' ) }}" name="name" placeholder="{{$user->name}}">
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
@@ -27,7 +31,9 @@ User edit
 
                             </div>
                             <div class='form-group'>
-                                <label for='surname'>Surname</label>
+                                <br>
+                                <h4 for='surname'>Surname</h4>
+                                 <br>
                                 <input id="surname" type="text" class="form-control form-control-lg {{ $errors->has('surname') ? ' is-invalid' : '' }}" value="{{ old('surname', $user->surname ?: '' ) }}" name="surname" placeholder="{{$user->surname}}">
                                 @if ($errors->has('surname'))
                                 <span class="invalid-feedback" role="alert">
@@ -37,7 +43,9 @@ User edit
                             </div>
 
                             <div class='form-group'>
-                                <label for='surname'>Username</label>
+                                <br>
+                                <h4 for='username'>Username</h4>
+                                 <br>
                                 <input id="username" type="text" class="form-control form-control-lg {{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username', $user->username ?: '' ) }}" name="username" placeholder="{{$user->username}}">
                                 @if ($errors->has('username'))
                                 <span class="invalid-feedback" role="alert">
@@ -47,7 +55,9 @@ User edit
                             </div>
 
                             <div class='form-group'>
-                                <label for='email'>Email</label>
+                                <br>
+                                <h4 for='email'>E-mail</h4>
+                                 <br>
                                 <input id="email" type="text" class="form-control form-control-lg {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email', $user->email ?: '' ) }}" name="email" placeholder="{{$user->email}}">
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
@@ -83,7 +93,9 @@ User edit
                             <div class="form-row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for='date'>Birth date</label>
+                                        <br>
+                                        <h4 for='date'>Birth date</h4>
+                                         <br>
                                         <input type='date' class="form-control form-control-lg datepicker {{ $errors->has('birth_date') ? ' is-invalid' : '' }}" id="date_birth" name="birth_date" value="{{ old('birth_date', $user->birth_date) }}" >
 
                                         <script>
@@ -118,11 +130,11 @@ User edit
                             </div>
 
                             <div class='row'>
-                                <div class='col'><input type='submit'   class='btn btn-primary btn-lg btn-block ' value='Invia modifiche'></div>
-                                <div class='col'><input type='reset' onclick ='settaDopo()' class='btn btn-primary btn-lg btn-block ' value='Resetta campi'></div>
+                                <div class='col'><input type='submit'   class='btn btn-outline-primary btn-lg btn-block ' value='Submit'></div>
+                                <div class='col'><input type='reset' onclick ='settaDopo()' class='btn btn-outline-warning btn-lg btn-block ' value='Reset'></div>
                                 <div class='col'>
                                     <a href="{{route('user.index')}}">
-                                        <input type='button' onclick="" class='btn btn-primary btn-lg btn-block ' value='Cancel'>
+                                        <input type='button' onclick="" class='btn btn-outline-danger btn-lg btn-block ' value='Cancel'>
                                     </a>
                                 </div>
                             </div>
