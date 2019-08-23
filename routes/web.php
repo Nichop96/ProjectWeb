@@ -44,6 +44,7 @@ Route::get('/admin/impersonate/destroy','Admin\ImpersonateController@destroy')->
 
 Route::namespace('User')->prefix('user')->middleware(['auth','auth.user'])->name('user.')->group(function(){
     Route::resource('/surveys', 'SurveyController');
+    Route::resource('/user', 'UserController');
     Route::get('/surveys/{id}/create', 'SurveyController@create');
     Route::get('/surveys/{id}/show', 'SurveyController@show');
     Route::resource('/groups', 'GroupController');
