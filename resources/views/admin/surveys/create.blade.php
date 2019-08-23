@@ -9,7 +9,7 @@ Create survey
         && isset($questions))
 (io l'ho tolto, controllare che non ci siano errori)
 -->
-@if(isset($module) && isset($questions))
+
  <div class="content-wrapper">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-9 grid-margin stretch-card">
@@ -25,8 +25,12 @@ Create survey
                         </div>  
                         <div  class="form-group">
                             <h5 for="aux_name" > Name </h5>
+                            @if(isset($module))
                             <input id="aux_name" type="text" class="form-control form-control-lg {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ (old('aux_name', $module->name ? : '' )) }}" name="aux_name" placeholder="{{$module->name}} ">
-
+                            @else
+                            <input id="aux_name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('aux_name') }}" name="aux_name" placeholder="Survey name">
+                            @endif
+                            
                             @if ($errors->has('name'))                            
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -36,7 +40,11 @@ Create survey
                         </div>
                         <div class="form-group">
                             <h5 for="aux_description" > Description </h5>
+                            @if(isset($module))
                             <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description', $module->description ? : '' ) }}"  name="aux_description" placeholder="{{$module->description}}">
+                            @else
+                            <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description') }}" name="aux_description" placeholder="Survey's description">
+                            @endif
                             @if ($errors->has('description'))
 
                             <span class="invalid-feedback" role="alert">
@@ -53,7 +61,11 @@ Create survey
                                 @foreach($categories  as $category)
                                 <div class="col-lg-3 col-md-3 col-sm-1 form-check">
                                     <label class="form-check-label">
+                                        @if(isset($module))
                                         <input  type="radio" class="form-check-input sel_category"  name="aux_category" {{ $category->id === $module->category_id ? "checked" : '' }} value="{{ $category->id }}">
+                                        @else
+                                        <input  type="radio" class="form-check-input sel_category" name="category" id="aux_category{{ $category->id }}" value="{{ $category->id }}">
+                                        @endif
                                         {{ $category->name }}
                                     </label>
 
@@ -77,6 +89,7 @@ Create survey
                         </div>  
                         
                         <br>
+                        @if(isset($module) && isset($questions))
                         @foreach($questions as $question)
                         <br>                      
                         <div class="card" id="question_{{$question->id}}">
@@ -131,7 +144,8 @@ Create survey
 
                         <br>
                         @endforeach
-
+                        @endif
+                        
                         <div id="questions">
                             <!-- Repeater Html Start -->
                             <div id="repeater">
@@ -264,7 +278,9 @@ Create survey
                         <input type='hidden' class='aux_description' name='description' id='description' />
                         <input type='hidden' class='aux_category' name='category' id='category' />
                         <input type='hidden' name='aux_groups' id='aux_groups'/>
+                        @if(isset($module))
                         <input type="hidden" name="aux_module_id" id="aux_module_id" value="{{$module->id}}"/>
+                        @endif
                     </form>        
                 </div>
             </div>                                           
@@ -272,212 +288,6 @@ Create survey
     </div>
 </div>
 
-@else
-<div class="content-wrapper">
-    <div class="row align-items-center justify-content-center">
-        <div class="col-md-9 grid-margin stretch-card">
-            <div class="card">
-                <div id="card-body" class="card-body">
-                    <h4 class="card-title">Creation of a survey</h4>    
-                    <form id="repeater-form" name="bbb">
-                        <div class='form-group'>
-                            <label for='aux_fillable'> Fillable </label>
-                            <input type='checkbox' name='aux_fillable' id='aux_fillable' checked="true">
-                        </div> 
-                        <div  class="form-group">
-                            <label for="aux_name" > Name </label>
-                            <input id="aux_name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('aux_name') }}" name="aux_name" placeholder="Survey name">
-
-                            @if ($errors->has('name'))                            
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                            @endif
-                            <br>
-                        </div>
-                        <div class="form-group">
-                            <label for="aux_description" > Description </label>
-                            <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description') }}" name="aux_description" placeholder="Survey's description">
-                            @if ($errors->has('description'))
-
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('description') }}</strong>
-                            </span>
-                            @endif
-                            <br>
-
-
-                        </div>  
-                        <div class="form-group">
-                            Chose the category
-                            <div class="row">
-                                @foreach($categories  as $category)
-                                <div class="col-3 form-check">
-                                    <label class="form-check-label">
-                                        <input  type="radio" class="form-check-input sel_category" name="category" id="aux_category{{ $category->id }}" value="{{ $category->id }}">
-                                        {{ $category->name }}
-                                    </label>
-
-                                </div>
-                                @endforeach
-                                @if ($errors->has('category'))
-
-                                <span class="invalid-feedback d-block" role="alert">
-                                    <strong>{{$errors->first('category')          }} </strong>
-                                </span>
-                                @endif
-
-                            </div>
-                        </div>
-                        <!-- modifiche da qua -->
-                        
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Avatar of the survey</label>
-                            <input type="file" class="form-control-file" name='file' form='aux_form' accept="image/png, .jpeg, .jpg, image/gif"/>
-                            
-                        </div>                      
-                        
-                        <!-- a qua -->
-                        <br>
-                        <div id="questions">
-                            <!-- Repeater Html Start -->
-                            <div id="repeater">
-                                <!-- Repeater Heading -->
-                                <div class="repeater-heading">
-                                    <h5 class="pull-left">Questions</h5>
-                                    <button class="btn btn-primary repeater-add-btn">
-                                        Add question
-                                    </button>
-
-
-                                </div>
-                                <br>
-                                <div class="clearfix"></div>
-                                <!-- Repeater Items -->
-                                <div class="items" data-group="test">
-                                    <div class="card">
-                                        <!-- Repeater Content -->
-                                        <h5 class="card-title"> Insert question </h5>
-                                        <div class="item-content card-body block">
-
-                                            <div class="form-group">
-                                                <label for="question" class="col-lg-2 control-label">Question</label>
-                                                <div class="col-lg-10">
-                                                    <input type="text" class="form-control question"   placeholder="question" >
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col">
-                                                    <label for="leftlabel" class="col-lg-2 control-label">Left label</label>
-                                                    <input type="text" id="leftlabel" name="leftlabel" class="form-control leftlabel" placeholder="Low">
-                                                    <span class="invalid-feedback leftlabel-alert" hidden role="alert">
-                                                        <strong>Invalid filed!</strong>
-                                                    </span>
-                                                </div>
-                                                <div class="col">
-                                                    <label for="rightlabel"  class="col-lg-2 control-label">right label</label>
-                                                    <input type="text" id="rightlabel" name="rightlabel" class="form-control rightlabel" placeholder="High">
-                                                </div>
-                                            </div>                            
-
-                                             <div class='row'>
-                                                <div class='col'>
-                                                <div class="form-group">
-                                                    <label for="maxmark" class="control-label ">Max mark value</label>
-
-                                                    <input type="text" class="form-control maxmark"   value="5" placeholder="5">
-
-                                                </div>
-                                                </div>
-                                                <div class='col'>
-                                                <div class="form-group">
-                                                <label for="correctans" class="control-label ">Correct answer</label>
-
-                                                <input type="text" class="form-control correctans"   value="5" placeholder="5">
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <!-- Repeater Remove Btn -->
-                                        <div class="pull-right repeater-remove-btn">
-                                            <button class="btn btn-danger remove-btn">
-                                                Remove
-                                            </button>
-                                        </div>
-                                        <div class="clearfix"></div>
-
-                                    </div>
-                                </div>
-                                <br>
-
-                            </div>
-                            <!-- Repeater End -->
-
-
-
-                        </div>
-
-                        <br>        
-                    </form>
-                    <table class="table" id='table'>
-                        <thead class='thead-light'>
-                            <tr>
-                                <th scope="col">Name</th>  
-                                <th scope="col">Description</th> 
-                                <th scope="col">Number of users</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($groups as $group)
-                            <tr onclick="selezionato({{$group->id}})" id='{{$group->id}}'>
-                                <th>{{ $group->name }}</th>
-                                <th>{{ $group->description }}</th>
-                                <th>{{ $group->count }} </th>
-
-                            </tr>    
-                            @endforeach
-
-                        </tbody>
-
-                    </table>
-                    {{ $groups->links() }}
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-primary" onclick="submit()">
-                                submit survey
-                            </button>
-                        </div>
-                        <div class="col">
-                            <a href="{{ route('admin.surveys.index') }}">
-                                        <input type='button' class='btn btn-primary' value='Cancel'>
-                            </a>
-                        </div>
-                    </div>
-                </div> <!-- div di creazione modulo -->
-                <div name="aux">
-                    <form id="aux_form" name='aux_form' class="pt-3" action="{{ route('admin.surveys.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf 
-                        <input type='hidden' class='aux_questions' name='aux_questions' id='aux_questions' />
-                        <input type='hidden' class='aux_left' name='aux_left' id='aux_left' />
-                        <input type='hidden' class='aux_right'  name='aux_right' id='aux_right' />
-                        <input type='hidden' class='aux_maxmark' name='aux_maxmark' id='aux_maxmark' />
-                        <input type='hidden' class='aux_correctans' name='aux_correctans' id='aux_correctans' />
-
-                        <input type='hidden' class='aux_name' name='name' id='name' />
-                        <input type='hidden' class='aux_description' name='description' id='description' />
-                        <input type='hidden' class='aux_category' name='category' id='category' />
-                        <input type='hidden' class='aux_fillable' name='fillable' id='fillable'/>
-                        
-                        <input type='hidden' class='aux_groups' name='aux_groups' id='aux_groups'/>
-                    </form>
-                </div>
-            </div>                                           
-        </div>                
-    </div>
-</div>
-
-@endif
 
 <script type="text/javascript" src="{{ URL::asset('js/repeater.js') }}"></script>
 
