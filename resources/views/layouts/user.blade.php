@@ -10,7 +10,7 @@
 @section('profile-name','Name User')
 
 @section('profile-photo')
-<!-- <img src="{{ asset('images/faces/face5.jpg')}}" alt="profile"/>-->
+ <img src="{{ asset('images/faces/user.png')}}" alt="profile"/>
 @endsection
 
 @section('left-navbar')
