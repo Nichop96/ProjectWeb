@@ -20,8 +20,19 @@ Answer Survey
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                            <br>
-                            <h2 class="text-primary">{{ $completedSurvey->name }}</h2>   
+                            <br>                              
+                            <div class="row">
+                                <div class="col-9">
+                                     <h2 class="text-primary">{{ $completedSurvey->name }}</h2>   
+                                </div>
+                                <div class="col-3">
+                                    <a href="{{ route('admin.surveys.show', $completedSurvey->id) }}"
+                                        <button class="btn btn-outline-info align-top">
+                                            Go back
+                                        </button>
+                                    </a>   
+                              </div>
+                            </div>
                             <br>
                             <h5>{{ $completedSurvey->description }}</h5> 
                             <br>
@@ -82,7 +93,18 @@ Answer Survey
                         </div>                              
                         <div class="tab-pane fade" id="global" role="tabpanel" aria-labelledby="global-tab">
                             <br>
-                            <h2 class="text-primary">{{ $completedSurvey->name }}</h2>   
+                            <div class="row">
+                                <div class="col-9">
+                                     <h2 class="text-primary">{{ $completedSurvey->name }}</h2>   
+                                </div>
+                                <div class="col-3">
+                                    <a href="{{ route('admin.surveys.show', $completedSurvey->id) }}"
+                                        <button class="btn btn-outline-info align-top">
+                                            Go back
+                                        </button>
+                                    </a>   
+                              </div>
+                            </div>   
                             <br>
                             <h5>{{ $completedSurvey->description }}</h5> 
                             <br>

@@ -90,7 +90,7 @@
                         <td>{{$survey->name}}</td>
                         <td>{{$survey->description}}</td>
                         <td>{{$survey->category}}</td>
-                        <td>{{date('m/d/Y',strtotime($survey->created_at))}}</td>                        
+                        <td>{{date('d/m/Y',strtotime($survey->created_at))}}</td>                        
                     </tr> 
                     @endforeach
                   </tbody>

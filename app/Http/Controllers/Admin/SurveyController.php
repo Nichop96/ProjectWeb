@@ -416,7 +416,14 @@ class SurveyController extends Controller {
             }
             $average_score += $scores_user['score'];
         }
-        $average_score /= count($scores_users);
+        if($average_score != 0)
+        {
+            $average_score /= count($scores_users);
+        }
+        if($minimum_score == 10000000000000)
+        {
+            $minimum_score = 0;
+        }
 
         return view('admin.surveys.show')->with(['completedSurveys' => $completedSurveys,
                     'survey' => $survey,

@@ -534,38 +534,7 @@ Create module
         success: function(response){ 
                 var i = 0;
                 while(response[i].name != null)
-                {
-                    var code = '<br>\n\
-        <div class="card" id="'+response[i].id+'">\n\
-            <h5 class="card-title"> Insert question </h5>\n\
-            <div class="item-content card-body block">\n\
-                <div class="form-group">\n\
-                    <label  class="col-lg-2 control-label">Question</label>\n\
-                    <div class="col-lg-10">\n\
-                        <input type="text" class="form-control question form-control-lg" value="'+response[i].name+'">\n\
-                    </div>\n\
-                </div>\n\
-            <div class="row">\n\
-                <div class="col">\n\
-                    \n\
-                    <input type="text" class="form-control leftlabel" value="'+response[i].label_left+'" ></div>\n\
-                <div class="col"><input type="text" class="form-control rightlabel" value="'+response[i].label_right+'" ></div>\n\
-            </div>\n\
-            <div class="row">\n\
-                    <div class="col">\n\
-                        <div class="form-group">\n\
-                            <label class="control-label ">Max mark value</label>\n\
-                            <input type="text" class="form-control maxmark" value="'+response[i].max_rate+'" >\n\
-                        </div>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div class="form-group">\n\
-                            <label class="control-label ">Correct answer</label>\n\
-                            <input type="text" class="form-control correctans" value="'+response[i].correct_answer+'"></div></div></div></div><div class="pull-right">\n\
-                <button class="btn btn-danger remove-btn" onclick="rimuovi('+response[i].id+')">Remove</button>\n\
-            </div>\n\
-            <div class="clearfix"></div>\n\
-        </div><br>';
+                {                   
                     var code = '<br><div class="card border-primary mb-3" id="'+response[i].id+'"><div class="item-content card-body block align-self-lg-auto"><div class="form-group"><h5 for="question" class="col-lg-5 control-label">Question</h5><div class="col-lg-12 col-md-9 col-sm-5"><input type="text" class="form-control question"   value="'+response[i].name+'" ></div></div><div class="row"><div class="col"><h5 for="leftlabel" class="col-lg-6 control-label">Left label</h5><input type="text" id="leftlabel" name="leftlabel" class="form-control leftlabel" value="'+response[i].label_left+'"></div><div class="col"><h5 for="rightlabel"  class="col-lg-6 control-label">Right label</h5><input type="text" id="rightlabel" name="rightlabel" class="form-control rightlabel" value="'+response[i].label_right+'"><br></div></div><div class="row"><div class="col"><div class="form-group"><h5 for="maxmark" class="control-label ">Max value</h5><input type="text" class="form-control maxmark" id="maxmark"  value="'+response[i].max_rate+'"></div></div><div class="col"><div class="form-group"><h5 for="correctans" class="control-label ">Correct answer</h5><input type="text" class="form-control correctans" id="correctans"  value="'+response[i].correct_answer+'"></div></div></div></div><div class="pull-right repeater-remove-btn"><button class="btn btn-danger remove-btn" onclick="rimuovi('+response[i].id+')">Remove question</button></div><div class="clearfix"></div></div>';
                     $("#questions").append(code);
                     i++;
