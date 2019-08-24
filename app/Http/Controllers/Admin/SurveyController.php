@@ -91,42 +91,40 @@ class SurveyController extends Controller {
         $tmp = $request['category'];
         unset($request['category']);
         $request['category_id'] = $tmp;
-        
-         // modifiche
+
+        // modifiche
         unset($request['file']);
-        
+
         // parte modificata profondamente
         $survey = new Survey();
         $survey->name = $request['name'];
         $survey->description = $request['description'];
         $survey->category_id = $request['category_id'];
-        $survey->fillable = $request['fillable'];   
-        
+        $survey->fillable = $request['fillable'];
+
         // gestisco l'immagine
-        if($file = $request->file('file')){
-                $name = $file->getClientOriginalName();
-                if($file->move('images/surveys', $name)){
-                    $survey->image = $name;
-                    
-                }
-        }else{
-            if($request['aux_module_id']){
+        if ($file = $request->file('file')) {
+            $name = $file->getClientOriginalName();
+            if ($file->move('images/surveys', $name)) {
+                $survey->image = $name;
+            }
+        } else {
+            if ($request['aux_module_id']) {
                 $tmp = Module::find($request['aux_module_id']);
-                if(strlen($tmp->image)){
-                    if(copy("images/modules/".$tmp->image, "images/surveys/".$tmp->image)){
+                if (strlen($tmp->image)) {
+                    if (copy("images/modules/" . $tmp->image, "images/surveys/" . $tmp->image)) {
                         $survey->image = $tmp->image;
-                    
                     }
                 }
             }
         }
         $survey->save();
-        
-        
+
+
         // Survey::create($request->all());
         // fine modifiche
-        
-        
+
+
         $survey_inserito = Survey::where('name', $request['name'])->orderBy('id', 'DESC')->first();
         // ora gestisco le domande
         for ($i = 0; $i < count($question); $i++) {
@@ -210,8 +208,7 @@ class SurveyController extends Controller {
         $selectedGroups = $survey->groups;
         //dd($questions);
         $groups = Group::all();
-        foreach($groups as $group)
-        {
+        foreach ($groups as $group) {
             $group->count = $group->users()->count();
         }
         return view('admin.surveys.edit')->with(['survey' => $survey,
@@ -269,22 +266,22 @@ class SurveyController extends Controller {
         $tmp = $request['category'];
         unset($request['category']);
         $request['category_id'] = $tmp;
-        
-         // gestisco l'immagine
-        if($file = $request->file('file')){
-                $name = $file->getClientOriginalName();
-                if($file->move('images\surveys', $name)){
-                    Survey::find($id)
-                                    ->update([
-                                    'category_id' => $request['category_id'],
-                                    'name' => $request['name'],
-                                    'description' => $request['description'],
-                                    'fillable' => $request['fillable'],
-                                    'image' => $name
-                        ]);                    
-                }
+
+        // gestisco l'immagine
+        if ($file = $request->file('file')) {
+            $name = $file->getClientOriginalName();
+            if ($file->move('images\surveys', $name)) {
+                Survey::find($id)
+                        ->update([
+                            'category_id' => $request['category_id'],
+                            'name' => $request['name'],
+                            'description' => $request['description'],
+                            'fillable' => $request['fillable'],
+                            'image' => $name
+                ]);
+            }
         }
-        
+
         Survey::find($id)
                 ->update([
                     'category_id' => $request['category_id'],
@@ -296,7 +293,7 @@ class SurveyController extends Controller {
 
         $survey_inserito = Survey::find($id);
         $old_questions = $survey_inserito->questions;
-        
+
         $survey_inserito->questions()->detach();
         foreach ($old_questions as $quest) {
             $count_s = $quest->surveys()->count();
@@ -344,36 +341,48 @@ class SurveyController extends Controller {
         $survey = Survey::findOrFail($id);
         $questions = Survey::findOrFail($id)->questions()->paginate(10);
         $completedSurveys = Survey::findOrFail($id)->completedSurveys()->paginate(100);
-        
+
         $users = DB::table('surveys')
-                ->join('completed_surveys','surveys.id','completed_surveys.survey_id')
-                ->join('users','completed_surveys.user_id','users.id')
+                ->join('completed_surveys', 'surveys.id', 'completed_surveys.survey_id')
+                ->join('users', 'completed_surveys.user_id', 'users.id')
                 ->where('surveys.id', '=', $id)
-                ->select('users.*','completed_surveys.id as completed_id')
+                ->select('users.*', 'completed_surveys.id as completed_id')
                 ->paginate(1000);
-        
+
         $surveys_total_count = DB::table('surveys')->join('group_survey', 'surveys.id', '=', 'group_survey.survey_id')
-                        ->join('groups', 'group_survey.group_id', '=', 'groups.id')
-                        ->join('group_user', 'groups.id', '=', 'group_user.group_id')
-                        ->join('users', 'group_user.user_id', '=', 'users.id') 
-                        ->distinct('users.id')
-                        ->where('surveys.id', '=', $id)
-                        ->count('users.id');        
+                ->join('groups', 'group_survey.group_id', '=', 'groups.id')
+                ->join('group_user', 'groups.id', '=', 'group_user.group_id')
+                ->join('users', 'group_user.user_id', '=', 'users.id')
+                ->distinct('users.id')
+                ->where('surveys.id', '=', $id)
+                ->count('users.id');
         $completedSurveys_count = Survey::findOrFail($id)->completedSurveys()->count();
         $not_completedSurveys_count = $surveys_total_count - $completedSurveys_count;
-        
-         
+
+
 
         foreach ($questions as $question) {
-            $question->count_answers = DB::table('question_survey')
+            $temp = DB::table('question_survey')
                     ->join('questions', 'question_survey.question_id', '=', 'questions.id')
-                    ->join('answers', 'questions.id', 'answers.question_id')
-                    ->where([['question_survey.survey_id', '=', $survey->id], ['questions.id', '=', $question->id]])
+                    ->join('completed_surveys','question_survey.survey_id','completed_surveys.survey_id')
+                    ->join('answers', 'completed_surveys.id', 'answers.completed_survey_id')
+                    ->where([['question_survey.survey_id', '=', $survey->id], ['questions.id', '=', $question->id], ['answers.question_id', '=', $question->id]])
                     ->groupBy('answers.value')
-                    ->select(DB::raw('COUNT(*) as total'))
-                    ->pluck('total');
+                    ->orderBy('answers.value', 'asc')
+                    ->select(DB::raw('COUNT(answers.value) as total'),'answers.value')
+                    ->get();
+            $count_answers = array();
+            for ($i = 0; $i < $question->max_rate; $i++) {
+                $count_answers[$i] = 0;
+                foreach ($temp as $t) {
+                    if ($t->value == ($i+1)) {
+                        $count_answers[$i] = $t->total;
+                    }
+                }
+            }
+            $question->count_answers = $count_answers;
         }
-        
+
         $scores_users = array();
         $i = 0;
         foreach ($completedSurveys as $completedSurvey) {
@@ -387,12 +396,12 @@ class SurveyController extends Controller {
             $score = 0;
             foreach ($questions_users as $question_user) {
                 $score += abs($question_user->value - $question_user->correct_answer);
-            }  
+            }
             $score /= count($questions_users);
             $t = 0;
-            for($j = 0; $j<$i;$j++) {
+            for ($j = 0; $j < $i; $j++) {
                 if ($scores_users[$j]['score'] == $score) {
-                    $scores_users[$j]['count']++;
+                    $scores_users[$j]['count'] ++;
                     $t = 1;
                 }
             }
@@ -407,22 +416,19 @@ class SurveyController extends Controller {
         $minimum_score = 10000000000000;
         $maximum_score = 0;
         $average_score = 0;
-        foreach($scores_users as $scores_user)
-        {
-            if($scores_user['score'] > $maximum_score){
+        foreach ($scores_users as $scores_user) {
+            if ($scores_user['score'] > $maximum_score) {
                 $maximum_score = $scores_user['score'];
             }
-            if($scores_user['score'] < $minimum_score){
+            if ($scores_user['score'] < $minimum_score) {
                 $minimum_score = $scores_user['score'];
             }
             $average_score += $scores_user['score'];
         }
-        if($average_score != 0)
-        {
+        if ($average_score != 0) {
             $average_score /= count($scores_users);
         }
-        if($minimum_score == 10000000000000)
-        {
+        if ($minimum_score == 10000000000000) {
             $minimum_score = 0;
         }
 
@@ -438,41 +444,38 @@ class SurveyController extends Controller {
                     'users' => $users
         ]);
     }
-    
+
     public function view($id) {
         $sid = CompletedSurvey::findOrFail($id);
         $completedSurvey = DB::table('completed_surveys')
                         ->join('surveys', 'completed_surveys.survey_id', '=', 'surveys.id')
                         ->where('completed_surveys.id', '=', $id)
-                        ->select('surveys.*', 'completed_surveys.id as completed_id')->first();      
+                        ->select('surveys.*', 'completed_surveys.id as completed_id')->first();
         $questions = DB::table('question_survey')
-                        ->join('questions', 'question_survey.question_id','questions.id')
-                        ->join('answers','questions.id','answers.question_id')
+                        ->join('questions', 'question_survey.question_id', 'questions.id')
+                        ->join('answers', 'questions.id', 'answers.question_id')
                         ->where('answers.completed_survey_id', '=', $completedSurvey->completed_id)
                         ->distinct('questions.id')
-                        ->select('questions.*','answers.value as value','answers.id as answer_id')
+                        ->select('questions.*', 'answers.value as value', 'answers.id as answer_id')
                         ->orderBy('questions.id', 'asc')->get();
-        
-         $user = CompletedSurvey::findOrFail($id)->user()->first();
-        
-        
+
+        $user = CompletedSurvey::findOrFail($id)->user()->first();
+
+
         $correctAnswers = 0;
-        foreach ($questions as $question)
-        {
-            if($question->value == $question->correct_answer)
-            {
+        foreach ($questions as $question) {
+            if ($question->value == $question->correct_answer) {
                 $correctAnswers++;
             }
         }
         $wrongAnswers = count($questions) - $correctAnswers;
-        
+
         $score = 0;
-        foreach ($questions as $question)
-        {
-            $score+= abs($question->value - $question->correct_answer);            
+        foreach ($questions as $question) {
+            $score += abs($question->value - $question->correct_answer);
         }
         $score /= count($questions);
-        return view('admin.surveys.view')->with(['completedSurvey' => $completedSurvey,                    
+        return view('admin.surveys.view')->with(['completedSurvey' => $completedSurvey,
                     'questions' => $questions,
                     'wrongAnswers' => $wrongAnswers,
                     'correctAnswers' => $correctAnswers,
@@ -480,7 +483,7 @@ class SurveyController extends Controller {
                     'user' => $user
         ]);
     }
-    
+
     public function surveys() {
         echo json_encode(DB::table('surveys')
                         ->join('categories', 'surveys.category_id', 'categories.id')
@@ -496,20 +499,20 @@ class SurveyController extends Controller {
                         ->where('question_survey.survey_id', '=', $id)
                         ->get());
     }
-    
+
     public function importQuestions(Request $request) {
-        $questions = DB::table('questions')->get();               
-                        
-        $ids = $request->input('questions');        
+        $questions = DB::table('questions')->get();
+
+        $ids = $request->input('questions');
         $importQuestions = array();
-        foreach($questions as $question) {
-            foreach($ids as $id) {
-                if($id == $question->id) {
+        foreach ($questions as $question) {
+            foreach ($ids as $id) {
+                if ($id == $question->id) {
                     array_push($importQuestions, $question);
                 }
             }
         }
-        
+
         echo json_encode($importQuestions);
     }
 
