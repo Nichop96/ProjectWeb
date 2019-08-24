@@ -123,7 +123,7 @@ Answer Survey
                                     <div class="card border-primary">
                                         <div class="card-body">
                                             <h5 class="card-title">Total score</h5>
-                                            <p>{{$score}}</p>
+                                            <p>{{number_format($score,2)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -144,95 +144,7 @@ Answer Survey
      */
     //Barcharts
     'use strict';
-            var backgroundColorOld = [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)'
-            ];
-            var borderColorOld = [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)'
-            ];
-            var backgroundColor = [
-                    'rgba(0,128,0, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-            ];
-            var borderColor = [
-                    'rgba(0,128,0,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(54, 162, 235, 1)'
-            ];
-            var labels = ["1", "2", "3", "4", "5"];
-            var label = 'Number of answers';
-            var options = {
-            scales: {
-            yAxes: [{
-            ticks: {
-            beginAtZero: true
-            }
-            }]
-            },
-                    legend: {
-                    display: false
-                    },
-                    elements: {
-                    point: {
-                    radius: 0
-                    }
-                    },
-                    tooltips: {
-                    callbacks: {
-                    label: function(tooltipItem, data) {
-                    //get the concerned dataset
-                    var dataset = data.datasets[tooltipItem.datasetIndex];
-                            //calculate the total of this data set
-                            var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
-                            return previousValue + currentValue;
-                            });
-                            //get the current items value
-                            var currentValue = dataset.data[tooltipItem.index];
-                            //calculate the precentage based on the total and current item, also this does a rough rounding to give a whole number
-                            var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
-                            return "#" + currentValue + "   " + percentage + "%";
-                    }
-                    }
-                    }
-
-            };
-            @foreach($questions as $question)
-            var data = {
-            labels: labels,
-                    datasets: [{
-                    label: label,
-                            data: [10, 39, 3, 5, 2],
-                            backgroundColor: backgroundColor,
-                            borderColor: borderColor,
-                            borderWidth: 1,
-                            fill: false
-                    }]
-            };
-            // Get context with jQuery - using jQuery's .get() method.
-            if ($("#barChart{{ $loop->iteration }}").length) {
-    var barChartCanvas = $("#barChart{{ $loop->iteration }}").get(0).getContext("2d");
-            // This will get the first returned node in the jQuery collection.
-            var barChart = new Chart(barChartCanvas, {
-            type: 'bar',
-                    data: data,
-                    options: options
-            });
-    }
-    @endforeach
-
+        
 
 
 

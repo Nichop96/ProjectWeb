@@ -109,7 +109,7 @@ class SurveyController extends Controller {
         {
             $score+= abs($question->value - $question->correct_answer);            
         }
-
+        $score /= count($questions);
         return view('user.surveys.show')->with(['completedSurvey' => $completedSurvey,                    
                     'questions' => $questions,
                     'wrongAnswers' => $wrongAnswers,

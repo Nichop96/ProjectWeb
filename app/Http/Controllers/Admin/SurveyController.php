@@ -387,7 +387,8 @@ class SurveyController extends Controller {
             $score = 0;
             foreach ($questions_users as $question_user) {
                 $score += abs($question_user->value - $question_user->correct_answer);
-            }            
+            }  
+            $score /= count($questions_users);
             $t = 0;
             for($j = 0; $j<$i;$j++) {
                 if ($scores_users[$j]['score'] == $score) {
@@ -470,7 +471,7 @@ class SurveyController extends Controller {
         {
             $score+= abs($question->value - $question->correct_answer);            
         }
-
+        $score /= count($questions);
         return view('admin.surveys.view')->with(['completedSurvey' => $completedSurvey,                    
                     'questions' => $questions,
                     'wrongAnswers' => $wrongAnswers,

@@ -150,11 +150,11 @@ Survey show
                                     <div class="card border-primary mb-3">
                                         <div class="card-body">
                                             <h5>Average score</h5>
-                                            <p>{{$average_score}}</p>
+                                            <p>{{number_format($average_score,2)}}</p>
                                             <h5>Maximum score</h5>
-                                            <p>{{$maximum_score}}</p>
+                                            <p>{{number_format($maximum_score,2)}}</p>
                                             <h5>Minimun score</h5>
-                                            <p>{{$minimum_score}}</p>
+                                            <p>{{number_format($minimum_score,2)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -402,7 +402,7 @@ Survey show
     
     
     
-    var labels = [@foreach($scores_users as $scores_user) {{$scores_user['score']}} @if ($loop->iteration != $loop->last), @endif @endforeach];
+    var labels = [@foreach($scores_users as $scores_user) {{number_format($scores_user['score'],2)}} @if ($loop->iteration != $loop->last), @endif @endforeach];
     var backgroundColor = [@foreach($scores_users as $scores_user) 'rgba(54, 162, 235, 0.2)' @if ($loop->iteration != $loop->last), @endif @endforeach];
     var borderColor = [@foreach($scores_users as $scores_user) 'rgba(54, 162, 235, 1)' @if ($loop->iteration != $loop->last), @endif @endforeach];
     var data = {

@@ -101,7 +101,7 @@ Survey review
                                     <div class="card border-primary">
                                         <div class="card-body">
                                             <h5>Total score:</h5>
-                                            <p>{{$score}}</p>
+                                            <p>{{number_format($score,2)}}</p>
                                         </div>
                                     </div>
                                 </div>
