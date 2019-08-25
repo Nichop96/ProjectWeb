@@ -122,11 +122,21 @@ Answer Survey
                                 <div class="col-lg-6 grid-margin stretch-card">
                                     <div class="card border-primary">
                                         <div class="card-body">
-                                            <h5 class="card-title">Total score</h5>
+                                            <h5 class="card-title">
+                                                Total score
+                                                 <a data-toggle="modal" data-target="#ModalScore">
+                                                    <i class="mdi mdi-comment-question-outline"></i>
+                                                </a>
+                                            </h5>
                                             <p>{{number_format($score,2)}}</p>
                                         </div>
                                     </div>
                                 </div>
+                                @component('components.scoreModal')
+                                    @slot('id')
+                                    ModalScore
+                                    @endslot
+                                 @endcomponent
                             </div>
                         </div>                        
                     </div> 

@@ -53,8 +53,7 @@ class HomeController extends Controller {
         $correctAnswers = 0;
         $countQuestions = 0;
         foreach ($completedSurveys as $completedSurvey) {
-            $correct = 0;
-            $total = 0;
+            $completedSurvey->score = 0;
             $questions = DB::table('question_survey')
                             ->join('questions', 'question_survey.question_id', 'questions.id')
                             ->join('answers', 'questions.id', 'answers.question_id')
@@ -64,13 +63,14 @@ class HomeController extends Controller {
                             ->orderBy('questions.id', 'asc')->get();
             foreach ($questions as $question) {
                 if ($question->value == $question->correct_answer) {
-                    $correct++;
+                    $correctAnswers++;
                 }
-                $total++;
+                $completedSurvey->score+= abs($question->value - $question->correct_answer);
+               $countQuestions++;
             }
-            $completedSurvey->percentage = $correct/$total;           
-            $countQuestions += $total;
-            $correctAnswers += $correct;
+            if (count($questions) != 0) {
+                $completedSurvey->score /= count($questions);
+            }      
         }
 
         $wrongAnswers = $countQuestions - $correctAnswers;

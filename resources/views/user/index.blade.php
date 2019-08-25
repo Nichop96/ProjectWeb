@@ -69,7 +69,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card border-primary mb-3">
               <div class="card-body">
-                <h4>Percentage of correct answers in the completed surveys:</h4>
+                <h4>Scores in the completed surveys:</h4>
                 <canvas id="areaChart"></canvas>
               </div>
             </div>
@@ -204,8 +204,8 @@
     var areaData = {
     labels: [@foreach ($completedSurveys as $completedSurvey) '{{$completedSurvey->name}}' , @endforeach],
     datasets: [{
-      label: '% of correct answers',
-      data: [@foreach ($completedSurveys as $completedSurvey) {{$completedSurvey->percentage}} , @endforeach],
+      label: 'score of the survey',
+      data: [@foreach ($completedSurveys as $completedSurvey) {{ number_format($completedSurvey->score,2)}} , @endforeach],
       backgroundColor: [        
         'rgba(54, 162, 235, 0.2)',        
       ],
