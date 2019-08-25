@@ -155,6 +155,12 @@ Create survey
                                     <button class="btn btn-primary repeater-add-btn">
                                         Add question
                                     </button>
+                                    
+                                    @component('components.importQuestions.modalSelect')
+                                        @slot('type')
+                                        survey
+                                        @endslot
+                                    @endcomponent
                                 </div>
 
                                 <br>
@@ -289,6 +295,9 @@ Create survey
         </div>                
     </div>
 </div>
+
+@component('components.importQuestions.modalQuestions')
+@endcomponent
 
 <script src="{{asset('vendors/datatables.net/jquery.dataTables.js')}}"></script>
 <script src="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
@@ -473,6 +482,12 @@ Create survey
         }
 }
 </script>
+@component('components.importQuestions.importJs')
+    @slot('type')
+    survey
+    @endslot
+@endcomponent
+
 @endsection
 <script>
     function selezionato(id){
