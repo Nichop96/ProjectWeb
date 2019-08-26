@@ -30,23 +30,27 @@ Surveys
         </div>  
 
         @foreach($modules  as $module)
-        <div class="col-lg-3 col-md-3 col-sm-1 grid-margin stretch-card">
-            <div class="card border-primary mb-3">
-                <div class="card-body" >
-                    @if(isset($module->image))
-                    <img src="/images/modules/{{ $module['image'] }}" height="75px" alt="Responsive image" />
-                    @endif
-                    <h4>{{ $module->name }}</h4> 
-                    <br>
-                    <h6>{{ $module->description }}</h6>  
-                    <br>
-                    <a href="{{ url('admin/surveys/' .$module->id . '/edit') }}" class="float-left">
-                        <button type="button" class="btn btn-outline-primary btn-sm">Use as model</button>
-                    </a>                    
-
-                </div>
-            </div>
-        </div>
+        @component('components.myCard')
+            @slot('image')
+                @if(isset($module->image))
+                <img src="/images/modules/{{ $module['image'] }}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image" />
+                @endif
+            @endslot
+            
+            @slot('name')
+                    {{ $module->name }}
+            @endslot
+            
+            @slot('description')
+                  {{ $module->description }}
+            @endslot
+            
+            @slot('buttons')
+                    <a href="{{ url('admin/surveys/' .$module->id . '/create') }}" class="dropdown-item">
+                        <button type="button" class="btn btn-outline-primary btn-sm col-12">Use as model</button>
+                    </a>                   
+            @endslot
+        @endcomponent
         @endforeach
     </div>
     @if(sizeof($surveys))
@@ -56,34 +60,50 @@ Surveys
             <br>
         </div>
         @foreach($surveys  as $survey)
-        <div class="col-lg-3 col-md-3 col-sm-1 grid-margin stretch-card">
-            <div class="card border-primary mb-3">
-                <div class="card-body" >
+            @component('components.myCard')
+                @slot('image')
                     @if(isset($survey->image))
-                    <img src="/images/surveys/{{ $survey['image'] }}" height="75px" alt="Responsive image" />
-                    @endif
-                    <h4>{{ $survey->name }}</h4> 
-                    <br>
-                    <h6>{{ $survey->description }}</h6>  
-                    <br>
-                    <div class="row">
-                        <a href="{{ route('admin.surveys.edit', $survey->id) }}" class="float-left">
-                            <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
-                        </a>     
-                        <a href="{{ route('admin.surveys.show', $survey->id) }}">
-                            <button type="button" class="btn btn-outline-success btn-sm">Show</button>
-                        </a>  
-                        <form action="{{route('admin.surveys.destroy', $survey->id)}}" method="POST" class="float-left">
-                            @csrf
-                            {{method_field('DELETE')}}
-                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                Delete
-                            </button>           
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <img src="/images/surveys/{{ $survey['image'] }}" class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image" />
+                    @endif 
+                @endslot
+                
+                @slot('name')
+                    {{ $survey->name }}
+                @endslot
+                
+                @slot('buttons')
+                    @if(isset($survey->editable) && $survey->editable == true)
+                            <a href="{{ route('admin.surveys.edit', $survey->id) }}" class="dropdown-item">
+                                <button type="button" class="btn btn-outline-primary btn-sm mr-2 col-12">Edit</button>
+                            </a>     
+                            @endif
+                            @if(isset($survey->fillable))
+                            @if($survey->fillable == true)
+                            <a href="{{ route('admin.surveys.closeSurvey', $survey->id) }}" class="dropdown-item">
+                                <button type="button" class="btn btn-outline-info btn-sm mr-2 col-12">Close</button>
+                            </a> 
+                            @else
+                            <a href="{{ route('admin.surveys.closeSurvey', $survey->id) }}" class="dropdown-item">
+                                <button type="button" class="btn btn-outline-warning btn-sm mr-2  col-12">Open</button>
+                            </a> 
+                            @endif                        
+                            @endif
+                            <a href="{{ route('admin.surveys.show', $survey->id) }}" class="dropdown-item">
+                                <button type="button" class="btn btn-outline-success btn-sm mr-2 col-12">Show</button>
+                            </a>  
+                            <form action="{{route('admin.surveys.destroy', $survey->id)}}" method="POST" class="dropdown-item">
+                                @csrf
+                                {{method_field('DELETE')}}
+                                <button type="submit" class="btn btn-outline-danger btn-sm  mr-2 col-12">
+                                    Delete
+                                </button>           
+                            </form>
+                @endslot
+                
+                @slot('description')
+                     {{ $survey->description }}
+                @endslot
+            @endcomponent
         @endforeach
     </div>
     @endif

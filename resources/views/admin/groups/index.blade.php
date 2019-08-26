@@ -15,7 +15,7 @@ Groups
         <div class="card align-content-center border-primary mb-3">
             <div class="card-header">
                 <div class="float-left">
-                    <form action="{{url('admin/groups/search')}}" method="POST" >
+                    <form action="{{route('admin.groups.search')}}" method="POST" >
                         @csrf
                         <input type="text" id="search_key" name="search_key">
                         <button type="submit" class="btn btn-primary btn-sm" > Search    </button>
@@ -74,7 +74,7 @@ Groups
                                                 <td>{{ $group->count }} </td>
                                                 <td>
                                                     <a href="{{route('admin.groups.edit', $group->id)}}" class="float-left">
-                                                        <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
+                                                        <button type="button" class="btn btn-outline-primary btn-sm mr-2">Edit</button>
                                                     </a>
 
                                                     <form action="{{route('admin.groups.destroy', $group->id)}}" method="POST" class="float-left">

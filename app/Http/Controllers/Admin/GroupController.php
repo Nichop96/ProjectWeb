@@ -191,7 +191,7 @@ class GroupController extends Controller
     }
     
     
-    public function merda(Request $request){
+    public function searchUser(Request $request){
         if(strlen($request['search_key']) >0){
             $byName = Group::where('name','LIKE',"%{$request['search_key']}%")->get();
             $byDescription = Group::where('description','LIKE',"%{$request['search_key']}%")->get();

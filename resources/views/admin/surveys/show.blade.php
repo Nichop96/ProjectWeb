@@ -214,6 +214,7 @@ Survey show
                                         <tr>
                                             <th class="text-primary">Name</th>  
                                             <th class="text-primary">Surname</th>
+                                            <th class="text-primary">Score</th>
                                             <th class="text-primary">Actions</th>                                        
                                         </tr>
                                     </thead>
@@ -222,6 +223,7 @@ Survey show
                                         <tr>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->surname }}</td>
+                                            <td>{{ $user->score }}</td>
                                             <td> 
                                                 <a href="{{route('admin.surveys.view',$user->completed_id) }}" class="float-left">
                                                     <button type="button" class="btn btn-outline-primary btn-sm">View Survey</button>

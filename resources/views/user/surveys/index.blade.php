@@ -15,21 +15,28 @@ Surveys
         <br>
     </div>
     <div class="row">
-        @foreach($surveys  as $survey)
-        <div class="col-lg-3 grid-margin stretch-card">
-            <div class="card border-primary mb-3">
-                <div class="card-body" >
-                    <h4>Title: {{ $survey->name }}</h4> 
-                    <h6>Descr: {{ $survey->description }}</h6> 
-
-                    <a href="{{ url('user/surveys/' .$survey->id . '/create') }}" class="float-left">
-                        <button type="button" class="btn btn-outline-primary btn-sm">Complete</button>
-                    </a>
-                                          
-
-                </div>
-            </div>
-        </div>
+        @foreach($surveys  as $survey)        
+        @component('components.myCard')
+            @slot('image')
+                @if(isset($survey->image))
+                <img src="/images/surveys/{{ $survey->image }}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image" />
+                @endif
+            @endslot
+            
+            @slot('name')
+                    {{ $survey->name }}
+            @endslot
+            
+            @slot('description')
+                  {{ $survey->description }}
+            @endslot
+            
+            @slot('buttons') 
+                    <a href="{{ url('user/surveys/' .$survey->id . '/create') }}" class="dropdown-item">
+                        <button type="button" class="btn btn-outline-primary btn-sm col-12">Complete</button>
+                    </a>                     
+            @endslot
+        @endcomponent 
         @endforeach
     </div>
     @if(sizeof($completedSurveys))
@@ -39,18 +46,27 @@ Surveys
             <br>
         </div>
         @foreach($completedSurveys  as $completedSurvey)
-        <div class="col-lg-3 grid-margin stretch-card">
-            <div class="card border-primary mb-3">
-                <div class="card-body" >
-                    <h4>Title: {{ $completedSurvey->name }}</h4> 
-                    <h6>Descr: {{ $completedSurvey->description }}</h6>  
-
-                    <a href="{{ url('user/surveys/' .$completedSurvey->completed_id . '/show') }}" class="float-left">
-                        <button type="button" class="btn btn-outline-success btn-sm">Show</button>
-                    </a> 
-                </div>
-            </div>
-        </div>
+        @component('components.myCard')
+            @slot('image')
+                @if(isset($completedSurvey->image))
+                <img src="/images/surveys/{{ $survey->image }}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image" />
+                @endif
+            @endslot
+            
+            @slot('name')
+                    {{ $completedSurvey->name }}
+            @endslot
+            
+            @slot('description')
+                  {{ $completedSurvey->description }}
+            @endslot
+            
+            @slot('buttons') 
+                    <a href="{{ url('user/surveys/' .$survey->id . '/show') }}" class="dropdown-item">
+                        <button type="button" class="btn btn-outline-success btn-sm col-12">Show</button>
+                    </a>                     
+            @endslot
+        @endcomponent           
         @endforeach
     </div>
     @endif

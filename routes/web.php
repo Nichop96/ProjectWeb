@@ -16,13 +16,14 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+Route::get('/home', function () {
+    return view('index');
+});
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// da togliere(?
-Route::post('/admin/users/search', 'Admin\UserController@merda');
-Route::post('/admin/groups/search', 'Admin\GroupController@merda');
 
 Auth::routes();
 
@@ -37,6 +38,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
     Route::get('/surveys/{id}/create', 'SurveyController@create');
     Route::get('/impersonate/user/{id}', 'ImpersonateController@index')->name('impersonate');
     Route::get('/surveys/{id}/view', 'SurveyController@view')->name('surveys.view');
+    Route::get('/surveys/{id}/closeSurvey', 'SurveyController@closeSurvey')->name('surveys.closeSurvey');
     Route::get('/index', 'HomeController@index')->name('index');
     Route::post('/modules/getmodules', 'ModuleController@modules')->name('modules.getmodules');
     Route::post('/modules/getquestions', 'ModuleController@questions')->name('modules.getquestions');
@@ -44,6 +46,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
     Route::post('/surveys/getsurveys', 'SurveyController@surveys')->name('surveys.getsurveys');
     Route::post('/surveys/getquestions', 'SurveyController@questions')->name('surveys.getquestions');
     Route::post('/surveys/importquestions', 'SurveyController@importQuestions')->name('surveys.importquestions');
+    Route::post('/users/search', 'UserController@searchUser')->name('users.search');
+    Route::post('/groups/search', 'GroupController@searchUser')->name('groups.search');
 });
 
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');

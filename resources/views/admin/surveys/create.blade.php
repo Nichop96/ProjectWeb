@@ -18,11 +18,7 @@ Create survey
                     <br>
                     <h2 class="text-primary">Create survey</h2>    
                     <br>
-                    <form id="repeater-form" name="bbb">
-                        <div class='form-group'>
-                            <h5 for='aux_fillable'> Fillable </h5>
-                            <input type='checkbox' name='aux_fillable' id='aux_fillable' checked="true">
-                        </div>  
+                    <form id="repeater-form" name="bbb">                         
                         <div  class="form-group">
                             <h5 for="aux_name" > Name </h5>
                             @if(isset($module))
@@ -92,9 +88,8 @@ Create survey
                         @if(isset($module) && isset($questions))
                         @foreach($questions as $question)
                         <br>                      
-                        <div class="card" id="question_{{$question->id}}">
-                            <!-- Repeater Content -->
-                            <h5 class="card-title"> Insert question </h5>
+                        <div class="card border-primary" id="question_{{$question->id}}">
+                            <!-- Repeater Content -->                            
                             <div class="item-content card-body block">
 
                                 <div class="form-group">
@@ -107,11 +102,11 @@ Create survey
                                 <br>
                                 <div class="row">
                                     <div class="col">
-                                        <h5 for="leftlabel" class="col-lg-2 control-label">Left label</h5>
+                                        <h5 for="leftlabel" class="col-lg-6 control-label">Left label</h5>
                                         <input type="text" class="form-control leftlabel" value="{{$question->label_left}}" >
                                     </div>
                                     <div class="col">
-                                        <h5 for="rightlabel"  class="col-lg-2 control-label">Right label</h5>
+                                        <h5 for="rightlabel"  class="col-lg-6 control-label">Right label</h5>
                                         <input type="text" class="form-control rightlabel" value="{{$question->label_right}}" >
                                     </div>
                                 </div>                            
@@ -126,7 +121,7 @@ Create survey
                                         </div>
                                         <div class='col'>
                                             <div class='form-group'>
-                                                <he class="control-label ">Correct answer</h5>
+                                                <h5 class="control-label ">Correct answer</h5>
                                                 <input type="text" class="form-control correctans" value="{{$question->correct_answer}}" >
                                             </div>
                                         </div>
@@ -281,7 +276,6 @@ Create survey
                         <input type='hidden' class='aux_maxmark' name='aux_maxmark' id='aux_maxmark' />
                         <input type='hidden' class='aux_correctans' name='aux_correctans' id='aux_correctans' />
                         
-                        <input type='hidden' class='aux_fillable' name='fillable' id='fillable'/>
                         <input type='hidden' class='aux_name' name='name' id='name' />
                         <input type='hidden' class='aux_description' name='description' id='description' />
                         <input type='hidden' class='aux_category' name='category' id='category' />
@@ -450,7 +444,6 @@ Create survey
         // module attributes
         document.getElementById("name").value = document.getElementById("aux_name").value;
         document.getElementById("description").value = document.getElementById("aux_description").value;
-        document.getElementById("fillable").value = document.getElementById("aux_fillable").checked ? '1':'0';
 
        var tmp = $(".sel_category:checked").val();
         if (!tmp) {

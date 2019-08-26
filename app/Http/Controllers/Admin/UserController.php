@@ -113,17 +113,9 @@ class UserController extends Controller
                                                 'users',User::paginate(5)]);
     }
     
-    /*
-     * My method used to find users by name, email or role.
-     */
-    public function search(Request $request){
-        dd('AAAAAA');
-        $byName = User::where('name',$value);
-        $byEmail = User::where('name','LIKE',"%{$value}%")->get();
-        dd($byEmail);
-    }
     
-    public function merda(Request $request){
+    
+    public function searchUser(Request $request){
         if(strlen($request['search_key']) >0){
             $byName = User::where('name','LIKE',"%{$request['search_key']}%")->get();
             $byEmail = User::where('email','LIKE',"%{$request['search_key']}%")->get();

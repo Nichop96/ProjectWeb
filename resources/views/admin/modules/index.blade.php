@@ -31,35 +31,34 @@ Modules
         </div>
 
         @foreach($modules  as $module)
-        <div class="col-lg-3 col-md-3 col-sm-1 grid-margin stretch-card">
-            <div class="card border-primary mb-3">
-                <div class="card-body" >
-                    @if(isset($module->image))
-                    <img src="/images/modules/{{ $module['image'] }}" height="75px" alt="Responsive image" />
-                    @endif
-                    <h4>{{ $module->name }}</h4> 
-                    <br>
-                    <h6>{{ $module->description }}</h6>  
-                    <br>
-                    <div class="row">
-                        <div>
-                            <a href="{{ route('admin.modules.edit', $module->id) }}" class="float-left">
-                                <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
-                            </a>   
-                        </div>
-                        <div class="left-padding">
-                            <form action="{{route('admin.modules.destroy', $module->id)}}" method="POST" class="float-left">
-                                @csrf
-                                {{method_field('DELETE')}}
-                                <button type="submit" class="btn btn-outline-danger btn-sm">
-                                    Delete
-                                </button>           
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @component('components.myCard')
+            @slot('image')
+                @if(isset($module->image))
+                <img src="/images/modules/{{ $module['image'] }}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image" />
+                @endif
+            @endslot
+            
+            @slot('name')
+                    {{ $module->name }}
+            @endslot
+            
+            @slot('description')
+                  {{ $module->description }}
+            @endslot
+            
+            @slot('buttons')     
+                     <a href="{{ route('admin.modules.edit', $module->id) }}" class="dropdown-item">
+                        <button type="button" class="btn btn-outline-primary btn-sm col-12">Edit</button>
+                    </a>   
+                    <form action="{{route('admin.modules.destroy', $module->id)}}" method="POST" class="dropdown-item">
+                        @csrf
+                        {{method_field('DELETE')}}
+                        <button type="submit" class="btn btn-outline-danger btn-sm col-12">
+                            Delete
+                        </button>           
+                    </form>
+            @endslot
+        @endcomponent      
         @endforeach
     </div>
 </div> 

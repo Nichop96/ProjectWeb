@@ -73,6 +73,8 @@ class ModuleController extends Controller {
             if ($file->move('images\modules', $name)) {
                 $module->image = $name;
             }
+        } else {
+            $module->image = "default.jpg";
         }
         $module->save();
         //Module::create($request->all());
@@ -251,20 +253,20 @@ class ModuleController extends Controller {
                         ->where('module_question.module_id', '=', $id)
                         ->get());
     }
-    
+
     public function importQuestions(Request $request) {
-        $questions = DB::table('questions')->get();               
-                        
-        $ids = $request->input('questions');        
+        $questions = DB::table('questions')->get();
+
+        $ids = $request->input('questions');
         $importQuestions = array();
-        foreach($questions as $question) {
-            foreach($ids as $id) {
-                if($id == $question->id) {
+        foreach ($questions as $question) {
+            foreach ($ids as $id) {
+                if ($id == $question->id) {
                     array_push($importQuestions, $question);
                 }
             }
         }
-        
+
         echo json_encode($importQuestions);
     }
 

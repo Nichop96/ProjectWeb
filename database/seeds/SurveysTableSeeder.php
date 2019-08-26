@@ -23,7 +23,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => 'wine good',
             'image' => null,
             'category_id' => $wineCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
 
         Survey::create([
@@ -31,7 +32,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => 'wine good',
             'image' => null,
             'category_id' => $wineCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
 
         Survey::create([
@@ -39,7 +41,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => 'wine with bubbles',
             'image' => null,
             'category_id' => $wineCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
 
         Survey::create([
@@ -47,7 +50,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => 'null',
             'image' => null,
             'category_id' => $wineCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
 
         Survey::create([
@@ -55,7 +59,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => null,
             'image' => null,
             'category_id' => $coffeeCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
 
         Survey::create([
@@ -63,7 +68,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => null,
             'image' => null,
             'category_id' => $perfumeCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
 
         Survey::create([
@@ -71,7 +77,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => null,
             'image' => null,
             'category_id' => $perfumeCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
 
         Survey::create([
@@ -79,7 +86,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => null,
             'image' => null,
             'category_id' => $perfumeCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
 
         Survey::create([
@@ -87,7 +95,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => null,
             'image' => null,
             'category_id' => $tissueCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
 
 
@@ -96,7 +105,8 @@ class SurveysTableSeeder extends Seeder {
             'description' => null,
             'image' => null,
             'category_id' => $tissueCategory,
-            'fillable' => rand(0, 1)
+            'fillable' => rand(0, 1),
+            'image' => 'default.jpg'
         ]);
     }
 

@@ -12,11 +12,7 @@ Survey edit
                 <div id="card-body" class="card-body">
                     <h2 class="text-primary">Edit survey</h2>  
                     <br>
-                    <form id="repeater-form" name="bbb">
-                        <div class='form-group'>
-                            <h5 for='aux_fillable'> Fillable </h5>
-                            <input type='checkbox' name='aux_fillable' id='aux_fillable' {{ $survey->fillable ? "checked" : '' }}>
-                        </div> 
+                    <form id="repeater-form" name="bbb">                        
                         <div  class="form-group">
                             <h5 for="aux_name" > Name </h5>
                             <input id="aux_name" type="text" class="form-control form-control-lg {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ (old('aux_name', $survey->name ? : '' )) }}" name="aux_name" placeholder="{{$survey->name}} ">
@@ -272,9 +268,7 @@ Survey edit
                         <input type='hidden' class='aux_name' name='name' id='name' />
                         <input type='hidden' class='aux_description' name='description' id='description' />
                         <input type='hidden' class='aux_category' name='category' id='category' />
-                        <input type='hidden' name='aux_groups' id='aux_groups'/>
-                        <input type='hidden' class='aux_fillable' name='fillable' id='fillable'/>
-
+                        <input type='hidden' name='aux_groups' id='aux_groups'>
                     </form>        
                 </div>
             </div>                                           
@@ -437,8 +431,7 @@ Survey edit
         // module attributes
         document.getElementById("name").value = document.getElementById("aux_name").value;
         document.getElementById("description").value = document.getElementById("aux_description").value;
-        
-        document.getElementById("fillable").value = document.getElementById("aux_fillable").checked ? '1':'0';
+      
         var tmp = $(".sel_category:checked").val();
         if (!tmp) {
             tmp = null;

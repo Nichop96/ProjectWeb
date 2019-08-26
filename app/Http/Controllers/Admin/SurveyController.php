@@ -9,6 +9,7 @@ use ORC\Module;
 use ORC\Survey;
 use ORC\Group;
 use ORC\Category;
+use ORC\Answer;
 use ORC\CompletedSurvey;
 use Illuminate\Support\Facades\DB;
 
@@ -17,6 +18,15 @@ class SurveyController extends Controller {
     public function index() {
         $modules = Module::all();
         $surveys = Survey::all();
+
+        foreach ($surveys as $survey) {
+            $t = $survey->completedSurveys()->count();
+            if ($t != 0) {
+                $survey->editable = false;
+            } else {
+                $survey->editable = true;
+            }
+        }
 
         return view('admin.surveys.index')->with(['modules' => $modules,
                     'surveys' => $surveys]);
@@ -100,7 +110,7 @@ class SurveyController extends Controller {
         $survey->name = $request['name'];
         $survey->description = $request['description'];
         $survey->category_id = $request['category_id'];
-        $survey->fillable = $request['fillable'];
+        $survey->fillable = false;
 
         // gestisco l'immagine
         if ($file = $request->file('file')) {
@@ -116,6 +126,10 @@ class SurveyController extends Controller {
                         $survey->image = $tmp->image;
                     }
                 }
+            }
+            else
+            {
+                $survey->image = "default.jpg";
             }
         }
         $survey->save();
@@ -152,11 +166,7 @@ class SurveyController extends Controller {
             $survey_inserito->save();
         }
 
-        $modules = Module::all();
-        $surveys = Survey::all();
-
-        return view('admin.surveys.index')->with(['modules' => $modules,
-                    'surveys' => $surveys]);
+        return redirect(route('admin.surveys.index'));
     }
 
     /**
@@ -183,16 +193,16 @@ class SurveyController extends Controller {
         // rimuovo le relazioni con i gruppi
 
         $survey->groups()->detach();
-        $survey->answers()->detach();
-        $survey->completedSurveys()->detach();
+        $completed_surveys = $survey->completedSurveys;
+        foreach($completed_surveys as $completed_survey)
+        {
+            $completed_survey->answers()->delete();
+        }
+        $survey->completedSurveys()->delete();
 
         Survey::destroy($id);
 
-        $modules = Module::all();
-        $surveys = Survey::all();
-
-        return view('admin.surveys.index')->with(['modules' => $modules,
-                    'surveys' => $surveys]);
+        return redirect(route('admin.surveys.index'));
     }
 
     /**
@@ -276,21 +286,18 @@ class SurveyController extends Controller {
                             'category_id' => $request['category_id'],
                             'name' => $request['name'],
                             'description' => $request['description'],
-                            'fillable' => $request['fillable'],
                             'image' => $name
                 ]);
             }
+        } else {
+
+            Survey::find($id)
+                    ->update([
+                        'category_id' => $request['category_id'],
+                        'name' => $request['name'],
+                        'description' => $request['description'],
+            ]);
         }
-
-        Survey::find($id)
-                ->update([
-                    'category_id' => $request['category_id'],
-                    'name' => $request['name'],
-                    'description' => $request['description'],
-                    'fillable' => $request['fillable']
-        ]);
-
-
         $survey_inserito = Survey::find($id);
         $old_questions = $survey_inserito->questions;
 
@@ -330,11 +337,7 @@ class SurveyController extends Controller {
             $survey_inserito->save();
         }
 
-        $modules = Module::all();
-        $surveys = Survey::all();
-
-        return view('admin.surveys.index')->with(['modules' => $modules,
-                    'surveys' => $surveys]);
+        return redirect(route('admin.surveys.index'));
     }
 
     public function show($id) {
@@ -364,18 +367,18 @@ class SurveyController extends Controller {
         foreach ($questions as $question) {
             $temp = DB::table('question_survey')
                     ->join('questions', 'question_survey.question_id', '=', 'questions.id')
-                    ->join('completed_surveys','question_survey.survey_id','completed_surveys.survey_id')
+                    ->join('completed_surveys', 'question_survey.survey_id', 'completed_surveys.survey_id')
                     ->join('answers', 'completed_surveys.id', 'answers.completed_survey_id')
                     ->where([['question_survey.survey_id', '=', $survey->id], ['questions.id', '=', $question->id], ['answers.question_id', '=', $question->id]])
                     ->groupBy('answers.value')
                     ->orderBy('answers.value', 'asc')
-                    ->select(DB::raw('COUNT(answers.value) as total'),'answers.value')
+                    ->select(DB::raw('COUNT(answers.value) as total'), 'answers.value')
                     ->get();
             $count_answers = array();
             for ($i = 0; $i < $question->max_rate; $i++) {
                 $count_answers[$i] = 0;
                 foreach ($temp as $t) {
-                    if ($t->value == ($i+1)) {
+                    if ($t->value == ($i + 1)) {
                         $count_answers[$i] = $t->total;
                     }
                 }
@@ -398,6 +401,10 @@ class SurveyController extends Controller {
                 $score += abs($question_user->value - $question_user->correct_answer);
             }
             $score /= count($questions_users);
+            foreach ($users as $user) {
+                if ($user->completed_id == $completedSurvey->id)
+                    $user->score = number_format($score, 2);
+            }
             $t = 0;
             for ($j = 0; $j < $i; $j++) {
                 if ($scores_users[$j]['score'] == $score) {
@@ -514,6 +521,13 @@ class SurveyController extends Controller {
         }
 
         echo json_encode($importQuestions);
+    }
+
+    public function closeSurvey($id) {
+        $survey = Survey::findOrFail($id);
+        $survey->fillable = !$survey->fillable;
+        $survey->save();
+        return redirect(route('admin.surveys.index'));
     }
 
 }

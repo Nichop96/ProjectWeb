@@ -18,7 +18,7 @@ class CreateSurveysTable extends Migration
             $table->unsignedInteger('category_id');
             $table->string('name');
             $table->string('description')->nullable();
-            $table->boolean('fillable')->default(true);
+            $table->boolean('fillable')->default(false);
             $table->string('image')->nullable();
             $table->timestamps();
         });
