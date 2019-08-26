@@ -15,20 +15,23 @@ Modules
     </div>
     <br>
     <div class="row">
-
         <div class="col-lg-3 col-md-3 col-sm-1 grid-margin stretch-card">
+            <a href="{{ route('admin.modules.create') }}">
             <div class="card border-primary mb-3">
-                <a href="{{ route('admin.modules.create') }}">
-                    <div class="card-body">
-                        <h4 class="text-black">New module</h4>  
-                        <div class="col-8">
-                            <br>
-                            <img src="{{ asset('images/components/piu11.jpg')}}" class="img-fluid" alt="Responsive image">    
-                        </div>
+                <div height="120px">
+                    <img src="{{ asset('/images/components/plus.jpg')}}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image">                
+                </div>               
+                <div class="card-body" >   
+                    <div class="row">
+                        <div class="col-10">
+                            <h4>New Module</h4>                    
+                        </div>                        
                     </div>
-                </a>
+                     <h6>Create a new module</h6> 
+                </div>               
             </div>
-        </div>
+            </a>
+        </div>  
 
         @foreach($modules  as $module)
         @component('components.myCard')

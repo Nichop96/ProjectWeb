@@ -28,7 +28,7 @@
                                 <div class="brand-logo">
                                     <img src="../public-part/img/logos/logo_transparent.png" alt="logo">
                                 </div>
-                                <form method="POST" action="{{ route('register') }}">
+                                <form method="POST" id="myform" action="{{ route('register') }}">
                                     @csrf
 
                                     <h4>New here?</h4>
@@ -36,7 +36,7 @@
                                     <form class="pt-3" action="{{ route('register') }}" method="POST">
                                         @csrf 
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="name" placeholder="First name">
+                                            <input type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="name" placeholder="First name" required>
                                             @if ($errors->has('name'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -44,7 +44,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg{{ $errors->has('surname') ? ' is-invalid' : '' }}" value="{{ old('surname') }}" name="surname"  placeholder="Surname">
+                                            <input type="text" class="form-control form-control-lg{{ $errors->has('surname') ? ' is-invalid' : '' }}" value="{{ old('surname') }}" name="surname"  placeholder="Surname" required>
                                             @if ($errors->has('surname'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('surname') }}</strong>
@@ -52,7 +52,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" name="email" placeholder="Email">
+                                            <input type="email" class="form-control form-control-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" name="email" placeholder="Email" required>
                                             @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -60,15 +60,18 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="date" class="form-control form-control-lg{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" value="{{ old('birth_date') }}" name="birth_date">
+                                            <input id="bday" type="date" class="form-control form-control-lg{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" value="{{ old('birth_date') }}" name="birth_date" required>
                                             @if ($errors->has('birth_date'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('birth_date') }}</strong>
                                             </span>
                                             @endif
+                                            <span >
+                                                <strong id="dateInvalid" class="text-danger"></strong>
+                                            </span>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Username">
+                                            <input type="text" class="form-control form-control-lg{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Username" required>
                                             @if ($errors->has('username'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('username') }}</strong>
@@ -76,7 +79,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-lg{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" placeholder="Password">
+                                            <input type="password" class="form-control form-control-lg{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" placeholder="Password" required>
                                             @if ($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password') }}</strong>
@@ -84,21 +87,21 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-lg{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Password">
+                                            <input type="password" class="form-control form-control-lg{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Password" required>
                                             @if ($errors->has('password_confirmation'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
                                             </span>
                                             @endif
                                         </div>
-                                        <div class="mb-4">
+                                        <!--<div class="mb-4">
                                             <div class="form-check">
                                                 <label class="form-check-label text-muted">
                                                     <input type="checkbox" class="form-check-input">
                                                     I agree to all Terms & Conditions
                                                 </label>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                         <div class="form-group">
 
@@ -128,3 +131,27 @@
     </body>
 
 </html>
+
+<script>
+function checkDate() {
+    var dateControl = new Date($('#bday').val());
+    var data = new Date();
+    var currentYear = data.getFullYear();
+    var year = dateControl.getFullYear();
+
+    if ((currentYear - year) < 15) {
+        $('#dateInvalid').html('You have to be 15 or more.');
+    }
+    return ((currentYear - year) >= 15);
+}
+
+$("#myform").submit(function (event) {
+    if (checkDate()) {
+
+        return;
+    }
+    event.preventDefault();
+});
+
+
+</script>

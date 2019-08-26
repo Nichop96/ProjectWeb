@@ -96,25 +96,7 @@ Edit user
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-check">
-                                        <div class="row">
-                                            <h5 for='roles'>Roles</h5>
-                                            <legend class="col-form-label col-sm-2 pt-0"></legend>
-                                            <div class="col-sm-10">
-                                                <div class="form-check">
-                                                    @foreach($roles as $role)
-                                                    <input type="checkbox" name="roles[]" value="{{ $role->id }}" {{ $user->hasAnyRole($role->name)? 'checked':'' }}>
-                                                    <label>{{ $role->name }}</label>
-                                                    <br>
-                                                    @endforeach
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
 
 
                             <div class='row'>

@@ -34,7 +34,7 @@
 
                                     <div class="form-group">
 
-                                        <input id="email" type="email" placeholder="Username" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
 
                                     </div>
 
-                                    <div class="my-2 d-flex justify-content-between align-items-center">
+                                    <!--<div class="my-2 d-flex justify-content-between align-items-center">
                                         <div class="form-check">
 
 
@@ -65,7 +65,7 @@
                                                 Keep me signed in
                                             </label>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="mt-3">
 
                                         <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="{{asset('index')}}">

@@ -47,7 +47,7 @@ Create module
                                 <div class="col-lg-3 col-md-3 col-sm-1 form-check">
                                     <div>
                                     <label class="form-check-label">
-                                        <input  type="radio" class="form-check-input sel_category" name="category" id="aux_category{{ $category->id }}" value="{{ $category->id }}">
+                                        <input  type="radio" class="form-check-input sel_category" name="category" id="aux_category{{ $category->id }}" value="{{ $category->id }}" @if($loop->iteration==1) checked @endif>
                                         {{ $category->name }}
                                     </label>
                                     </div>
@@ -60,7 +60,9 @@ Create module
                                     <strong>{{$errors->first('category')          }} </strong>
                                 </span>
                                 @endif
-
+                                <span>
+                                    <strong class="text-danger" id="categoryNull"> </strong>
+                                </span>
                             </div>
                         </div>
                         
@@ -308,13 +310,21 @@ Create module
         document.getElementById("aux_correctans").value = correctans;
         
         // module attributes
-        document.getElementById("name").value = document.getElementById("aux_name").value;
+        var name = document.getElementById("aux_name").value;
+        if(name ==="") {
+            $('#aux_name').addClass("is-invalid");
+        }
+        document.getElementById("name").value = document.getElementById("aux_name").value; 
         document.getElementById("description").value = document.getElementById("aux_description").value;
         var tmp = $("input:checked").val();
         if (!tmp) {
             tmp = null;
+            $('#categoryNull').html("Choose a category");
+            $('#categoryNull').addClass("is-invalid");
         }
+        
         document.getElementById("category").value = tmp;
+        
         
         if(!$('.is-invalid').length){
             if (!Array.isArray(questions) || my_empty(questions)) {
