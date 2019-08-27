@@ -129,7 +129,7 @@ Create survey
                             </div>
                             <!-- Repeater Remove Btn -->
                             <div class="pull-right">
-                                <button class="btn btn-danger remove-btn" onclick="rimuovi('question_{{$question->id}}')">
+                                <button class="btn btn-danger ml-5 mb-5 remove-btn" onclick="rimuovi('question_{{$question->id}}')">
                                     Remove question
                                 </button>
                             </div>
@@ -207,7 +207,7 @@ Create survey
                                         </div>
                                         <!-- Repeater Remove Btn -->
                                         <div class="pull-right repeater-remove-btn">
-                                            <button class="btn btn-danger remove-btn">
+                                            <button class="btn btn-danger ml-5 mb-5 remove-btn">
                                                 Remove question
                                             </button>
                                         </div>

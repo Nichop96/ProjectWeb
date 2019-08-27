@@ -74,7 +74,7 @@ Groups
                                                 <td>{{ $group->count }} </td>
                                                 <td>
                                                     <a href="{{route('admin.groups.edit', $group->id)}}" class="float-left">
-                                                        <button type="button" class="btn btn-outline-primary btn-sm mr-2">Edit</button>
+                                                        <button type="button" class="btn btn-outline-primary btn-sm mr-2 ml-4">Edit</button>
                                                     </a>
 
                                                     <form action="{{route('admin.groups.destroy', $group->id)}}" method="POST" class="float-left">

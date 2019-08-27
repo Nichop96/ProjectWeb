@@ -85,7 +85,8 @@ Create module
                                 <!-- Repeater Heading -->
                                 <div class="repeater-heading">
                                     <h5 class="pull-left">Questions</h5>
-                                    <button class="btn btn-primary repeater-add-btn">
+                                    <br>
+                                    <button class="btn btn-primary repeater-add-btn mr-5">
                                         Add question
                                     </button>
                                     @component('components.importQuestions.modalSelect')
@@ -142,7 +143,7 @@ Create module
                                             </div>
                                         </div>
                                         <!-- Repeater Remove Btn -->
-                                        <div class="pull-right repeater-remove-btn">
+                                        <div class="pull-right ml-5 mb-5 repeater-remove-btn">
                                             <button class="btn btn-danger remove-btn">
                                                 Remove question
                                             </button>

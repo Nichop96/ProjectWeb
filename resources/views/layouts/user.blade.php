@@ -30,7 +30,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('user.groups.index') }}">
-              <i class="mdi mdi-sort-variant menu-icon"></i>
+              <i class="mdi mdi-account-multiple menu-icon"></i>
               <span class="menu-title">Groups</span>
             </a>
           </li>

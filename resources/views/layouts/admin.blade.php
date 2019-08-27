@@ -18,7 +18,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.modules.index') }}">
-                <i class="mdi mdi-flag menu-icon"></i>
+                <i class="mdi mdi-book-multiple-variant menu-icon"></i>
                 <span class="menu-title">Modules</span>
             </a>
         </li>
@@ -30,13 +30,13 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.users.index') }}">
-                <i class="mdi mdi-eye menu-icon"></i>
+                <i class="mdi mdi-human-greeting menu-icon"></i>
                 <span class="menu-title">Users</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.groups.index') }}">
-                <i class="mdi mdi-sort-variant menu-icon"></i>
+                <i class="mdi mdi-account-multiple menu-icon"></i>
                 <span class="menu-title">Groups</span>
             </a>
         </li>

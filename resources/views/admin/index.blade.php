@@ -15,7 +15,7 @@
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                         <div class="d-flex flex-wrap justify-content-xl-between">                            
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-flag mr-3 icon-lg text-primary"></i>
+                                <i class="mdi mdi-book-multiple-variant mr-3 icon-lg text-primary"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">Modules</small>
                                     <h5 class="mr-2 mb-0">{{$modules_count}}</h5>
@@ -29,14 +29,14 @@
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-sort-variant mr-3 icon-lg text-primary"></i>
+                                <i class="mdi mdi-account-multiple mr-3 icon-lg text-primary"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">Groups</small>
                                     <h5 class="mr-2 mb-0">{{$group_count}}</h5>
                                 </div>
                             </div>
                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-eye mr-3 icon-lg text-primary"></i>
+                                <i class="mdi mdi-human-greeting mr-3 icon-lg text-primary"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">Users</small>
                                     <h5 class="mr-2 mb-0">{{$users_count}}</h5>

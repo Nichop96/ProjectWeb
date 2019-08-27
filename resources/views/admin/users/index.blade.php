@@ -73,7 +73,7 @@ Users
                                         <td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</td>
                                         <td>
                                             <a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
-                                                <button type="button" class="btn btn-outline-primary btn-sm mr-2">Edit</button>
+                                                <button type="button" class="btn btn-outline-primary btn-sm mr-2 ml-5">Edit</button>
                                             </a>
                                             <a href="{{ route('admin.impersonate', $user->id) }}" class="float-left">
                                                 <button type="button" class="btn btn-outline-success btn-sm mr-2">

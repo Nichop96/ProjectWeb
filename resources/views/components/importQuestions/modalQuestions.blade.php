@@ -28,7 +28,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" id='insertQuestions'>Import questions</button>
+                  <button type="button" class="btn btn-primary ml-5 mt-3" data-dismiss="modal" id='insertQuestions'>Import questions</button>
                 </div>
 
           </div>

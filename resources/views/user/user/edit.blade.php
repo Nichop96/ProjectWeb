@@ -130,8 +130,8 @@ User edit
                             </div>
 
                             <div class='row'>
-                                <div class='col'><input type='submit'   class='btn btn-outline-primary btn-lg btn-block ' value='Submit'></div>
-                                <div class='col'><input type='reset' onclick ='settaDopo()' class='btn btn-outline-warning btn-lg btn-block ' value='Reset'></div>
+                                <div class='col'><input type='submit'   class='btn btn-outline-primary btn-lg btn-block mb-3 ' value='Submit'></div>
+                                <div class='col'><input type='reset' onclick ='settaDopo()' class='btn btn-outline-warning btn-lg btn-block mb-3 ' value='Reset'></div>
                                 <div class='col'>
                                     <a href="{{route('user.index')}}">
                                         <input type='button' onclick="" class='btn btn-outline-danger btn-lg btn-block ' value='Cancel'>

@@ -115,7 +115,7 @@ Edit module
                                 </div>
                                 <!-- Repeater Remove Btn -->
                                 <div class="pull-right">
-                                    <button class="btn btn-danger remove-btn" onclick="rimuovi('{{$question->id}}')">
+                                    <button class="btn btn-danger ml-5 mb-5 remove-btn" onclick="rimuovi('{{$question->id}}')">
                                         Remove question
                                     </button>
                                 </div>
@@ -132,7 +132,8 @@ Edit module
                                 <!-- Repeater Heading -->
                                 <div class="repeater-heading">
                                     <h5 class="pull-left">Questions</h5>
-                                    <button class="btn btn-primary repeater-add-btn">
+                                    <br>
+                                    <button class="btn btn-primary repeater-add-btn mr-5">
                                         Add question
                                     </button>
                                     @component('components.importQuestions.modalSelect')
@@ -190,8 +191,8 @@ Edit module
                                         </div>
                                         <!-- Repeater Remove Btn -->
                                         <div class="pull-right repeater-remove-btn">
-                                            <button class="btn btn-danger remove-btn">
-                                                Remove
+                                            <button class="btn btn-danger ml-5 mb-5 remove-btn">
+                                                Remove question
                                             </button>
                                         </div>
                                         <div class="clearfix"></div>
