@@ -80,13 +80,23 @@ Users
                                                     Impersonate
                                                 </button>
                                             </a>
-                                            <form action="{{route('admin.users.destroy', $user->id)}}" method="POST" class="float-left">
+                                            <form action="{{route('admin.users.destroy', $user->id)}}" id='form-delete' method="POST" class="float-left">
                                                 @csrf
                                                 {{method_field('DELETE')}}
-                                                <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                <button type="button" onclick='conferma()' class="btn btn-outline-danger btn-sm">
                                                     Delete
                                                 </button>           
                                             </form>
+                                            <!-- 
+                                                        tengo qui? -->
+                                                    <script>
+                                                         function conferma(){
+                                                             if(confirm('Are you sure?')){
+                                                                 $('#form-delete').submit();
+                                                            }
+                                                        }
+                                                       
+                                                    </script>
                                         </td>
                                     </tr>    
                                     @endforeach

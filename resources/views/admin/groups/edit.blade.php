@@ -57,19 +57,23 @@ Edit group
                                                     </thead>
                                                     <tbody>
                                                         @foreach($userlist as $user)
-                                                        <tr onclick="selezionato({{$user->id}})" id='{{$user->id}}'>
-                                                            <td>{{ $user->name }}</td>
-                                                            <td>{{ $user->email }}</td>
-                                                            <td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</td>
-                                                        </tr>
-                                                        @foreach($selectedUsers as $selected)
-                                                        @if($user->id == $selected->id  )
-                                                    <script>
-                                                        selezionato({{$user-> id}});
-                                                    </script>
-                                                    @endif
-                                                    @endforeach
-                                                    @endforeach
+                                                            <tr onclick="selezionato({{$user->id}})" id='{{$user->id}}'>
+                                                                <td>{{ $user->name }}</td>
+                                                                <td>{{ $user->email }}</td>
+                                                                <td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</td>
+                                                            </tr>
+                                                            @foreach($selectedUsers as $selected)
+                                                                @if($user->id == $selected->id  )
+                                                                    <script>
+                                                                         function selezionato(id){
+                                                                                    var element = document.getElementById(id).classList.toggle("bg-success");
+                                                                                }
+                                                                                
+                                                                        selezionato({{$user-> id}});
+                                                                    </script>
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>

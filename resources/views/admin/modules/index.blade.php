@@ -17,50 +17,60 @@ Modules
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-1 grid-margin stretch-card">
             <a href="{{ route('admin.modules.create') }}">
-            <div class="card border-primary mb-3">
-                <div height="120px">
-                    <img src="{{ asset('/images/components/plus.jpg')}}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image">                
-                </div>               
-                <div class="card-body" >   
-                    <div class="row">
-                        <div class="col-10">
-                            <h4>New Module</h4>                    
-                        </div>                        
-                    </div>
-                     <h6>Create a new module</h6> 
-                </div>               
-            </div>
+                <div class="card border-primary mb-3">
+                    <div height="120px">
+                        <img src="{{ asset('/images/components/plus.jpg')}}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image">                
+                    </div>               
+                    <div class="card-body" >   
+                        <div class="row">
+                            <div class="col-10">
+                                <h4>New Module</h4>                    
+                            </div>                        
+                        </div>
+                        <h6>Create a new module</h6> 
+                    </div>               
+                </div>
             </a>
         </div>  
 
         @foreach($modules  as $module)
         @component('components.myCard')
-            @slot('image')
-                @if(isset($module->image))
-                <img src="/images/modules/{{ $module['image'] }}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image" />
-                @endif
-            @endslot
-            
-            @slot('name')
-                    {{ $module->name }}
-            @endslot
-            
-            @slot('description')
-                  {{ $module->description }}
-            @endslot
-            
-            @slot('buttons')     
-                     <a href="{{ route('admin.modules.edit', $module->id) }}" class="dropdown-item">
-                        <button type="button" class="btn btn-outline-primary btn-sm col-12">Edit</button>
-                    </a>   
-                    <form action="{{route('admin.modules.destroy', $module->id)}}" method="POST" class="dropdown-item">
-                        @csrf
-                        {{method_field('DELETE')}}
-                        <button type="submit" class="btn btn-outline-danger btn-sm col-12">
-                            Delete
-                        </button>           
-                    </form>
-            @endslot
+        @slot('image')
+        @if(isset($module->image))
+        <img src="/images/modules/{{ $module['image'] }}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image" />
+        @endif
+        @endslot
+
+        @slot('name')
+        {{ $module->name }}
+        @endslot
+
+        @slot('description')
+        {{ $module->description }}
+        @endslot
+
+        @slot('buttons')     
+        <a href="{{ route('admin.modules.edit', $module->id) }}" class="dropdown-item">
+            <button type="button" class="btn btn-outline-primary btn-sm col-12">Edit</button>
+        </a>   
+        <form action="{{route('admin.modules.destroy', $module->id)}}"  id='form-delete' method="POST" class="dropdown-item">
+            @csrf
+            {{method_field('DELETE')}}
+            <button type="button" onclick='conferma()' class="btn btn-outline-danger btn-sm col-12">
+                Delete
+            </button>           
+        </form>
+        <!-- 
+                                                    tengo qui? -->
+        <script>
+            function conferma() {
+                if (confirm('Are you sure?')) {
+                    $('#form-delete').submit();
+                }
+            }
+
+        </script>
+        @endslot
         @endcomponent      
         @endforeach
     </div>
