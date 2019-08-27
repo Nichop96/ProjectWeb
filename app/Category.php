@@ -12,5 +12,10 @@ class Category extends Model
     {
         return $this->hasMany(Module::class);
     }
+    
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class);
+    }
             
 }

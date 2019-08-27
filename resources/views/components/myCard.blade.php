@@ -20,8 +20,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <h6>{{$description}}</h6>            
+            </div>       
         </div>
     </div>
 </div>

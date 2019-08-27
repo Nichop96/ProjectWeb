@@ -25,6 +25,8 @@ Create module
                                 <strong>{{ $errors->first('name') }}</strong>
                             </span>
                             @endif
+                            <span id="nameNull" class="text-danger">                                
+                            </span>
                             <br>
                         </div>
                         <div class="form-group">
@@ -314,6 +316,7 @@ Create module
         var name = document.getElementById("aux_name").value;
         if(name ==="") {
             $('#aux_name').addClass("is-invalid");
+            $('#nameNull').html('A module must have a name');
         }
         document.getElementById("name").value = document.getElementById("aux_name").value; 
         document.getElementById("description").value = document.getElementById("aux_description").value;

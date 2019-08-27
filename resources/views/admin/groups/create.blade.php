@@ -18,7 +18,7 @@ Create group
                             <div class="form-group">
                                 <h5 for='name'>Group name</h5>
                                 <br>
-                                <input id="name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="name" placeholder="Group name">
+                                <input id="name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="name" placeholder="Group name" required>
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -29,7 +29,7 @@ Create group
                             <div class='form-group'>
                                 <h5 for='description'>Group description</h5>
                                 <br>
-                                <input id="description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('description') }}" name="description" placeholder="Group's description">
+                                <input id="description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('description') }}" name="description" placeholder="Group's description" required>
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>

@@ -26,8 +26,7 @@ Modules
                         <div class="col-10">
                             <h4>New Module</h4>                    
                         </div>                        
-                    </div>
-                     <h6>Create a new module</h6> 
+                    </div>                     
                 </div>               
             </div>
             </a>
@@ -37,16 +36,12 @@ Modules
         @component('components.myCard')
             @slot('image')
                 @if(isset($module->image))
-                <img src="/images/modules/{{ $module['image'] }}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image" />
+                <img src="/images/modules/{{ $module->image }}"  class='card-img-top w-100' style="max-height: 120px;" alt="Responsive image" />
                 @endif
             @endslot
             
             @slot('name')
                     {{ $module->name }}
-            @endslot
-            
-            @slot('description')
-                  {{ $module->description }}
             @endslot
             
             @slot('buttons')     
