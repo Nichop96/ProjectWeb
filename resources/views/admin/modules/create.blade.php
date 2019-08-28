@@ -18,7 +18,7 @@ Create module
 
                         <div  class="form-group">
                             <h5 for="aux_name" > Name </h5>
-                            <input id="aux_name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('aux_name') }}" name="aux_name" placeholder="Module name">
+                            <input id="aux_name" type="text" maxlength="255" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="aux_name" placeholder="Module name">
 
                             @if ($errors->has('name'))                            
                             <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@ Create module
                         </div>
                         <div class="form-group">
                             <h5 for="aux_description" > Description </h5>
-                            <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description') }}" name="aux_description" placeholder="Module's description">
+                            <input id="aux_description" type="text" maxlength="255" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('description') }}" name="aux_description" placeholder="Module's description">
                             @if ($errors->has('description'))
 
                             <span class="invalid-feedback" role="alert">
@@ -345,15 +345,15 @@ Create module
         }
     }
 </script>
+<script>
+function rimuovi(elemID){
+   var element = document.getElementById('question_'+elemID);
+   element.parentNode.removeChild(element);
+}
+</script>
 @component('components.importQuestions.importJs')
     @slot('type')
     module
     @endslot
 @endcomponent
-    <script>
-    function rimuovi(elemID){
-       var element = document.getElementById(elemID);
-       element.parentNode.removeChild(element);
-    }
-    </script>
 @endsection

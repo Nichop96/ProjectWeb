@@ -15,7 +15,7 @@ Survey edit
                     <form id="repeater-form" name="bbb">                        
                         <div  class="form-group">
                             <h5 for="aux_name" > Name </h5>
-                            <input id="aux_name" type="text" class="form-control form-control-lg {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ (old('aux_name', $survey->name ? : '' )) }}" name="aux_name" placeholder="{{$survey->name}} ">
+                            <input id="aux_name" type="text" maxlength="255" class="form-control form-control-lg {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ (old('aux_name', $survey->name ? : '' )) }}" name="aux_name" placeholder="{{$survey->name}} ">
 
                             @if ($errors->has('name'))                            
                             <span class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@ Survey edit
                         </div>
                         <div class="form-group">
                             <h5 for="aux_description" > Description </h5>
-                            <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description', $survey->description ? : '' ) }}"  name="aux_description" placeholder="{{$survey->description}}">
+                            <input id="aux_description" type="text" maxlength="255" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description', $survey->description ? : '' ) }}"  name="aux_description" placeholder="{{$survey->description}}">
                             @if ($errors->has('description'))
 
                             <span class="invalid-feedback" role="alert">
@@ -111,7 +111,7 @@ Survey edit
                             </div>
                             <!-- Repeater Remove Btn -->
                             <div class="pull-right">
-                                <button class="btn btn-danger ml-5 mb-5 remove-btn" onclick="rimuovi('question_{{$question->id}}')">
+                                <button class="btn btn-danger ml-5 mb-5 remove-btn" onclick="rimuovi('{{$question->id}}')">
                                     Remove question
                                 </button>
                             </div>
@@ -341,7 +341,7 @@ Survey edit
         var flag = false; // check if exist atleast a selected group
         var r=0;
         while(row=table.rows[r++]){
-            if(row.classList.contains("bg-success")){
+            if(row.classList.contains("bg-primary")){
                 tmp.push(row.id);
                 flag = true;
             }
@@ -352,10 +352,11 @@ Survey edit
 </script>
 
 <script>
-    function rimuovi(elemID){
-        var element = document.getElementById(elemID);
-        element.parentNode.removeChild(element);
-    }
+function rimuovi(elemID){
+   var element = document.getElementById('question_'+elemID);
+   element.parentNode.removeChild(element);
+}
+</script>
 </script>
 
 <script>// continua da qui, estrai i valori e inviali alla pagina php che farà gli inserimenti tramite ajax
@@ -475,6 +476,6 @@ Survey edit
 
 <script>
     function selezionato(id){
-        var element = document.getElementById(id).classList.toggle("bg-success");
+        var element = document.getElementById(id).classList.toggle("bg-primary");
     }
 </script>

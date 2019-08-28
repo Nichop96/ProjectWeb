@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index')->with('users',User::where('id','!=','1')->paginate(5));
+        return view('admin.users.index')->with('users',User::where('id','!=','1')->paginate(10));
     }
 
     /**
@@ -86,8 +86,7 @@ class UserController extends Controller
         $user->email = $request['email'];
         $user->save();
         
-        return view('admin.users.index')->with(['message' => 'update',
-                                                'users' => User::paginate(5)]);
+        return redirect(route('admin.users.index'));
     }
     
     /**
@@ -99,18 +98,15 @@ class UserController extends Controller
     public function destroy($id)
     {
         if(Auth::user()->id == $id){
-            return view('admin.users.index')->with(['message' => 'no_ok_delete',
-                                                    'users' => User::paginate(5)]);
+            return redirect(route('admin.users.index'));
         }
         $user = User::find($id);
         if($user){
             $user->roles()->detach();
             $user->delete();
-            return view('admin.users.index')->with(['message' => 'ok_delete',
-                                                    'users' => User::paginate(5)]);
+            return redirect(route('admin.users.index'));
         }
-        return view('admin.users.index')->with(['message' => 'no_ok_delete',
-                                                'users',User::paginate(5)]);
+        return redirect(route('admin.users.index'));
     }
     
     
@@ -124,7 +120,7 @@ class UserController extends Controller
             return view('admin.users.index')->with(['users' =>$union,
                                                     'search' => true]);
         }
-        return view('admin.users.index')->with('users',User::paginate(5));
+       return redirect(route('admin.users.index'));
     }
    
 }

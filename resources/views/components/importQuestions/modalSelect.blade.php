@@ -16,8 +16,7 @@
                     <table id="questions" class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
+                                <th>Name</th>                               
                                 <th>Category</th>                        
                                 <th>Actions</th>                       
                             </tr>

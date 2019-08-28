@@ -94,20 +94,10 @@ Surveys
         <form action="{{route('admin.surveys.destroy', $survey->id)}}" id='form-delete{{$survey->id}}' method="POST" class="dropdown-item">
             @csrf
             {{method_field('DELETE')}}
-            <button type="button" onclick='conferma{{$survey->id}}()' class="btn btn-outline-danger btn-sm  mr-2 col-12">
+            <button type="button" onclick='conferma({{$survey->id}})' class="btn btn-outline-danger btn-sm  mr-2 col-12">
                 Delete
             </button>           
         </form>
-        <!-- 
-                                    tengo qui? -->
-        <script>
-            function conferma{{$survey->id}}() {
-                if (confirm('Are you sure?')) {
-                    $('#form-delete{{$survey->id}}').submit();
-                }
-            }
-
-        </script>
         @endslot
 
         @endcomponent
@@ -115,4 +105,11 @@ Surveys
     </div>
     @endif
 </div> 
+<script>
+    function conferma(id) {
+        if (confirm('Are you sure?')) {
+            $('#form-delete'+id).submit();
+        }
+    }          
+</script>
 @endsection

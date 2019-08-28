@@ -22,9 +22,9 @@ Create survey
                         <div  class="form-group">
                             <h5 for="aux_name" > Name </h5>
                             @if(isset($module))
-                            <input id="aux_name" type="text" class="form-control form-control-lg {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ (old('aux_name', $module->name ? : '' )) }}" name="aux_name" placeholder="{{$module->name}} ">
+                            <input id="aux_name" type="text" maxlength="255" class="form-control form-control-lg {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ (old('aux_name', $module->name ? : '' )) }}" name="aux_name" placeholder="{{$module->name}} ">
                             @else
-                            <input id="aux_name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('aux_name') }}" name="aux_name" placeholder="Survey name">
+                            <input id="aux_name" type="text" maxlength="255" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('aux_name') }}" name="aux_name" placeholder="Survey name">
                             @endif
                             
                             @if ($errors->has('name'))                            
@@ -39,9 +39,9 @@ Create survey
                         <div class="form-group">
                             <h5 for="aux_description" > Description </h5>
                             @if(isset($module))
-                            <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description', $module->description ? : '' ) }}"  name="aux_description" placeholder="{{$module->description}}">
+                            <input id="aux_description" type="text" maxlength="255" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description', $module->description ? : '' ) }}"  name="aux_description" placeholder="{{$module->description}}">
                             @else
-                            <input id="aux_description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description') }}" name="aux_description" placeholder="Survey's description">
+                            <input id="aux_description" type="text" maxlength="255" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('aux_description') }}" name="aux_description" placeholder="Survey's description">
                             @endif
                             @if ($errors->has('description'))
 
@@ -81,7 +81,7 @@ Create survey
                         </div>
                             
                          <div class="form-group">
-                            <h5 for="file">Avatar of the survey</h5>
+                            <h5 for="file">Picture of the survey</h5>
                             <input type="file" class="form-control-file" name='file' form='aux_form' accept="image/png, .jpeg, .jpg, image/gif" />
                             
                         </div>  
@@ -131,7 +131,7 @@ Create survey
                             </div>
                             <!-- Repeater Remove Btn -->
                             <div class="pull-right">
-                                <button class="btn btn-danger ml-5 mb-5 remove-btn" onclick="rimuovi('question_{{$question->id}}')">
+                                <button class="btn btn-danger ml-5 mb-5 remove-btn" onclick="rimuovi('{{$question->id}}')">
                                     Remove question
                                 </button>
                             </div>
@@ -223,7 +223,7 @@ Create survey
                             <!-- Repeater End -->
 
 
-
+                            <br>   
                         </div>
 
                         <br>
@@ -355,7 +355,7 @@ Create survey
         var flag = false; // check if exist atleast a selected group
         var r=0;
         while(row=table.rows[r++]){
-            if(row.classList.contains("bg-success")){
+            if(row.classList.contains("bg-primary")){
                 tmp.push(row.id);
                 flag = true;
             }
@@ -366,10 +366,11 @@ Create survey
 </script>
 
 <script>
-    function rimuovi(elemID){
-        var element = document.getElementById(elemID);
-        element.parentNode.removeChild(element);
-    }
+  function rimuovi(elemID){
+   var element = document.getElementById('question_'+elemID);
+   element.parentNode.removeChild(element);
+}
+</script>
 </script>
 <script>// continua da qui, estrai i valori e inviali alla pagina php che farà gli inserimenti tramite ajax
     function submit() {
@@ -460,7 +461,7 @@ Create survey
             
         if (!$('.is-invalid').length){
             if (!Array.isArray(questions) || my_empty(questions)) {
-                alert("You can not save a module without questions!");
+                alert("You can not save a survey without questions!");
 
             } else { // if exist atleast a question
                 if(check_table()){
@@ -491,6 +492,6 @@ Create survey
 @endsection
 <script>
     function selezionato(id){
-        document.getElementById(id).classList.toggle("bg-success");
+        document.getElementById(id).classList.toggle("bg-primary");
     }
 </script>

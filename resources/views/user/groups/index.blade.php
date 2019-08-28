@@ -49,22 +49,13 @@ Groups
                                 <td>{{ $group->description }}</td>
                                 <td>{{ $group->count }} </td>
                                 <td>                                  
-                                    <form action="{{route('user.groups.destroy', $group->id)}}" id='form-delete' method="POST" class="float-left">
+                                    <form action="{{route('user.groups.destroy', $group->id)}}" id='form-delete{{$group->id}}' method="POST" class="float-left">
                                         @csrf
                                         {{method_field('DELETE')}}
-                                        <button type="button" onclick='conferma()' class="btn btn-outline-danger btn-sm">
+                                        <button type="button" onclick='conferma({{$group->id}})' class="btn btn-outline-danger btn-sm">
                                             Unsign
                                         </button>           
-                                    </form>
-                                    <!-- 
-                                                        tengo qui? -->
-                                    <script>
-                                        function conferma() {
-                                            if (confirm('Are you sure?')) {
-                                                $('#form-delete').submit();
-                                            }
-                                        }
-                                    </script>
+                                    </form>                                   
                                 </td>
                             </tr>    
                             @endforeach
@@ -86,4 +77,11 @@ Groups
 <script src="{{asset('vendors/datatables.net/jquery.dataTables.js')}}"></script>
 <script src="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
 <script src="{{asset('js/dashboard.js')}}"></script>
+<script>
+    function conferma(id) {
+        if (confirm('Are you sure?')) {
+            $('#form-delete'+id).submit();
+        }
+    }
+</script>
 @endsection

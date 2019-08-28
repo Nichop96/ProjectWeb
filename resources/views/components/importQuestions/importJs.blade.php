@@ -36,10 +36,9 @@
               var id = response[i].id;
 
               var tr_str = "<tr>" +
-                  "<td>" + name + "</td>" +
-                  "<td>" + description + "</td>" +
+                  "<td>" + name + "</td>" +                  
                   "<td>" + category + "</td>" +
-                  "<td> <input type='radio' name='import' class='form-check-input' value='"+id+"'></td>" +
+                  "<td><center> <input type='radio' name='import' class='form-check-input' value='"+id+"'></center></td>" +
               "</tr>";              
               $("#tbody").append(tr_str);
               i++;
@@ -88,7 +87,7 @@
                   "<td>" + label_left + "</td>" +
                   "<td>" + label_right + "</td>" +
                   "<td>" + max_rate + "</td>" +
-                  "<td> <input type='checkbox' name='importQuestions' class='form-check-input' value='"+id+"'></td>" +
+                  "<td><center> <input type='checkbox' name='importQuestions' class='form-check-input' value='"+id+"'></center></td>" +
               "</tr>";              
               $("#tbodyquestions").append(tr_str);
               i++;
@@ -136,7 +135,7 @@
                 var i = 0;
                 while(response[i].name != null)
                 {                   
-                    var code = '<br><div class="card border-primary mb-3"><div class="item-content card-body block align-self-lg-auto"><div class="form-group"><h5 for="question" class="col-lg-5 control-label">Question</h5><div class="col-lg-12 col-md-9 col-sm-5"><input type="text" class="form-control question"   value="'+response[i].name+'" ></div></div><div class="row"><div class="col"><h5 for="leftlabel" class="col-lg-6 control-label">Left label</h5><input type="text" id="leftlabel" name="leftlabel" class="form-control leftlabel" value="'+response[i].label_left+'"></div><div class="col"><h5 for="rightlabel"  class="col-lg-6 control-label">Right label</h5><input type="text" id="rightlabel" name="rightlabel" class="form-control rightlabel" value="'+response[i].label_right+'"><br></div></div><div class="row"><div class="col"><div class="form-group"><h5 for="maxmark" class="control-label ">Max value</h5><input type="text" class="form-control maxmark" id="maxmark"  value="'+response[i].max_rate+'"></div></div><div class="col"><div class="form-group"><h5 for="correctans" class="control-label ">Correct answer</h5><input type="text" class="form-control correctans" id="correctans"  value="'+response[i].correct_answer+'"></div></div></div></div><div class="pull-right ml-5 mb-5 repeater-remove-btn"><button class="btn btn-danger remove-btn" onclick="rimuovi('+response[i].id+')">Remove question</button></div><div class="clearfix"></div></div>';
+                    var code = '<div class="card border-primary mb-3" id="question_'+response[i].id+'"><br><div class="item-content card-body block align-self-lg-auto"><div class="form-group"><h5 for="question" class="col-lg-5 control-label">Question</h5><div class="col-lg-12 col-md-9 col-sm-5"><input type="text" class="form-control question"   value="'+response[i].name+'" ></div></div><div class="row"><div class="col"><h5 for="leftlabel" class="col-lg-6 control-label">Left label</h5><input type="text" id="leftlabel" name="leftlabel" class="form-control leftlabel" value="'+response[i].label_left+'"></div><div class="col"><h5 for="rightlabel"  class="col-lg-6 control-label">Right label</h5><input type="text" id="rightlabel" name="rightlabel" class="form-control rightlabel" value="'+response[i].label_right+'"><br></div></div><div class="row"><div class="col"><div class="form-group"><h5 for="maxmark" class="control-label ">Max value</h5><input type="text" class="form-control maxmark" id="maxmark"  value="'+response[i].max_rate+'"></div></div><div class="col"><div class="form-group"><h5 for="correctans" class="control-label ">Correct answer</h5><input type="text" class="form-control correctans" id="correctans"  value="'+response[i].correct_answer+'"></div></div></div></div><div class="pull-right ml-5 mb-5 repeater-remove-btn"><button class="btn btn-danger remove-btn" onclick="rimuovi('+response[i].id+')">Remove question</button></div><div class="clearfix"></div></div>';
                     $("#questions").append(code);
                     i++;
                 }

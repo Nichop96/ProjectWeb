@@ -75,7 +75,7 @@ Edit module
                         <br>
                         @foreach($questions as $question)
                         <br>                      
-                            <div class="card border-primary mb-3" id="{{$question->id}}">
+                            <div class="card border-primary mb-3" id="question_{{$question->id}}">
                                 <!-- Repeater Content -->
                                 <div class="item-content card-body block">
 
@@ -408,7 +408,7 @@ Edit module
 @endcomponent
 <script>
 function rimuovi(elemID){
-   var element = document.getElementById(elemID);
+   var element = document.getElementById('question_'+elemID);
    element.parentNode.removeChild(element);
 }
 </script>

@@ -162,7 +162,7 @@
                                                           alt="">
                                                 </span>
                                                 <h4>Federico Castelnovo</h4>
-                                                <p>Piccola frase per descriverti</p>
+                                                <p>I'm from Brozzo and I enjoy spending time with my dog.</p>
                                             </div>
                                         </div>
                                     </a>
@@ -176,7 +176,7 @@
                                                          alt="">
                                                 </span>
                                                 <h4>Nicholas Onger</h4>
-                                                <p>Piccola frase per descriverti</p>
+                                                <p>I'm from Castelcovati and I play basketball in Rudiano.</p>
                                             </div>
                                         </div>
                                     </a>

@@ -126,9 +126,7 @@ class SurveyController extends Controller {
                         $survey->image = $tmp->image;
                     }
                 }
-            }
-            else
-            {
+            } else {
                 $survey->image = "default.jpg";
             }
         }
@@ -194,8 +192,7 @@ class SurveyController extends Controller {
 
         $survey->groups()->detach();
         $completed_surveys = $survey->completedSurveys;
-        foreach($completed_surveys as $completed_survey)
-        {
+        foreach ($completed_surveys as $completed_survey) {
             $completed_survey->answers()->delete();
         }
         $survey->completedSurveys()->delete();
@@ -400,7 +397,9 @@ class SurveyController extends Controller {
             foreach ($questions_users as $question_user) {
                 $score += abs($question_user->value - $question_user->correct_answer);
             }
-            $score /= count($questions_users);
+            if (count($questions_users)) {
+                $score /= count($questions_users);
+            }
             foreach ($users as $user) {
                 if ($user->completed_id == $completedSurvey->id)
                     $user->score = number_format($score, 2);
@@ -481,7 +480,9 @@ class SurveyController extends Controller {
         foreach ($questions as $question) {
             $score += abs($question->value - $question->correct_answer);
         }
-        $score /= count($questions);
+        if (count($questions)) {
+            $score /= count($questions);
+        }
         return view('admin.surveys.view')->with(['completedSurvey' => $completedSurvey,
                     'questions' => $questions,
                     'wrongAnswers' => $wrongAnswers,

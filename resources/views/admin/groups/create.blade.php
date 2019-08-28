@@ -18,7 +18,7 @@ Create group
                             <div class="form-group">
                                 <h5 for='name'>Group name</h5>
                                 <br>
-                                <input id="name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="name" placeholder="Group name" required>
+                                <input id="name" type="text" maxlength="255" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="name" placeholder="Group name" required>
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -29,7 +29,7 @@ Create group
                             <div class='form-group'>
                                 <h5 for='description'>Group description</h5>
                                 <br>
-                                <input id="description" type="text" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('description') }}" name="description" placeholder="Group's description" required>
+                                <input id="description" type="text" maxlength="255" class="form-control form-control-lg{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ old('description') }}" name="description" placeholder="Group's description" required>
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -69,8 +69,6 @@ Create group
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            {{ $userlist->links() }}
-
                                         </div>
                                     </div>
                                 </div>
@@ -101,14 +99,14 @@ Create group
 
 <script>
     function selezionato(id){
-    var element = document.getElementById(id).classList.toggle("bg-success");
+    var element = document.getElementById(id).classList.toggle("bg-primary");
     }
     
     function resetta(){
         var table = document.getElementById("table");
         var r=0;
         while(row=table.rows[r++]){
-            row.classList.remove("bg-success");
+            row.classList.remove("bg-primary");
         }
     }
     function validazione(){
@@ -117,7 +115,7 @@ Create group
         var users = document.getElementById("ids");
         var r=0;
         while(row=table.rows[r++]){
-            if(row.classList.contains("bg-success")){
+            if(row.classList.contains("bg-primary")){
                 tmp.push(row.id);
             }
         }

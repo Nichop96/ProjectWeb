@@ -66,7 +66,7 @@ Edit group
                                                                 @if($user->id == $selected->id  )
                                                                     <script>
                                                                          function selezionato(id){
-                                                                                    var element = document.getElementById(id).classList.toggle("bg-success");
+                                                                                    var element = document.getElementById(id).classList.toggle("bg-primary");
                                                                                 }
                                                                                 
                                                                         selezionato({{$user-> id}});
@@ -77,9 +77,6 @@ Edit group
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            @if(!isset($search))
-                                                {{ $userlist->links() }}
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -107,14 +104,14 @@ Edit group
 <script src="{{asset('js/dashboard.js')}}"></script>
 <script>
     function selezionato(id){
-        var element = document.getElementById(id).classList.toggle("bg-success");
+        var element = document.getElementById(id).classList.toggle("bg-primary");
     }
 
     function resetta(){
     var table = document.getElementById("table");
     var r = 0;
     while (row = table.rows[r++]){u
-    row.classList.remove("bg-success");
+    row.classList.remove("bg-primary");
     }
     }
     function validazione(){
@@ -123,7 +120,7 @@ Edit group
     var users = document.getElementById("ids");
     var r = 0;
     while (row = table.rows[r++]){
-    if (row.classList.contains("bg-success")){
+    if (row.classList.contains("bg-primary")){
     tmp.push(row.id);
     }
     }

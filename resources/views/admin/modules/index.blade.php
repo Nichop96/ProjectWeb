@@ -52,21 +52,22 @@ Modules
         <form action="{{route('admin.modules.destroy', $module->id)}}"  id='form-delete{{$module->id}}' method="POST" class="dropdown-item">
             @csrf
             {{method_field('DELETE')}}
-            <button type="button" onclick='conferma{{$module->id}}()' class="btn btn-outline-danger btn-sm col-12">
+            <button type="button" onclick='conferma({{$module->id}})' class="btn btn-outline-danger btn-sm col-12">
                 Delete
             </button>           
         </form>
         
-        <script>
-            function conferma{{$module->id}}() {
-                if (confirm('Are you sure?')) {
-                    $('#form-delete{{$module->id}}').submit();
-                }
-            }          
-        </script>
+        
         @endslot
         @endcomponent      
         @endforeach
     </div>
 </div> 
+<script>
+    function conferma(id) {
+        if (confirm('Are you sure?')) {
+            $('#form-delete'+id).submit();
+        }
+    }          
+</script>
 @endsection
