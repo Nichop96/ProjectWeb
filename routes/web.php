@@ -11,6 +11,13 @@
   |
  */
 
+
+//Multi language
+Route::get('locale/{locale}', function ($locale){
+    Session::put('locale', $locale);
+    return redirect()->back();
+});
+
 // da cambiare con la nostra home(?)
 Route::get('/', function () {
     return view('index');

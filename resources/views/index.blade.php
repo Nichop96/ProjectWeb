@@ -50,24 +50,23 @@
                                     @if (Route::has('login'))
                                     @auth
                                     @hasrole('admin')
-                                    <a class="btn_1" href="{{ route('admin.index') }}">Dashboard</a>
+                                    <a class="btn_1  mr-5" href="{{ route('admin.index') }}">Dashboard</a>
                                     @endhasrole
                                     @hasrole('user')
-                                    <a class="btn_1" href="{{ route('user.index') }}">Dashboard</a>
+                                    <a class="btn_1 mr-5" href="{{ route('user.index') }}">Dashboard</a>
                                     @endhasrole                        
                                     @else
                                     <a class="btn_1" href="{{ route('login') }}">Login</a>
 
                                     @if (Route::has('register'))
-                                    <a class="btn_1" href="{{ route('register') }}">Register</a>
+                                    <a class="btn_1 mr-5" href="{{ route('register') }}">Register</a>
                                     @endif
                                     @endauth
 
                                     @endif
 
-
-
-
+                                    <li><a href="{{ url('locale/en') }}" ><img src="{{asset('/images/en.png')}}" width="150" class="ml-3"></a></li>
+                                    <li><a href="{{ url('locale/it') }}" ><img src="{{asset('/images/it.png')}}" width="120" class="ml-3"></a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -76,54 +75,6 @@
             </div>
         </header>
         <!-- Header part end-->
-
-        <!-- banner part start
-        <section class="banner_part">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-xl-6">
-                        <div class="banner_text">
-                            <div class="banner_text_iner">
-                                <h1>Sensorial analysis</h1>
-                                <p>A funnel is a complete experience in which your 
-                                    senses get stimulated and you have to give a valutation how 
-                                    intense your stimulation is. Let's taste it! 
-                                </p>
-                                
-                                @if (Route::has('login'))
-
-                                    @auth
-                                    @hasrole('admin')
-                                    <a href="{{ route('admin.index') }}" class="btn_2">Continue</a>
-                                    @endhasrole
-                                    @hasrole('user')
-                                    <a href="{{ route('user.index') }}" class="btn_2">Complete surveys</a>
-                                    @endhasrole
-                                    @endauth
-                                @else
-                                    <a href="{{ route('register') }}" class="btn_2">Get started</a>
-                                @endif
-                                <div class="banner_item">
-                                    <div class="single_item">
-                                        <img src="{{asset('public-part/img/icon/private.svg')}}" alt="">
-                                        <h5>Private surveys</h5>
-                                    </div>
-                                    <div class="single_item">
-                                        <img src="{{asset('public-part/img/icon/new.svg')}}" alt="">
-                                        <h5>Create your own</h5>
-                                    </div>
-                                    <div class="single_item">
-                                        <img src="{{asset('public-part/img/icon/professional.svg')}}" alt="">
-                                        <h5>Professional review</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-         banner part start-->
 
         <!-- our_ability part start-->
         <section class="our_ability ">
@@ -137,7 +88,7 @@
 
                     <div class="col-md-6 col-lg-5">
                         <div class="our_ability_member_text">
-                            <h1>Sensorial analysis</h1>
+                            <h1>{{__('auth.failed')}}</h1>
                             <p>A funnel is a complete experience in which your 
                                 senses get stimulated and you have to give a valutation how 
                                 intense your stimulation is. Let's taste it! 

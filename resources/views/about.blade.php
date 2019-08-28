@@ -82,10 +82,8 @@
 
                     <div class="col-md-6 col-lg-6">
                         <div class="our_ability_member_text">
-                            <h1>About us</h1>
-                            <p>We are three students of Computer Engineering at Università
-                                degli studi of Brescia in Italy. This is our project for the
-                                course of Programmazione Web.
+                            <h1>{{__('about.about')}}</h1>
+                            <p>{{__('about.we_are')}}
                             </p>
                         </div>
                     </div>
@@ -111,27 +109,24 @@
                             <div class="client_review_single">
                                 <img src="{{asset('public-part/img/Quote.png')}}" class="Quote" alt="quote">
                                 <div class="client_review_text media-body">
-                                    <p>The ORC project is the idea of the century. It's not only a Social where you compile 
-                                        surveys but it sharps you senses too.
+                                    <p>{{__('about.orc_project')}}
                                     </p>
                                 </div>
-                                <h4>Rocco Matteo, <span>Executive of ORC</span></h4>
+                                <h4>Rocco Matteo, <span>{{__('about.executive')}}</span></h4>
                             </div>
                             <div class="client_review_single">
                                 <img src="{{asset('public-part/img/Quote.png')}}" class="Quote" alt="quote">
                                 <div class="client_review_text">
-                                    <p>This group is the best group i worked with. ORC is an illuminating project and it's fascinating 
-                                        how much shades an apparent so simple idea can have.</p>
+                                    <p>{{__('about.best_group')}}</p>
                                 </div>
-                                <h4>Onger Nicholas, <span>Executive of ORC</span></h4>
+                                <h4>Onger Nicholas, <span>{{__('about.executive')}}</span></h4>
                             </div>
                             <div class="client_review_single">
                                 <img src="{{asset('public-part/img/Quote.png')}}" class="Quote" alt="quote">
                                 <div class="client_review_text">
-                                    <p>I personally call ORC "our creature" because is a sort of living been. Through the users the social
-                                        realy becames alive and it can surprise you how much the interation, on a simple thing like a survey, is.</p>
+                                    <p>{{__('about.creature')}}</p>
                                 </div>
-                                <h4>Castelnovo Federico, <span>Executive of ORC</span></h4>
+                                <h4>Castelnovo Federico, <span>{{__('about.executive')}}</span></h4>
                             </div>
                         </div>
                     </div>
@@ -148,7 +143,7 @@
 
                     <div class="col-lg-12 col-md-12">
                         <div class="feature_item">
-                            <h1>Who are we?</h1>
+                            <h1>{{__('about.who_are_we')}}</h1>
                             <br>
                             <br>                            
                             <div class="row">
@@ -162,7 +157,7 @@
                                                           alt="">
                                                 </span>
                                                 <h4>Federico Castelnovo</h4>
-                                                <p>I'm from Brozzo and I enjoy spending time with my dog.</p>
+                                                <p>{{__('about.castel')}}</p>
                                             </div>
                                         </div>
                                     </a>
@@ -176,7 +171,7 @@
                                                          alt="">
                                                 </span>
                                                 <h4>Nicholas Onger</h4>
-                                                <p>I'm from Castelcovati and I play basketball in Rudiano.</p>
+                                                <p>{{__('about.nich')}}</p>
                                             </div>
                                         </div>
                                     </a>
@@ -190,8 +185,7 @@
                                                          alt="">
                                                 </span>
                                                 <h4>Matteo Rocco</h4>
-                                                <p>I'm a normal student and a big NBA fan. I like pizza
-                                                    and nutella.</p>
+                                                <p>{{__('about.roc')}}</p>
                                             </div>
                                         </div>
                                     </a>
@@ -220,9 +214,7 @@
                     <div class="col-md-7 col-lg-7">
                         <div class="our_ability_member_text">
                             <h2>DR Federico Castelnovo</h2>
-                            <p>He is a very good guy and a very funny friends. He like to study
-                                and when he does this obtains a very good results. He always fights with Luana
-                                and sometimes he gets angry with her and do the "preso male".</p>
+                            <p><p>{{__('about.about_castel')}}</p></p>
 
                         </div>
                     </div>
@@ -240,9 +232,7 @@
                     <div class="col-md-7 col-lg-7">
                         <div class="our_ability_member_text">
                             <h2>DR Nicholas Onger</h2>
-                            <p>He is a very quiet guy but a very loyal friend. He likes to play basketball 
-                                and he is a very good one. His secret weapon is the unstoppable "jump-hook". No one 
-                                knows but he is secretly in love with Lebron James.</p>
+                            <p>{{__('about.about_nich')}}</p>
 
                         </div>
                     </div>
@@ -262,9 +252,7 @@
                     <div class="col-md-7 col-lg-7">
                         <div class="our_ability_member_text">
                             <h2>DR Matteo Rocco</h2>
-                            <p>He is a very entusiastic guy and when he has his day a very moody one. He is a lifetime
-                                kobe fan and always beats Nicholas at Dunkest. Retired basketball player but in his latest season
-                                he won the trophy of "Seconda divisione bergamasca".</p>
+                            <p>{{__('about.about_roc')}}</p>
 
                         </div>
                     </div>

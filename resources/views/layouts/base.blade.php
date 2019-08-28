@@ -68,7 +68,8 @@
                                 </form>                                
                             </div>                         
                         </li>
-
+                        <li><a href="{{ url('locale/en') }}" ><img src="{{asset('/images/en.png')}}" width="150" class="ml-3"></a></li>
+                                    <li><a href="{{ url('locale/it') }}" ><img src="{{asset('/images/it.png')}}" width="120" class="ml-3"></a></li>
 
                     </ul>
                     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
