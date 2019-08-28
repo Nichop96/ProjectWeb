@@ -32,6 +32,8 @@ Create survey
                                 <strong>{{ $errors->first('name') }}</strong>
                             </span>
                             @endif
+                            <span id="nameNull" class="text-danger">                                
+                            </span>
                             <br>
                         </div>
                         <div class="form-group">
@@ -58,9 +60,9 @@ Create survey
                                 <div class="col-lg-3 col-md-3 col-sm-1 form-check">
                                     <label class="form-check-label">
                                         @if(isset($module))
-                                        <input  type="radio" class="form-check-input sel_category"  name="aux_category" {{ $category->id === $module->category_id ? "checked" : '' }} value="{{ $category->id }}">
+                                        <input  type="radio" class="form-check-input sel_category"  name="aux_category" {{ $category->id === $module->category_id ? "checked" : '' }} value="{{ $category->id }}" @if($loop->iteration==1) checked @endif>
                                         @else
-                                        <input  type="radio" class="form-check-input sel_category" name="category" id="aux_category{{ $category->id }}" value="{{ $category->id }}">
+                                        <input  type="radio" class="form-check-input sel_category" name="category" id="aux_category{{ $category->id }}" value="{{ $category->id }}" @if($loop->iteration==1) checked @endif>
                                         @endif
                                         {{ $category->name }}
                                     </label>
@@ -147,7 +149,7 @@ Create survey
                                 <!-- Repeater Heading -->
                                 <div class="repeater-heading">
                                     <h5 class="pull-left">Questions</h5>
-                                    <button class="btn btn-primary repeater-add-btn">
+                                    <button class="btn btn-primary repeater-add-btn mt-3 mr-3">
                                         Add question
                                     </button>
                                     
@@ -440,6 +442,11 @@ Create survey
         document.getElementById("aux_right").value = rightLabels;
         document.getElementById("aux_maxmark").value = maxMark;
         document.getElementById("aux_correctans").value = correctans;
+        var name = document.getElementById("aux_name").value;
+        if(name ==="") {
+            $('#aux_name').addClass("is-invalid");
+            $('#nameNull').html('A survey must have a name');
+        }
 
         // module attributes
         document.getElementById("name").value = document.getElementById("aux_name").value;

@@ -88,7 +88,7 @@ Create module
                                 <div class="repeater-heading">
                                     <h5 class="pull-left">Questions</h5>
                                     <br>
-                                    <button class="btn btn-primary repeater-add-btn mr-5">
+                                    <button class="btn btn-primary repeater-add-btn mt-3 mr-3">
                                         Add question
                                     </button>
                                     @component('components.importQuestions.modalSelect')

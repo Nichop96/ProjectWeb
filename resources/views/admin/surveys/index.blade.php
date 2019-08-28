@@ -26,7 +26,8 @@ Surveys
                             <div class="col-10">
                                 <h4>New Survey</h4>                    
                             </div>                        
-                        </div>                       
+                        </div>  
+                        <h6>Create a new Survey</h6>
                     </div>               
                 </div>
             </a>
@@ -90,13 +91,23 @@ Surveys
         <a href="{{ route('admin.surveys.show', $survey->id) }}" class="dropdown-item">
             <button type="button" class="btn btn-outline-success btn-sm mr-2 col-12">Show</button>
         </a>  
-        <form action="{{route('admin.surveys.destroy', $survey->id)}}" method="POST" class="dropdown-item">
+        <form action="{{route('admin.surveys.destroy', $survey->id)}}" id='form-delete{{$survey->id}}' method="POST" class="dropdown-item">
             @csrf
             {{method_field('DELETE')}}
-            <button type="submit" class="btn btn-outline-danger btn-sm  mr-2 col-12">
+            <button type="button" onclick='conferma{{$survey->id}}()' class="btn btn-outline-danger btn-sm  mr-2 col-12">
                 Delete
             </button>           
         </form>
+        <!-- 
+                                    tengo qui? -->
+        <script>
+            function conferma{{$survey->id}}() {
+                if (confirm('Are you sure?')) {
+                    $('#form-delete{{$survey->id}}').submit();
+                }
+            }
+
+        </script>
         @endslot
 
         @endcomponent

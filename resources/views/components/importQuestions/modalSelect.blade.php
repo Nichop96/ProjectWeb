@@ -1,4 +1,4 @@
-<button class="btn btn-primary" data-toggle="modal" data-target="#select{{ $type}}" id="fetchall">
+<button class="btn btn-primary mt-3" data-toggle="modal" data-target="#select{{ $type}}" id="fetchall">
     Import questions
 </button>
 <div class="modal fade" id="select{{ $type}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

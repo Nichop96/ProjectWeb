@@ -22,6 +22,8 @@ Survey edit
                                 <strong>{{ $errors->first('name') }}</strong>
                             </span>
                             @endif
+                            <span id="nameNull" class="text-danger">                                
+                            </span>
                             <br>
                         </div>
                         <div class="form-group">
@@ -126,7 +128,7 @@ Survey edit
                                 <!-- Repeater Heading -->
                                 <div class="repeater-heading">
                                     <h5 class="pull-left">Questions</h5>
-                                    <button class="btn btn-primary repeater-add-btn">
+                                    <button class="btn btn-primary repeater-add-btn mt-3 mr-3">
                                         Add question
                                     </button>
                                     @component('components.importQuestions.modalSelect')
@@ -429,6 +431,11 @@ Survey edit
         document.getElementById("aux_correctans").value = correctans;
 
         // module attributes
+        var name = document.getElementById("aux_name").value;
+        if(name ==="") {
+            $('#aux_name').addClass("is-invalid");
+            $('#nameNull').html('A survey must have a name');
+        }
         document.getElementById("name").value = document.getElementById("aux_name").value;
         document.getElementById("description").value = document.getElementById("aux_description").value;
       

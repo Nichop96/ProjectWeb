@@ -17,7 +17,9 @@ Edit module
                         <div  class="form-group">
                             <h5 for="aux_name" > Name </h5>
                             <input id="aux_name" type="text" class="form-control form-control-lg {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('aux_name', $module->name ? : '' ) }}" name="aux_name" placeholder="{{$module->name}} ">
-
+                            <span id="nameNull" class="text-danger">                                
+                            </span>
+                           
                             @if ($errors->has('name'))                            
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -133,7 +135,7 @@ Edit module
                                 <div class="repeater-heading">
                                     <h5 class="pull-left">Questions</h5>
                                     <br>
-                                    <button class="btn btn-primary repeater-add-btn mr-5">
+                                    <button class="btn btn-primary repeater-add-btn mt-3 mr-3">
                                         Add question
                                     </button>
                                     @component('components.importQuestions.modalSelect')
@@ -369,6 +371,11 @@ Edit module
         document.getElementById("aux_maxmark").value = maxMark;
         document.getElementById("aux_correctans").value = correctans;
         // module attributes
+        var name = document.getElementById("aux_name").value;
+        if(name ==="") {
+            $('#aux_name').addClass("is-invalid");
+            $('#nameNull').html('A module must have a name');
+        }
         document.getElementById("name").value = document.getElementById("aux_name").value;
         document.getElementById("description").value = document.getElementById("aux_description").value;
 
