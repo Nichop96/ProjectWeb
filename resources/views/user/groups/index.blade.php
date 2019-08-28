@@ -48,14 +48,16 @@ Groups
                                 <td>{{ $group->name }}</td>
                                 <td>{{ $group->description }}</td>
                                 <td>{{ $group->count }} </td>
-                                <td>                                  
+                                <td>        
+                                    @if(!isset($group->hidden) && !$group->hidden)
                                     <form action="{{route('user.groups.destroy', $group->id)}}" id='form-delete{{$group->id}}' method="POST" class="float-left">
                                         @csrf
                                         {{method_field('DELETE')}}
                                         <button type="button" onclick='conferma({{$group->id}})' class="btn btn-outline-danger btn-sm">
                                             Unsign
                                         </button>           
-                                    </form>                                   
+                                    </form> 
+                                    @endif
                                 </td>
                             </tr>    
                             @endforeach

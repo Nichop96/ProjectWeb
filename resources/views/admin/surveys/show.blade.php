@@ -270,9 +270,11 @@ Survey show
                                             <td>{{ $group->description }}</td>
                                             <td>{{ $group->count }}</td>
                                             <td> 
+                                                @if(!isset($group->hidden) && !$group->hidden)
                                                 <a href="{{route('admin.groups.edit',$group->id) }}" class="float-left">
                                                     <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
                                                 </a>
+                                                @endif
                                             </td>
                                         </tr>    
                                         @endforeach

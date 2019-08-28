@@ -20,6 +20,9 @@ class GroupController extends Controller {
 
         $groups = User::find(Auth::id())->groups()->paginate(5);
         foreach ($groups as $group) {
+            if($group->id == 1) {
+                $group->hidden = true;
+            }
             $group->count = $group->users()->count();
         }
 

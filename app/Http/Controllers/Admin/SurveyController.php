@@ -441,6 +441,9 @@ class SurveyController extends Controller {
         $groups = $survey->groups;
         foreach($groups as $group)
         {
+            if($group->id == 1) {
+                $group->hidden = true;
+            }
             $group->count = $group->users()->count();
         }
 

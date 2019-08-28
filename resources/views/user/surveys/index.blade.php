@@ -37,6 +37,9 @@ Surveys
             @endcomponent 
             @endforeach        
     </div>
+    @else
+    <h4 class="mb-md-0 text-success">There are no new available surveys  </h4>
+    <br>
     @endif
     @if(sizeof($completedSurveys))
     <div class="row">
@@ -68,6 +71,8 @@ Surveys
         @endcomponent           
         @endforeach
     </div>
+     @else
+    <h4 class="mb-md-0 text-success">There are no completed surveys  </h4>
     @endif
 </div> 
 @endsection

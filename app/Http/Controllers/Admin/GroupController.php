@@ -17,7 +17,7 @@ class GroupController extends Controller {
     public function index() {
 
         //$groups = Group::all();
-        $groups = Group::paginate(10);
+        $groups = Group::where('id','!=',1)->paginate(10);
 
         foreach ($groups as $group) {
             $group->count = $group->users()->count();
