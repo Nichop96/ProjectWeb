@@ -11,7 +11,7 @@ User edit
             <div class="card border-primary">
                 <div id="card-body" class="card-body">
                     <br>
-                    <h2 class="text-primary">Update settings</h2>
+                    <h2 class="text-primary">{{__('indexes.update_sett')}}</h2>
                     <br>
                     <form id="formModule" class="pt-3" action="{{ route('user.user.update', ['user' => $user->id])}}" method="POST">
                         @csrf
@@ -20,7 +20,7 @@ User edit
                         <div id="form">
                             <div class="form-group">
                                <br>
-                                <h4 for='name'>First name</h4>
+                                <h4 for='name'>{{__('indexes.first')}}</h4>
                                  <br>
                                 <input id="name" type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name', $user->name ?: '' ) }}" name="name" placeholder="{{$user->name}}" required>
                                 @if ($errors->has('name'))
@@ -32,7 +32,7 @@ User edit
                             </div>
                             <div class='form-group'>
                                 <br>
-                                <h4 for='surname'>Surname</h4>
+                                <h4 for='surname'>{{__('indexes.sur')}}</h4>
                                  <br>
                                 <input id="surname" type="text" class="form-control form-control-lg {{ $errors->has('surname') ? ' is-invalid' : '' }}" value="{{ old('surname', $user->surname ?: '' ) }}" name="surname" placeholder="{{$user->surname}}" required>
                                 @if ($errors->has('surname'))
@@ -44,7 +44,7 @@ User edit
 
                             <div class='form-group'>
                                 <br>
-                                <h4 for='username'>Username</h4>
+                                <h4 for='username'>{{__('indexes.usern')}}</h4>
                                  <br>
                                 <input id="username" type="text" class="form-control form-control-lg {{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username', $user->username ?: '' ) }}" name="username" placeholder="{{$user->username}}" required>
                                 @if ($errors->has('username'))
@@ -70,12 +70,12 @@ User edit
                                 <div class="card-body">
                                     <div class="row">
                                         <label class="form-check-label">    
-                                            <input  id="keep" type="radio" class="form-check-input" name="changePassword" value="keep" required checked><p>Keep old password</p>
+                                            <input  id="keep" type="radio" class="form-check-input" name="changePassword" value="keep" required checked><p>{{__('indexes.keep')}}</p>
                                         </label>
                                     </div>
                                     <div class="row">
                                         <label class="form-check-label">    
-                                            <input id="change" type="radio" class="form-check-input" name="changePassword" value="change" required><p>Change password</p>   
+                                            <input id="change" type="radio" class="form-check-input" name="changePassword" value="change" required><p>{{__('indexes.change')}}</p>   
                                         </label>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@ User edit
                                 <div class="col">
                                     <div class="form-group">
                                         <br>
-                                        <h4 for='date'>Birth date</h4>
+                                        <h4 for='date'>{{__('indexes.bday')}}</h4>
                                          <br>
                                         <input type='date' class="form-control form-control-lg datepicker {{ $errors->has('birth_date') ? ' is-invalid' : '' }}" id="date_birth" name="birth_date" value="{{ old('birth_date', $user->birth_date) }}" required>
 
@@ -132,11 +132,11 @@ User edit
                             </div>
 
                             <div class='row'>
-                                <div class='col'><input type='submit'   class='btn btn-outline-primary btn-lg btn-block mb-3 ' value='Submit'></div>
+                                <div class='col'><input type='submit'   class='btn btn-outline-primary btn-lg btn-block mb-3 ' value='{{__("indexes.submit")}}'></div>
                                 <div class='col'><input type='reset' onclick ='settaDopo()' class='btn btn-outline-warning btn-lg btn-block mb-3 ' value='Reset'></div>
                                 <div class='col'>
                                     <a href="{{route('user.index')}}">
-                                        <input type='button' onclick="" class='btn btn-outline-danger btn-lg btn-block ' value='Cancel'>
+                                        <input type='button' onclick="" class='btn btn-outline-danger btn-lg btn-block ' value='{{__("indexes.cancel")}}'>
                                     </a>
                                 </div>
                             </div>

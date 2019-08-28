@@ -12,10 +12,10 @@ Survey review
                 <div class="card-body dashboard-tabs">
                     <ul class="nav nav-tabs px-4" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                            <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{__('indexes.overview')}}</a>
                         </li>                       
                         <li class="nav-item">
-                            <a class="nav-link" id="global-tab" data-toggle="tab" href="#global" role="tab" aria-controls="global" aria-selected="false">Global</a>
+                            <a class="nav-link" id="global-tab" data-toggle="tab" href="#global" role="tab" aria-controls="global" aria-selected="false">{{__('indexes.global')}}</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -99,7 +99,7 @@ Survey review
                                 <div class="col-lg-6 grid-margin stretch-card">
                                     <div class="card border-primary">
                                         <div class="card-body">
-                                            <h5>Correct answers:</h5>
+                                            <h5>{{__('indexes.correct_answers')}}</h5>
                                             <canvas id="correctAnswers"></canvas>
                                         </div>
                                     </div>
@@ -108,7 +108,7 @@ Survey review
                                     <div class="card border-primary">
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                Total score
+                                                {{__('indexes.total_score')}}
                                                  <a data-toggle="modal" data-target="#ModalScore">
                                                     <i class="mdi mdi-comment-question-outline"></i>
                                                 </a>

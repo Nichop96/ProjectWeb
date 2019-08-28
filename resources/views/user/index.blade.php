@@ -3,9 +3,9 @@
 @section('content')
 <div class="content-wrapper">
     <div class="mr-md-3 mr-xl-5">
-        <h1 class=" text-primary">Welcome to your dashboard</h1>
+        <h1 class=" text-primary">{{__('indexes.welcome')}}</h1>
         <br>
-        <h3 class="mb-md-0">Some useful analytics:</h3>
+        <h3 class="mb-md-0">{{__('indexes.analytics')}}</h3>
         <br>
     </div>
     <div class="row align-items-center justify-content-center">
@@ -17,28 +17,28 @@
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-comment-question-outline mr-3 icon-lg text-primary"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">New Surveys</small>
+                                    <small class="mb-1 text-muted">{{__('indexes.new_sur')}}</small>
                                     <h5 class="mr-2 mb-0">{{$surveys_count}}</h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-comment-check-outline mr-3 icon-lg text-primary"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Completed surveys</small>
+                                    <small class="mb-1 text-muted">{{__('indexes.completed_surveys')}}</small>
                                     <h5 class="mr-2 mb-0">{{$completedSurveys_count}}</h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-bookmark-check mr-3 icon-lg text-success"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Total correct answers</small>
+                                    <small class="mb-1 text-muted">{{__('indexes.tot_correct')}}</small>
                                     <h5 class="mr-2 mb-0">{{$correctAnswers}}</h5>
                                 </div>
                             </div>
                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-bookmark-remove mr-3 icon-lg text-danger"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Total wrong answers</small>
+                                    <small class="mb-1 text-muted">{{__('indexes.total_w')}}</small>
                                     <h5 class="mr-2 mb-0">{{$wrongAnswers}}</h5>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card border-primary mb-3">
                 <div class="card-body">
-                    <h4>Total correct answers:</h4>
+                    <h4>{{__('indexes.tot_correct')}}</h4>
                     <canvas id="correctAnswers"></canvas>
                 </div>
             </div>
@@ -61,7 +61,7 @@
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card border-primary mb-3">
                 <div class="card-body">
-                    <h4>Completed survey for each category:</h4>
+                    <h4>{{__('indexes.survey_each')}}</h4>
                     <canvas id="surveys_category"></canvas>
                 </div>
             </div>
@@ -69,7 +69,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card border-primary mb-3">
               <div class="card-body">
-                <h4>Scores in the completed surveys:</h4>
+                <h4>{{__('indexes.scores_compl')}}</h4>
                 <canvas id="areaChart"></canvas>
               </div>
             </div>
@@ -103,8 +103,8 @@
             }],
                     // These labels appear in the legend and in the tooltips when hovering different arcs
                     labels: [
-                            'Correct',
-                            'Wrong',
+                            '{{__("indexes.correct")}}',
+                            '{{__("indexes.wrong")}}',
                     ]
             };
             var doughnutPieOptions = {
@@ -204,7 +204,7 @@
     var areaData = {
     labels: [@foreach ($completedSurveys as $completedSurvey) '{{$completedSurvey->name}}' , @endforeach],
     datasets: [{
-      label: 'score of the survey',
+      label: '{{__("indexes.score_survey")}}',
       data: [@foreach ($completedSurveys as $completedSurvey) {{ number_format($completedSurvey->score,2)}} , @endforeach],
       backgroundColor: [        
         'rgba(54, 162, 235, 0.2)',        

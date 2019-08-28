@@ -1,5 +1,32 @@
 <?php
 
 return [
-
+   'sens'=>'Analisi sensoriale',
+    'funnel'=>'Un funnel è un esperienza completa dove i tuoi sensi vengono stimulati e dovrai dare una valutazione dell\'intensità della stimolazione. Proviamolo!',
+    'continue'=>'Continua',
+    'complete'=>'Sondaggi completati',
+    'get_sta'=>'Inizia',
+    'What'=>'Che tipo di stimolo?',
+    'The_sens'=>'L\'analisi sensorial è un processo molto complicato che coinvolge uno o più sensi. L\'idea è di stimolare uno di questi sensi tramite suoni, odori e sapori, per valutare la nostra sensibilità all\'esperienza.',
+    'taste'=>'Sapore',
+    'tastemi'=>'E\' il senso che viene stimolato quando mangiamo ed è il più facile da valutare. Assagiamolo!',
+    'touch'=>'Tatto ',
+    'touchmi'=>'E\' il senso di quando tocchiamo qualcosa ed il meno intenso tra tutti. Tocchiamolo!',
+    'hearing'=>' Udito ',
+    'hearingmi'=>'E\' il senso ti quello che ascoltiamo ed è il più soddisfacente. Ascoltiamolo!',
+    'smell'=>'Olfatto',
+    'smellmi'=>'E\' il senso di quando annusiamo qualcosa ed è il più entusiasmante di tutti. Annusiamolo!',
+    'experience'=>'Le esperienze che proponiamo sono il centro di tutto ciò che facciamo.',
+    'proto'=>'Le nostre esperienze prototipo sono il risultato di un intensa ricerca attraverso varie esperienze sensoriali cercando quelle più intense. Potrai creare e condividere esperienze sensoriali personali, siamo sempre alla ricerca di nuove esperienze',
+    'modern'=>'Moderne tecnologie',
+    'world'=>'Esperienza mondiale',
+    'tester'=>'Tester esperti',
+    'hours'=>'Supporto 24H',
+    'about'=>'Chi siamo',
+    'group'=>'Siamo tre giovani studenti di ingegneria informatica presso l\'università degli studi di Brescia (Italia). Se sei una bella ragazza e vuoi contattarci, per favore fallo qui sotto.',
+    'more'=>'Altro',
+    'docto'=>'Esperti dottori',
+    'degree'=>'Abbiamo tutti una laurea quindi tecnicamente siamo dottori',
+    'update'=>'News dal blog',
+    'these'=>'Prodotti testati',  
 ];

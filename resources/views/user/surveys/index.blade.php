@@ -9,10 +9,10 @@ Surveys
 
 <div class="content-wrapper">
     <div class="mr-md-3 mr-xl-5">
-        <h1 class=" text-primary">Surveys</h1>
+        <h1 class=" text-primary">{{__('indexes.surveys')}}</h1>
         <br>
         @if(sizeof($surveys))
-        <h4 class="mb-md-0">New surveys: </h4>
+        <h4 class="mb-md-0">{{__('indexes.new_sur')}}</h4>
         <br>
     </div>
     <div class="row">
@@ -31,20 +31,20 @@ Surveys
 
                 @slot('buttons') 
                         <a href="{{ url('user/surveys/' .$survey->id . '/create') }}" class="dropdown-item">
-                            <button type="button" class="btn btn-outline-primary btn-sm col-12">Complete</button>
+                            <button type="button" class="btn btn-outline-primary btn-sm col-12">{{__('indexes.complete')}}</button>
                         </a>                     
                 @endslot
             @endcomponent 
             @endforeach        
     </div>
     @else
-    <h4 class="mb-md-0 text-success">There are no new available surveys  </h4>
+    <h4 class="mb-md-0 text-success">{{__('indexes.no_surveys')}}</h4>
     <br>
     @endif
     @if(sizeof($completedSurveys))
     <div class="row">
         <div class='container-fluid'>
-            <h4>Completed surveys:</h4>
+            <h4>{{__('indexes.completed_surveys')}}:</h4>
             <br>
         </div>
         @foreach($completedSurveys  as $completedSurvey)
@@ -65,14 +65,14 @@ Surveys
             
             @slot('buttons') 
                     <a href="{{ url('user/surveys/' .$completedSurvey->completed_id . '/show') }}" class="dropdown-item">
-                        <button type="button" class="btn btn-outline-success btn-sm col-12">Show</button>
+                        <button type="button" class="btn btn-outline-success btn-sm col-12">{{__('indexes.show')}}</button>
                     </a>                     
             @endslot
         @endcomponent           
         @endforeach
     </div>
      @else
-    <h4 class="mb-md-0 text-success">There are no completed surveys  </h4>
+    <h4 class="mb-md-0 text-success">{{__('indexes.no_complet')}}</h4>
     @endif
 </div> 
 @endsection

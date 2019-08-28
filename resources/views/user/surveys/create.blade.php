@@ -67,7 +67,7 @@ Survey
                         </div>                                   
                         @endforeach
                         <button class="btn btn-outline-primary" type="submit">
-                            Submit
+                            {{__('indexes.submit')}}
                         </button>
                     </form> 
                 </div>                

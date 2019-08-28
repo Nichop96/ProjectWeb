@@ -7,9 +7,9 @@ Groups
 
 <div class="content-wrapper">
     <div class="mr-md-3 mr-xl-5">
-        <h1 class=" text-primary">Groups</h1>
+        <h1 class=" text-primary">{{__('indexes.groups')}}</h1>
         <br>
-        <h3 class="mb-md-0">Manage your groups: </h3>
+        <h3 class="mb-md-0">{{__('indexes.manage_g')}}</h3>
         <br>
         <div class="card border-primary mb-3">
             <div class="float-left">
@@ -36,10 +36,10 @@ Groups
                     <table class="table" id='table'>
                         <thead>
                             <tr>
-                                <th scope="col" class="text-primary">Name</th>  
-                                <th scope="col" class="text-primary">Description</th> 
-                                <th scope="col" class="text-primary">Number of users</th>
-                                <th scope="col" class="text-primary">Actions</th>   
+                                <th scope="col" class="text-primary">{{__('indexes.name')}}</th>  
+                                <th scope="col" class="text-primary">{{__('indexes.descr')}}</th> 
+                                <th scope="col" class="text-primary">{{__('indexes.numb_u')}}</th>
+                                <th scope="col" class="text-primary">{{__('indexes.action')}}</th>   
                             </tr>
                         </thead>
                         <tbody>
@@ -54,7 +54,7 @@ Groups
                                         @csrf
                                         {{method_field('DELETE')}}
                                         <button type="button" onclick='conferma({{$group->id}})' class="btn btn-outline-danger btn-sm">
-                                            Unsign
+                                            {{__('indexes.unsign')}}
                                         </button>           
                                     </form> 
                                     @endif

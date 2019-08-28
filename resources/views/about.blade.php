@@ -62,6 +62,8 @@
                                     @endif
                                     @endauth
                                     @endif
+                                    <li><a href="{{ url('locale/en') }}" ><p class=" ml-2 mr-2 mt-2 text-info">ENG</p></a></li>
+                                    <li><a href="{{ url('locale/it') }}" ><p class="mr-2 mt-2 text-info">ITA</p></a></li>
                                 </ul>
                             </div>
                         </nav>

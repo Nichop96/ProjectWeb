@@ -65,8 +65,8 @@
 
                                     @endif
 
-                                    <li><a href="{{ url('locale/en') }}" ><img src="{{asset('/images/en.png')}}" width="150" class="ml-3"></a></li>
-                                    <li><a href="{{ url('locale/it') }}" ><img src="{{asset('/images/it.png')}}" width="120" class="ml-3"></a></li>
+                                    <li><a href="{{ url('locale/en') }}" ><p class="mr-2 mt-2 text-info">ENG</p></a></li>
+                                    <li><a href="{{ url('locale/it') }}" ><p class="mr-2 mt-2 text-info">ITA</p></a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -88,23 +88,21 @@
 
                     <div class="col-md-6 col-lg-5">
                         <div class="our_ability_member_text">
-                            <h1>{{__('auth.failed')}}</h1>
-                            <p>A funnel is a complete experience in which your 
-                                senses get stimulated and you have to give a valutation how 
-                                intense your stimulation is. Let's taste it! 
+                            <h1>{{__('public.sens')}}</h1>
+                            <p>{{__('public.funnel')}}
                             </p>
 
                             @if (Route::has('login'))
 
                             @auth
                             @hasrole('admin')
-                            <a class="btn_2" href="{{ route('admin.index') }}">Continue</a>
+                            <a class="btn_2" href="{{ route('admin.index') }}">{{__('public.continue')}}</a>
                             @endhasrole
                             @hasrole('user')
-                            <a class="btn_2" href="{{ route('user.index') }}">Complete surveys</a>
+                            <a class="btn_2" href="{{ route('user.index') }}">{{__('public.complete')}}</a>
                             @endhasrole                        
                             @else
-                            <a class="btn_2" href="{{ route('register') }}">Get started</a>
+                            <a class="btn_2" href="{{ route('register') }}">{{__('public.get_sta')}}</a>
                             @endauth
 
                             @endif
@@ -127,12 +125,9 @@
                 <div class="row">
                     <div class="col-xl-4 col-md-4 align-self-center">
                         <div class="single_feature_text ">
-                            <h2>What kind of 
-                                Stimulation?
+                            <h2>{{__('public.What')}}
                             </h2>
-                            <p>The Sensorial Analysis is a very complecated process that involves
-                                one or more senses. The idea is to stimulate one of these senses throught
-                                sounds, smells and tastes to valuate our own intensity of the experience.</p>
+                            <p>{{__('public.The_sens')}}</p>
 
                         </div>
                     </div>
@@ -144,9 +139,8 @@
                                         <div class="single_feature_part">
                                             <span class="single_feature_icon"><img src="{{asset('public-part/img/icon/taste.svg')}}"
                                                                                    alt=""></span>
-                                            <h4>Taste</h4>
-                                            <p>Is the sense of what we eat and is the simplier to valuate too. 
-                                                Let's Taste!</p>
+                                            <h4>{{__('public.taste')}}</h4>
+                                            <p>{{__('public.tastemi')}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -155,9 +149,8 @@
                                         <div class="single_feature_part">
                                             <span class="single_feature_icon"><img src="{{asset('public-part/img/icon/touch.svg')}}"
                                                                                    alt=""></span>
-                                            <h4>Touch</h4>
-                                            <p>Is the sense of what we touch and is the least intense of them.
-                                                Let's Touch!</p>
+                                            <h4>{{__('public.touch')}}</h4>
+                                            <p>{{__('public.touchmi')}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -166,9 +159,8 @@
                                         <div class="single_feature_part">
                                             <span class="single_feature_icon"><img src="{{asset('public-part/img/icon/hear.svg')}}"
                                                                                    alt=""></span>
-                                            <h4>Hearing</h4>
-                                            <p>Is the sense of what we hear and is the most satysfactory one.
-                                                Let's Hear!</p>
+                                            <h4>{{__('public.hearing')}}</h4>
+                                            <p>{{__('public.hearingmi')}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -177,9 +169,8 @@
                                         <div class="single_feature_part">
                                             <span class="single_feature_icon"><img src="{{asset('public-part/img/icon/smell.svg')}}"
                                                                                    alt=""></span>
-                                            <h4>Smell</h4>
-                                            <p>Is the sense of what we smell and is the most entusiastic of all.
-                                                Let's Smell!</p>
+                                            <h4>{{__('public.smell')}}</h4>
+                                            <p>{{__('public.smellmi')}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -202,18 +193,13 @@
                     </div>
                     <div class="col-md-6 col-lg-5">
                         <div class="our_ability_member_text">
-                            <h2>The experience that
-                                we propose is the center of
-                                everything we do</h2>
-                            <p>Our prototipe experience are results of an intense research
-                                throught various sensorial experience looking for the most 
-                                intense one. You can create and share your personal sensorial
-                                analysis too, we are always seeking for new experience.</p>
+                            <h2>{{__('public.experience')}}</h2>
+                            <p>{{__('public.proto')}}</p>
                             <ul>
-                                <li><span class="ti-mouse"></span>Modern Technology</li>
-                                <li><span class="ti-gallery"></span>Worldclass Experience</li>
-                                <li><span class="ti-anchor"></span>Experienced Tester</li>
-                                <li><span class="ti-headphone-alt"></span>24 Hours Support</li>
+                                <li><span class="ti-mouse"></span>{{__('public.modern')}}</li>
+                                <li><span class="ti-gallery"></span>{{__('public.world')}}</li>
+                                <li><span class="ti-anchor"></span>{{__('public.tester')}}</li>
+                                <li><span class="ti-headphone-alt"></span>{{__('public.hours')}}</li>
                             </ul>
                         </div>
                     </div>
@@ -229,12 +215,10 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-5 col-lg-5">
                         <div class="our_ability_member_text">
-                            <h2>About us</h2>
-                            <p>We are a group of three young students of Computer Engineering
-                                at Università degli Studi di Brescia in Italy. If you are a beautiful
-                                girl and you want to contact, please do it right below.
+                            <h2>{{__('public.about')}}</h2>
+                            <p>{{__('public.group')}}
                             </p>
-                            <a href="{{route('about')}}" class="btn_2">read more</a>
+                            <a href="{{route('about')}}" class="btn_2">{{__('public.more')}}</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6">
@@ -256,8 +240,8 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-8">
                         <div class="section_tittle text-center">
-                            <h2> Experienced Doctors</h2>
-                            <p>We all have a degree so technicaly we are doctors.</p>
+                            <h2>{{__('public.docto')}}</h2>
+                            <p>{{__('public.degree')}}</p>
                         </div>
                     </div>
                 </div>
@@ -334,8 +318,8 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-8">
                         <div class="section_tittle text-center">
-                            <h2>Update From Blog</h2>
-                            <p>This are some goods tested in our surveys.</p>
+                            <h2>{{__('public.update')}}</h2>
+                            <p>{{__('public.these')}}</p>
                         </div>
                     </div>
                 </div>
