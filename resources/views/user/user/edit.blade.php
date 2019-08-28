@@ -58,12 +58,13 @@ User edit
                                 <br>
                                 <h4 for='email'>E-mail</h4>
                                  <br>
-                                <input id="email" type="text" class="form-control form-control-lg {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email', $user->email ?: '' ) }}" name="email" placeholder="{{$user->email}}" required>
+                                <input id="email" type="email" class="form-control form-control-lg {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email', $user->email ?: '' ) }}" name="email" placeholder="{{$user->email}}" required>
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                                 @endif
+                                <span id="emailInvalid" class="text-danger"></span>
                             </div>
                             <div class='form-group'>
                                 <div class="card-body">
@@ -125,6 +126,7 @@ User edit
                                             <strong>{{ $errors->first('birth_date') }}</strong>
                                         </span>
                                         @endif
+                                        <span id="dateInvalid" class="text-danger"></span>
                                     </div>
                                 </div>                                
                             </div>
@@ -156,6 +158,39 @@ User edit
             $("#password").show();
         });
     });
+    
+    function checkDate() {
+    $('#dateInvalid').html('');
+    var dateControl = new Date($('#date_birth').val());
+    var data = new Date();
+    var currentYear = data.getFullYear();
+    var year = dateControl.getFullYear();
+
+    if ((currentYear - year) < 15) {
+        $('#dateInvalid').html('You have to be 15 or more.');
+    }
+    return ((currentYear - year) >= 15);
+}
+ function validateEmail() {
+     $('#emailInvalid').html('');
+    var email=$('#email').val();
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    if( !emailReg.test( email ) ) {
+        $('#emailInvalid').html('Email format is incorrect');
+        return false;
+    } else {
+        return true;
+    }
+}
+$("#formModule").submit(function (event) {
+    
+    if (checkDate() & validateEmail()) {
+        
+        return;
+    }
+    event.preventDefault();
+});
+
 </script>
 @endsection
 

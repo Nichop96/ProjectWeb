@@ -26,36 +26,43 @@ Survey
                                 <h5>{{ $question->name }}</h5>
                             </div>
                             <div class="card-body">                                                 
-                                <div class="row"> 
-                                    <div class="col-1 form-check"></div>
-                                    @for ($j = 1; $j <= $question->max_rate; $j++)
-                                    <div class="col-2">
-                                        {{ $j }}
+                                    @php
+                                     $max = $question->max_rate;
+                                     @endphp
+                                    @for ($t = 0; $t < $question->max_rate; $t=$t+5)                                 
+                                    @php $tmp = min(5,($max)); @endphp
+                                    <div class="row"> 
+                                        <div class="col-1 form-check"></div>
+                                        @for ($j = 1; $j <= $tmp; $j++)
+                                        <div class="col-2">                                           
+                                            {{$j +$t}}                                            
+                                        </div>
+                                        @endfor                                
                                     </div>
-                                    @endfor                                
-                                </div>
-                                <div class="row">   
-                                    <div class="col-1 form-check"></div>
-                                    @for ($j = 1; $j <= $question->max_rate; $j++)
-                                    <div class="col-2 form-check">
-                                        <label class="form-check-label">                                       
-                                            <input type="radio" class="form-check-input" name="answer{{ $loop->iteration }}" value="{{ $j }}" required>                                           
-                                        </label> 
+                                    <div class="row">   
+                                        <div class="col-1 form-check"></div>
+                                        @for ($j = 1; $j <= $tmp; $j++)
+                                        <div class="col-2 form-check">
+                                            <label class="form-check-label">                                       
+                                                <input type="radio" class="form-check-input" name="answer{{ $loop->iteration }}" value="{{ ($j +$t) }}" required>                                           
+                                            </label> 
+                                        </div>
+                                        @endfor
                                     </div>
+                                    @php $max=$max-5; @endphp
                                     @endfor
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 form-check">
-                                        <label class="form-check-label"> 
-                                            <p id="label_left_show" class='float-left'>{{ $question->label_left }}</p>
-                                        </label>
-                                    </div>
-                                    <div class="col-6 form-check">
-                                        <label class="form-check-label"> 
-                                            <p id="label_left_show" class='float-right'>{{ $question->label_right }}</p>
-                                        </label>
-                                    </div>
-                                </div>                                
+                                    <div class="row">
+                                        <div class="col-6 form-check">
+                                            <label class="form-check-label"> 
+                                                <p id="label_left_show" class='float-left'>{{ $question->label_left }}</p>
+                                            </label>
+                                        </div>
+                                        <div class="col-6 form-check">
+                                            <label class="form-check-label"> 
+                                                <p id="label_left_show" class='float-right'>{{ $question->label_right }}</p>
+                                            </label>
+                                        </div>
+                                    </div>                               
                             </div>
                         </div>                                   
                         @endforeach

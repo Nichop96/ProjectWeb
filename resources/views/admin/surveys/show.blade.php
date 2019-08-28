@@ -15,13 +15,16 @@ Survey show
                             <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="statistics-tab" data-toggle="tab" href="#statistics" role="tab" aria-controls="statistics" aria-selected="false">Statistics</a>
+                            <a class="nav-link" id="statistics-tab" data-toggle="tab" href="#statistics" role="tab" aria-controls="statistics" aria-selected="false">Questions</a>
                         </li>                          
                         <li class="nav-item">
-                            <a class="nav-link" id="admin-global-tab" data-toggle="tab" href="#admin-global" role="tab" aria-controls="admin-global" aria-selected="false">Admin Global</a>
+                            <a class="nav-link" id="admin-global-tab" data-toggle="tab" href="#admin-global" role="tab" aria-controls="admin-global" aria-selected="false">Statistics</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="individual-global-tab" data-toggle="tab" href="#individual" role="tab" aria-controls="individual" aria-selected="false">Individual surveys</a>
+                            <a class="nav-link" id="individual-global-tab" data-toggle="tab" href="#individual" role="tab" aria-controls="individual" aria-selected="false">Surveys</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Groups</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -36,39 +39,46 @@ Survey show
                             <input type="hidden" name='id{{ $loop->iteration }}' value='{{$question->answer_id}}'>
                             <div class="card border-primary mb-3">
                                 <div class="card-header">{{ $question->name }}</div>
-                                <div class="card-body">                                                 
+                                <div class="card-body"> 
+                                    @php
+                                     $max = $question->max_rate;
+                                     @endphp
+                                    @for ($t = 0; $t < $question->max_rate; $t=$t+5)                                 
+                                    @php $tmp = min(5,($max)); @endphp
                                     <div class="row"> 
                                         <div class="col-1 form-check"></div>
-                                        @for ($j = 1; $j <= $question->max_rate; $j++)
+                                        @for ($j = 1; $j <= $tmp; $j++)
                                         <div class="col-2">
-                                            {{ $j }}
+                                            {{ $j +$t}}
                                         </div>
                                         @endfor                                
                                     </div>
                                     <div class="row">   
                                         <div class="col-1 form-check"></div>
-                                        @for ($j = 1; $j <= $question->max_rate; $j++)
-                                        @if($j== $question->correct_answer)                                        
+                                        @for ($j = 1; $j <= $tmp; $j++)
+                                        @if( ($j +$t)== $question->correct_answer)                                        
                                         <div class="col-2 form-check form-check-success">
                                             <label class="form-check-label">                                    
-                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{$j}}" value="{{ $j }}" checked>    
+                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{ $j +$t}}" value="{{ $j +$t}}" checked>    
                                             </label> 
                                         </div>                                      
-                                        @elseif($j== $question->value)
+                                        @elseif( ($j +$t)== $question->value)
                                         <div class="col-2 form-check">
                                             <label class="form-check-label">                                
-                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{$j}}" value="{{ $j }}" checked>    
+                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{ $j +$t}}" value="{{ $j +$t}}" checked>    
                                             </label> 
                                         </div>
                                         @else
                                         <div class="col-2 form-check">
                                             <label class="form-check-label">                                
-                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{$j}}" value="{{ $j }}" disabled>    
+                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{$j}}" value="{{ $j +$t}}" disabled>    
                                             </label> 
                                         </div>
                                         @endif
                                         @endfor
                                     </div>
+                                    @php $max=$max-5; @endphp
+                                    @endfor
                                     <div class="row">
                                         <div class="col-6 form-check">
                                             <label class="form-check-label"> 
@@ -227,6 +237,41 @@ Survey show
                                             <td> 
                                                 <a href="{{route('admin.surveys.view',$user->completed_id) }}" class="float-left">
                                                     <button type="button" class="btn btn-outline-primary btn-sm">View Survey</button>
+                                                </a>
+                                            </td>
+                                        </tr>    
+                                        @endforeach
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
+                             <br>
+                            <h2 class="text-primary">{{ $survey->name }}</h2>     
+                            <br>
+                            <h5>{{ $survey->description }}</h5>                 
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table" id='recent_surveys'>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-primary">Name</th>  
+                                            <th class="text-primary">Description</th>
+                                            <th class="text-primary">Number users</th>
+                                            <th class="text-primary">Actions</th>                                        
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($groups as $group)
+                                        <tr>
+                                            <td>{{ $group->name }}</td>
+                                            <td>{{ $group->description }}</td>
+                                            <td>{{ $group->count }}</td>
+                                            <td> 
+                                                <a href="{{route('admin.groups.edit',$group->id) }}" class="float-left">
+                                                    <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
                                                 </a>
                                             </td>
                                         </tr>    

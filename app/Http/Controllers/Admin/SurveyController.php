@@ -437,6 +437,12 @@ class SurveyController extends Controller {
         if ($minimum_score == 10000000000000) {
             $minimum_score = 0;
         }
+        
+        $groups = $survey->groups;
+        foreach($groups as $group)
+        {
+            $group->count = $group->users()->count();
+        }
 
         return view('admin.surveys.show')->with(['completedSurveys' => $completedSurveys,
                     'survey' => $survey,
@@ -447,6 +453,7 @@ class SurveyController extends Controller {
                     'minimum_score' => $minimum_score,
                     'maximum_score' => $maximum_score,
                     'average_score' => $average_score,
+                    'groups' => $groups,
                     'users' => $users
         ]);
     }

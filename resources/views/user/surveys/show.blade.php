@@ -33,39 +33,46 @@ Survey review
                                     <br>
                                     <h5>{{ $question->name }}</h5>
                                 </div>
-                                <div class="card-body">                                                 
+                                <div class="card-body"> 
+                                    @php
+                                     $max = $question->max_rate;
+                                     @endphp
+                                    @for ($t = 0; $t < $question->max_rate; $t=$t+5)                                 
+                                    @php $tmp = min(5,($max)); @endphp
                                     <div class="row"> 
                                         <div class="col-1 form-check"></div>
-                                        @for ($j = 1; $j <= $question->max_rate; $j++)
+                                        @for ($j = 1; $j <= $tmp; $j++)
                                         <div class="col-2">
-                                            {{ $j }}
+                                            {{ $j +$t}}
                                         </div>
                                         @endfor                                
                                     </div>
                                     <div class="row">   
                                         <div class="col-1 form-check"></div>
-                                        @for ($j = 1; $j <= $question->max_rate; $j++)
-                                        @if($j== $question->correct_answer)                                        
+                                        @for ($j = 1; $j <= $tmp; $j++)
+                                        @if(($j +$t)== $question->correct_answer)                                        
                                         <div class="col-2 form-check form-check-success">
                                             <label class="form-check-label">                                    
-                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{$j}}" value="{{ $j }}" checked>    
+                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{($j +$t)}}" value="{{ ($j +$t) }}" checked>    
                                             </label> 
                                         </div>                                      
-                                        @elseif($j== $question->value)
+                                        @elseif(($j +$t)== $question->value)
                                         <div class="col-2 form-check">
                                             <label class="form-check-label">                                
-                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{$j}}" value="{{ $j }}" checked>    
+                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{($j +$t)}}" value="{{ ($j +$t) }}" checked>    
                                             </label> 
                                         </div>
                                         @else
                                         <div class="col-2 form-check">
                                             <label class="form-check-label">                                
-                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{$j}}" value="{{ $j }}" disabled>    
+                                                <input type="radio" class="form-check-input" name="question{{ $loop->iteration }}{{($j +$t)}}" value="{{ ($j +$t) }}" disabled>    
                                             </label> 
                                         </div>
                                         @endif
                                         @endfor
                                     </div>
+                                    @php $max=$max-5; @endphp
+                                    @endfor
                                     <div class="row">
                                         <div class="col-6 form-check">
                                             <label class="form-check-label"> 

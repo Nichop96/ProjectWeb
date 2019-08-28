@@ -52,12 +52,15 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" name="email" placeholder="Email" required>
+                                            <input id="email" type="email" class="form-control form-control-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" name="email" placeholder="Email" required>
                                             @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
                                             </span>
                                             @endif
+                                            <span >
+                                                <strong id="emailInvalid" class="text-danger"></strong>
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <input id="bday" type="date" class="form-control form-control-lg{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" value="{{ old('birth_date') }}" name="birth_date" required>
@@ -134,6 +137,7 @@
 
 <script>
 function checkDate() {
+    $('#dateInvalid').html('');
     var dateControl = new Date($('#bday').val());
     var data = new Date();
     var currentYear = data.getFullYear();
@@ -144,10 +148,21 @@ function checkDate() {
     }
     return ((currentYear - year) >= 15);
 }
-
+ function validateEmail() {
+     $('#emailInvalid').html('');
+    var email=$('#email').val();
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    if( !emailReg.test( email ) ) {
+        $('#emailInvalid').html('Email format is incorrect');
+        return false;
+    } else {
+        return true;
+    }
+}
 $("#myform").submit(function (event) {
-    if (checkDate()) {
-
+    
+    if (checkDate() & validateEmail()) {
+        
         return;
     }
     event.preventDefault();
