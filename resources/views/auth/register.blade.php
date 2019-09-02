@@ -26,7 +26,11 @@
                         <div class="col-lg-4 mx-auto">
                             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                                 <div class="brand-logo">
-                                    <img src="../public-part/img/logos/logo_transparent.png" alt="logo">
+                                    <center> 
+                                        <a href="{{route('index')}}">
+                                            <img src="../public-part/img/logos/logo_transparent.png" alt="logo">
+                                        </a>
+                                    </center>
                                 </div>
                                 <form method="POST" id="myform" action="{{ route('register') }}">
                                     @csrf
