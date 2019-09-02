@@ -2,17 +2,17 @@
 
 return [
     'about' => 'Chi siamo',
-    'we_are' => 'Noi siamo tre studenti di ingegneria informatica all\' Università
+    'we_are' => 'Noi siamo tre studenti di ingegneria informatica presso l\' Università
                                 degli studi di Brescia. Questo è il nostro progetto 
                                del corso di Programmazione Web.',
     'orc_project' => 'Il progetto ORC e\' l\'idea del secolo. Non
-        e\' solamente un Social dove puoi compilari sondaggi ma mette a nudo anche i tuoi sensi.',
+        e\' solamente un Social dove puoi compilare sondaggi ma mette a nudo anche i tuoi sensi.',
     'executive' => 'Esecutivo di ORC',
     'best_group' => 'Questo gruppo e\' il migliore con cui ho lavorato.  
         ORC è un progetto illuminante ed è affascinante
-                                        quante sfumature può avere un\'idea apparentemente così semplice.',
+                                        quante sfumature possa avere un\'idea apparentemente così semplice.',
     'creature' => 'Io personalmento chiamo ORC "la nostra creatura" perchè è una specie di vita. Attraverso gli utenti il ​​social
-                                        diventa davvero vivo e può sorprenderti di quanto sia l\'interazione, su una cosa semplice come un sondaggio.',
+                                        diventa davvero vivo, e può sorprendere quanto impegnata sia l\'interazione, su una degli argomenti cosi semplici come i nostri sondaggi.',
     'who_are_we' => 'Chi siamo?',
     'castel' => 'Vengo da Brozzo e mi piace spendere tempo con il mio cane.',
     'nich' => 'Vengo da Castelcovati e gioco a basket a Rudiano.',

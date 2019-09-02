@@ -23,7 +23,7 @@ return [
  
     //surveys
     
-    'survey_create_des' => 'Usa un vecchio sondaggio o creane uno nuovo:',
+    'survey_create_des' => 'Usa un modulo esistente o crea un nuovo questionario:',
     'new_sur' => 'Nuovi sondaggi',
     'create_new_sur' => 'Crea un nuovo sondaggio',
     'manage_s' => 'Gestione sondaggi:',

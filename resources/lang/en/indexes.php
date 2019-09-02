@@ -15,7 +15,7 @@ return [
     'new_module' => 'New module',
     'new_mod_des' => 'Create a new module',
     //surveys
-    'survey_create_des' => 'Use an old survey ore create a new one:',
+    'survey_create_des' => 'Use an existing module ore create a new survey:',
     'new_sur' => 'New survey',
     'create_new_sur' => 'Create a new survey',
     'manage_s' => 'Manage surveys:',

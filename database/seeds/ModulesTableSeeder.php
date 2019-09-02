@@ -14,45 +14,57 @@ class ModulesTableSeeder extends Seeder {
     public function run() {
         $wineCategory = Category::where('name', 'Wine')->pluck('id')->first();
         $coffeeCategory = Category::where('name', 'Coffee')->pluck('id')->first();
-
+        $perfumeCategory = Category::where('name', 'Perfume')->pluck('id')->first();
+        $musicCategory = Category::where('name', 'Music')->pluck('id')->first();
+        $cheeseCategory = Category::where('name', 'Cheese')->pluck('id')->first();
+        $tissueCategory = Category::where('name', 'Tissue')->pluck('id')->first();
+        
         Module::create([
             'name' => 'Red wine',
-            'description' => 'wine good',
-            'image' => null,
+            'description' => 'Module for Red Wines',
+            
             'category_id' => $wineCategory,
-            'image' => 'default.jpg'
+            'image' => 'rosso.jpg'
         ]);
 
         Module::create([
             'name' => 'White wine',
-            'description' => 'wine good',
-            'image' => null,
+            'description' => 'Module for White Wines',
+            
             'category_id' => $wineCategory,
+            'image' => 'bianco.jpg'
+        ]);
+
+        Module::create([
+            'name' => 'Chanel Perfumes',
+            'description' => 'Module for Chanel Perfumes',
+            
+            'category_id' => $perfumeCategory,
+            'image' => 'chanel_logo.jpg'
+        ]);
+        
+        Module::create([
+            'name' => 'Grana cheese',
+            'description' => 'Module for Grana Cheese',
+            
+            'category_id' => $cheeseCategory,
             'image' => 'default.jpg'
         ]);
 
         Module::create([
-            'name' => 'Spumante',
-            'description' => 'wine with bubbles',
-            'image' => null,
-            'category_id' => $wineCategory,
-            'image' => 'default.jpg'
+            'name' => 'Tissue',
+            'description' => 'Module for Tissue Toucher',
+            
+            'category_id' => $tissueCategory,
+            'image' => 'tessuti.jpg'
         ]);
 
         Module::create([
-            'name' => 'Castelcovati wine',
-            'description' => 'null',
-            'image' => null,
-            'category_id' => $wineCategory,
-            'image' => 'default.jpg'
-        ]);
-
-        Module::create([
-            'name' => 'American coffee',
-            'description' => null,
-            'image' => null,
-            'category_id' => $coffeeCategory,
-            'image' => 'default.jpg'
+            'name' => 'Music',
+            'description' => 'Module for Music Listener',
+            
+            'category_id' => $musicCategory,
+            'image' => 'note.jpg'
         ]);
     }
 

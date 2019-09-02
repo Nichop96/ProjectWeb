@@ -12,100 +12,100 @@ class SurveysTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        $wineCategory = Category::where('name', 'Wine')->pluck('id')->first();
+         $wineCategory = Category::where('name', 'Wine')->pluck('id')->first();
         $coffeeCategory = Category::where('name', 'Coffee')->pluck('id')->first();
         $perfumeCategory = Category::where('name', 'Perfume')->pluck('id')->first();
-        $tissueCategory = Category::where('name', 'Tissue')->pluck('id')->first();
         $musicCategory = Category::where('name', 'Music')->pluck('id')->first();
+        $cheeseCategory = Category::where('name', 'Cheese')->pluck('id')->first();
+        $tissueCategory = Category::where('name', 'Tissue')->pluck('id')->first();
 
         Survey::create([
-            'name' => 'Red wine',
-            'description' => 'wine good',
-            'image' => null,
-            'category_id' => $wineCategory,
-            'fillable' => rand(0, 1),
-            'image' => 'default.jpg'
+            'name' => 'Grana Padano Riserva 24 m',
+            'description' => 'Grana Padano Riserva 24 mesi, session: 22-03-2019',
+            
+            'category_id' => $cheeseCategory,
+            'fillable' => 0,
+            'image' => 'grana.jpg'
         ]);
 
         Survey::create([
-            'name' => 'White wine',
-            'description' => 'wine good',
-            'image' => null,
+            'name' => 'Bassanese: Griffone 0.75',
+            'description' => 'Bassanese: Griffone 0.75, session: 2-06-2019',
+            
             'category_id' => $wineCategory,
-            'fillable' => rand(0, 1),
-            'image' => 'default.jpg'
+            'fillable' => 0,
+            'image' => 'vino.jpg'
         ]);
 
         Survey::create([
-            'name' => 'Spumante',
-            'description' => 'wine with bubbles',
-            'image' => null,
-            'category_id' => $wineCategory,
-            'fillable' => rand(0, 1),
-            'image' => 'default.jpg'
+            'name' => 'Chanel n.5',
+            'description' => 'Chanel n.5',
+            
+            'category_id' => $perfumeCategory,
+            'fillable' => 1,
+            'image' => 'chanel.jpg'
         ]);
 
         Survey::create([
-            'name' => 'Castelcovati wine',
-            'description' => 'null',
-            'image' => null,
+            'name' => 'Moet & Chandon: Imperial Brut 0.75',
+            'description' => 'Moet & Chandon: Imperial Brut 0.75, session: 13-01-2019',
+            
             'category_id' => $wineCategory,
-            'fillable' => rand(0, 1),
-            'image' => 'default.jpg'
+            'fillable' => 0,
+            'image' => 'moet.jpg'
         ]);
 
         Survey::create([
-            'name' => 'American coffee',
-            'description' => null,
-            'image' => null,
+            'name' => 'Lavazza: Crema e Gusto',
+            'description' => 'Lavazza: Crema e Gusto',
+            
             'category_id' => $coffeeCategory,
-            'fillable' => rand(0, 1),
-            'image' => 'default.jpg'
+            'fillable' => 1,
+            'image' => 'lavazza.jpg'
         ]);
 
         Survey::create([
-            'name' => 'Chanel n. 5',
-            'description' => null,
-            'image' => null,
-            'category_id' => $perfumeCategory,
-            'fillable' => rand(0, 1),
-            'image' => 'default.jpg'
+            'name' => 'Medici Ermete: Assolo 0.75',
+            'description' => 'Medici Ermete: Assolo 0.75',
+            
+            'category_id' => $wineCategory,
+            'fillable' => 1,
+            'image' => 'assolo.jpg'
         ]);
 
         Survey::create([
-            'name' => 'One Million',
-            'description' => null,
-            'image' => null,
-            'category_id' => $perfumeCategory,
-            'fillable' => rand(0, 1),
-            'image' => 'default.jpg'
+            'name' => 'Love?',
+            'description' => 'The Simpson: The Yellow Album',
+            
+            'category_id' => $musicCategory,
+            'fillable' => 0,
+            'image' => 'simpson.jpg'
         ]);
 
         Survey::create([
-            'name' => 'Eau de toilette',
-            'description' => null,
-            'image' => null,
-            'category_id' => $perfumeCategory,
-            'fillable' => rand(0, 1),
-            'image' => 'default.jpg'
+            'name' => 'Sisters are doin\' it for themselves',
+            'description' => 'The Simpson: The Yellow Album',
+            
+            'category_id' => $musicCategory,
+            'fillable' => 0,
+            'image' => 'simpson.jpg'
+        ]);
+        
+        Survey::create([
+            'name' => 'Every summer with you',
+            'description' => 'The Simpson: The Yellow Album',
+            
+            'category_id' => $musicCategory,
+            'fillable' => 1,
+            'image' => 'simpson.jpg'
         ]);
 
         Survey::create([
-            'name' => 'Silk',
-            'description' => null,
-            'image' => null,
+            'name' => 'Persian Carpet Tabriz',
+            'description' => 'Persian Carpet Tabriz',
+            
             'category_id' => $tissueCategory,
-            'fillable' => rand(0, 1),
-            'image' => 'default.jpg'
-        ]);
-
-
-        Survey::create([
-            'name' => 'Glass',
-            'description' => null,
-            'image' => null,
-            'category_id' => $tissueCategory,
-            'fillable' => rand(0, 1),
+            'fillable' => 1,
             'image' => 'default.jpg'
         ]);
     }

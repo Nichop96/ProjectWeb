@@ -18,33 +18,48 @@ class GroupsTableSeeder extends Seeder
         ]);
         
         Group::create([
-            'name' => 'Red wine tasters',
+            'name' => 'Chanel n.5 Smellers',
+            'description' => 'Chanel n.5',            
+        ]);
+        
+        Group::create([
+            'name' => 'Red wine Tasters',
             'description' => 'Red wine',            
         ]);
         
         Group::create([
-            'name' => 'White wine tasters',
+            'name' => 'White wine Tasters',
             'description' => 'White wine',            
         ]);
         
         Group::create([
-            'name' => 'Spumante tasters',
-            'description' => 'Spumante',            
+            'name' => 'Bassanese: Griffone',
+            'description' => 'Bassanese: Griffone 0.75 ',            
         ]);
         
         Group::create([
-            'name' => 'Perfume smellers',
-            'description' => 'Perfume',            
+            'name' => 'Moet & Chandon Tasters',
+            'description' => 'Moet & Chandon saga',            
         ]);
         
         Group::create([
-            'name' => 'Coffee tasters',
-            'description' => 'Coffe is black',            
+            'name' => 'Coffee Tasters',
+            'description' => 'Group for all types of coffe',            
         ]);
         
         Group::create([
-            'name' => 'Tissue tasters',
-            'description' => 'Silk is the best tissue',            
+            'name' => 'Grana Padano',
+            'description' => 'Grana Padano Riserva 24 mesi',            
+        ]);
+        
+        Group::create([
+            'name' => 'Tissue Touchers',
+            'description' => 'Group for texture touch',            
+        ]);
+        
+        Group::create([
+            'name' => 'The Simpson: Yellow Album',
+            'description' => 'The Simpson: The Yellow Album',            
         ]);
     }
 }

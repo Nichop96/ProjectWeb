@@ -2,7 +2,7 @@
 
 return [
    'sens'=>'Analisi sensoriale',
-    'funnel'=>'Un funnel è un esperienza completa dove i tuoi sensi vengono stimulati e dovrai dare una valutazione dell\'intensità della stimolazione. Proviamolo!',
+    'funnel'=>'Un funnel è un esperienza completa dove i tuoi sensi vengono stimolati e dovrai dare una valutazione dell\'intensità della stimolazione. Proviamolo!',
     'continue'=>'Continua',
     'complete'=>'Sondaggi completati',
     'get_sta'=>'Inizia',

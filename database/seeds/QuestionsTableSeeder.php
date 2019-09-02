@@ -134,10 +134,42 @@ class QuestionsTableSeeder extends Seeder
             'label_right' => 'High',
             'max_rate' => $maxrate, 
             'correct_answer' => rand(1,$maxrate),
-        ]);   
+        ]);
         
         Question::create([
-            'name' => 'Prettyness',
+            'name' => 'Yellowness',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Frankness',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Harmony',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Intensity',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Quality',
             'label_left' => 'Low',  
             'label_right' => 'High',
             'max_rate' => $maxrate, 
@@ -145,7 +177,127 @@ class QuestionsTableSeeder extends Seeder
         ]); 
         
         Question::create([
-            'name' => 'Yellowness',
+            'name' => 'Intensity of color',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Creemy odour',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Buttery',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Salty',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Acid',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Grainy',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Hardness',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Softness',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Springiness',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]); 
+        
+        Question::create([
+            'name' => 'Padding',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Lining',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Wear',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Melody',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Harmony',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Rhythm',
+            'label_left' => 'Low',  
+            'label_right' => 'High',
+            'max_rate' => $maxrate, 
+            'correct_answer' => rand(1,$maxrate),
+        ]);  
+        
+        Question::create([
+            'name' => 'Stamp',
             'label_left' => 'Low',  
             'label_right' => 'High',
             'max_rate' => $maxrate, 
