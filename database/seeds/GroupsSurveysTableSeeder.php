@@ -13,17 +13,19 @@ class GroupsSurveysTableSeeder extends Seeder {
      */
     public function run() {
         DB::table('group_survey')->truncate();
-        $groups = Group::all();
-        $surveys = Survey::all();
-        foreach ($surveys as $survey) {
-            $randMax = rand(5, 9);
-            foreach ($groups as $group) {
-                $rand = rand(1, 10);
-                if ($group['name'] != 'Public' && $rand <= $randMax) {
-                    $survey->groups()->attach($group['id']);
-                }
-            }
-        }
+        $groups = Group::orderBy("id","asc")->get();
+        $surveys = Survey::orderBy("id","asc")->get();
+        
+        $surveys[0]->groups()->attach($groups[7]);
+        $surveys[1]->groups()->attach($groups[2]);
+        $surveys[2]->groups()->attach($groups[1]);
+        $surveys[3]->groups()->attach($groups[5]);
+        $surveys[4]->groups()->attach($groups[6]);
+        $surveys[5]->groups()->attach($groups[2]);
+        $surveys[6]->groups()->attach($groups[9]);
+        $surveys[7]->groups()->attach($groups[0]);
+        $surveys[8]->groups()->attach($groups[0]);
+        $surveys[9]->groups()->attach($groups[8]);
     }
 
 }

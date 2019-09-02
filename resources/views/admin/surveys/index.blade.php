@@ -11,7 +11,7 @@ Surveys
     <div class="mr-md-3 mr-xl-5">
         <h1 class=" text-primary">Surveys</h1>
         <br>
-        <h3 class="mb-md-0">Use an old survey or create a new one: </h3>
+        <h3 class="mb-md-0">{{__('indexes.survey_create_des')}}</h3>
         <br>
     </div>
     <div class="row">

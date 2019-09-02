@@ -16,7 +16,7 @@ return [
     'new_mod_des' => 'Create a new module',
     //surveys
     'survey_create_des' => 'Use an existing module ore create a new survey:',
-    'new_sur' => 'New survey',
+    'new_sur' => 'New surveys',
     'create_new_sur' => 'Create a new survey',
     'manage_s' => 'Manage surveys:',
     //users
@@ -63,4 +63,5 @@ and the correct values, divided by the number of questions.',
     'change' => 'Change password',
     'bday' => 'Birth date',
     'cancel' => 'Cancel',
+    'show' => 'Show',
 ];

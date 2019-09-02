@@ -80,24 +80,14 @@ Users
                                                     Impersonate
                                                 </button>
                                             </a>
-                                            <form action="{{route('admin.users.destroy', $user->id)}}" id='form-delete' method="POST" class="float-left">
+                                            <form action="{{route('admin.users.destroy', $user->id)}}" id='form-delete{{$user->id}}' method="POST" class="float-left">
                                                 @csrf
                                                 {{method_field('DELETE')}}
-                                                <button type="button" onclick='conferma()' class="btn btn-outline-danger btn-sm">
+                                                <button type="button" onclick='conferma({{$user->id}})' class="btn btn-outline-danger btn-sm">
                                                     Delete
                                                 </button>           
                                             </form>
-                                            <!-- 
-                                                        tengo qui? -->
-                                                    <script>
-                                                         function conferma(){
-                                                             if(confirm('Are you sure?')){
-                                                                 $('#form-delete').submit();
-                                                            }
-                                                        }
-                                                       
-                                                    </script>
-                                        </td>
+                                            </td>
                                     </tr>    
                                     @endforeach
                                 </tbody>
@@ -114,4 +104,11 @@ Users
 <script src="{{asset('vendors/datatables.net/jquery.dataTables.js')}}"></script>
 <script src="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
 <script src="{{asset('js/dashboard.js')}}"></script>
+<script>
+    function conferma(id) {
+        if (confirm('Are you sure?')) {
+            $('#form-delete'+id).submit();
+        }
+    }
+</script>
 @endsection

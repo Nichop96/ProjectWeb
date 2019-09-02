@@ -9,7 +9,7 @@ return [
     'What'=>'What kind of stimulation?',
     'The_sens'=>'The Sensorial Analysis is a very complecated process that involves one or more senses. The idea is to stimulate one of these senses throught sounds, smells and tastes to valuate our own intensity of the experience.',
     'taste' =>'Taste',
-    'tastemi =>Is the sense of what we eat and is the simplier to valuate too. Let\'s Taste!',
+    'tastemi' =>'Is the sense of what we eat and is the simplier to valuate too. Let\'s Taste!',
     'touch' =>'Touch ',
     'touchmi' =>'Is the sense of what we touch and is the least intense of them. Let\'s Touch!',
     'hearing' =>'Hearing',

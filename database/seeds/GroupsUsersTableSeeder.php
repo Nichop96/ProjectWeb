@@ -22,7 +22,7 @@ class GroupsUsersTableSeeder extends Seeder {
                 }
             }
             else {
-                $randMax = rand(1,5);
+                $randMax = rand(2,5);
                 foreach ($users as $user) {
                     $rand = rand(1,10);
                     if($rand <= $randMax){

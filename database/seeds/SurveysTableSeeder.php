@@ -83,7 +83,7 @@ class SurveysTableSeeder extends Seeder {
         ]);
 
         Survey::create([
-            'name' => 'Sisters are doin\' it for themselves',
+            'name' => 'Sisters are doing it for themselves',
             'description' => 'The Simpson: The Yellow Album',
             
             'category_id' => $musicCategory,

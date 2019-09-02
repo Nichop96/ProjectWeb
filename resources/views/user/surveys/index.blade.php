@@ -12,7 +12,7 @@ Surveys
         <h1 class=" text-primary">{{__('indexes.surveys')}}</h1>
         <br>
         @if(sizeof($surveys))
-        <h4 class="mb-md-0">{{__('indexes.new_sur')}}</h4>
+        <h4 class="mb-md-0">{{__('indexes.new_sur')}}:</h4>
         <br>
     </div>
     <div class="row">
