@@ -31,12 +31,12 @@
                                 <form method="POST" id="myform" action="{{ route('register') }}">
                                     @csrf
 
-                                    <h4>New here?</h4>
-                                    <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+                                    <h4>{{__('register.new')}}</h4>
+                                    <h6 class="font-weight-light">{{__('register.sign_up')}}</h6>
                                     <form class="pt-3" action="{{ route('register') }}" method="POST">
                                         @csrf 
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="name" placeholder="First name" required>
+                                            <input type="text" class="form-control form-control-lg{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" name="name" placeholder="{{__('register.name')}}" required>
                                             @if ($errors->has('name'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -44,7 +44,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg{{ $errors->has('surname') ? ' is-invalid' : '' }}" value="{{ old('surname') }}" name="surname"  placeholder="Surname" required>
+                                            <input type="text" class="form-control form-control-lg{{ $errors->has('surname') ? ' is-invalid' : '' }}" value="{{ old('surname') }}" name="surname"  placeholder="{{__('register.surname')}}" required>
                                             @if ($errors->has('surname'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('surname') }}</strong>
@@ -52,7 +52,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input id="email" type="email" class="form-control form-control-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" name="email" placeholder="Email" required>
+                                            <input id="email" type="email" class="form-control form-control-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" name="{{__('register.email')}}" placeholder="Email" required>
                                             @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -74,7 +74,7 @@
                                             </span>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Username" required>
+                                            <input type="text" class="form-control form-control-lg{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="{{__('register.username')}}" required>
                                             @if ($errors->has('username'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('username') }}</strong>
@@ -82,7 +82,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-lg{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" placeholder="Password" required>
+                                            <input type="password" class="form-control form-control-lg{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" placeholder="{{__('register.password')}}" required>
                                             @if ($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password') }}</strong>
@@ -90,7 +90,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-lg{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Password" required>
+                                            <input type="password" class="form-control form-control-lg{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="{{__('register.confirm_pass')}}" required>
                                             @if ($errors->has('password_confirmation'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -109,13 +109,13 @@
                                         <div class="form-group">
 
                                             <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
-                                                {{ __('SIGN UP') }}
+                                                {{__('register.sign')}}
                                             </button>
 
                                         </div>
 
                                         <div class="text-center mt-4 font-weight-light">
-                                            Already have an account? <a href="{{asset('login')}}" class="text-primary">Login</a>
+                                            {{__('register.already')}}<a href="{{asset('login')}}" class="text-primary">Login</a>
                                         </div>
 
                                     </form>
@@ -166,6 +166,7 @@ $("#myform").submit(function (event) {
         return;
     }
     event.preventDefault();
+     
 });
 
 

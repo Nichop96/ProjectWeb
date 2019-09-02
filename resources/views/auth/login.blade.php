@@ -15,7 +15,7 @@
         <!-- inject:css -->
         <link rel="stylesheet" href="../../css/style.css">
         <!-- endinject -->
-        <link rel="shortcut icon" href="../../images/favicon.png" />
+        <link rel="shortcut icon" href="{{asset('public-part/img/logos/logo_transparent.png')}}">
     </head>
     <body>
         <div class="container-scroller">
@@ -27,14 +27,14 @@
                                 <div class="brand-logo">
                                     <img src="../public-part/img/logos/logo_transparent.png" alt="logo">
                                 </div>
-                                <h4>Hello! let's get started</h4>
-                                <h6 class="font-weight-light">Sign in to continue.</h6>
+                                <h4>{{__('login.hello')}}</h4>
+                                <h6 class="font-weight-light">{{__('login.sign_in')}}</h6>
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
 
                                     <div class="form-group">
 
-                                        <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <input id="email" type="email" placeholder="{{__('login.email')}}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
 
                                     <div class="form-group">
 
-                                        <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                        <input id="password" type="password" placeholder="{{__('login.password')}}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -69,14 +69,14 @@
                                     <div class="mt-3">
 
                                         <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="{{asset('index')}}">
-                                            {{ __('SIGN IN') }}
+                                            {{__('login.sign')}}
                                         </button>
 
 
 
                                     </div>
                                     <div class="text-center mt-4 font-weight-light">
-                                        Don't have an account? <a href="{{asset('register')}}" class="text-primary">Create</a>
+                                        {{__('login.dont')}} <a href="{{asset('register')}}" class="text-primary">{{__('login.create')}}</a>
                                     </div>
                                 </form>
                             </div>
