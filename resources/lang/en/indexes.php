@@ -64,4 +64,6 @@ and the correct values, divided by the number of questions.',
     'bday' => 'Birth date',
     'cancel' => 'Cancel',
     'show' => 'Show',
+    'search' => 'Search',
+    'are_u_sure' => 'Are you sure?',
 ];

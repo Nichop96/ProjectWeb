@@ -13,8 +13,8 @@ Survey
                     <br>
                     <h2 class="text-primary">{{ $survey->name }}</h2> 
                     <br>
-                    <h4>{{ $survey->description }}</h4>           
-                    <br>   
+                    <h4>{{ $survey->description }}</h4>                 
+                    <br>
                     <form class="pt-3" action="{{ route('user.surveys.store') }}" method="POST">
                         @csrf                        
                         @foreach($questions as $question)                  

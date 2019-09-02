@@ -56,15 +56,6 @@ class SurveysTableSeeder extends Seeder {
         ]);
 
         Survey::create([
-            'name' => 'Lavazza: Crema e Gusto',
-            'description' => 'Lavazza: Crema e Gusto',
-            
-            'category_id' => $coffeeCategory,
-            'fillable' => 1,
-            'image' => 'lavazza.jpg'
-        ]);
-
-        Survey::create([
             'name' => 'Medici Ermete: Assolo 0.75',
             'description' => 'Medici Ermete: Assolo 0.75',
             

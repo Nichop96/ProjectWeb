@@ -78,7 +78,7 @@ e i valori corretti, divisi per il numero di domande.',
     'change' => 'Cambia password',
     'bday' => 'Data di nascita',
     'cancel' => 'Annulla',
-    
-    
+    'search' => 'Cerca',
+    'are_u_sure' => 'Sei proprio sicuro?',
     
 ];

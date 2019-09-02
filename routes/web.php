@@ -66,6 +66,7 @@ Route::namespace('User')->prefix('user')->middleware(['auth', 'auth.user'])->nam
     Route::get('/surveys/{id}/show', 'SurveyController@show');
     Route::resource('/groups', 'GroupController');
     Route::get('/index', 'HomeController@index')->name('index');
+    Route::post('/surveys/create', 'SurveyController@search')->name('surveys.search');
 });
 
 

@@ -81,7 +81,7 @@ Groups
 <script src="{{asset('js/dashboard.js')}}"></script>
 <script>
     function conferma(id) {
-        if (confirm('Are you sure?')) {
+        if (confirm('{{__('indexes.are_u_sure')}}')) {
             $('#form-delete'+id).submit();
         }
     }
